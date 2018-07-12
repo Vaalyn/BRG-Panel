@@ -31,6 +31,9 @@ class MigrationRequestTableChanges extends AbstractMigration
 			->addColumn('is_autodj', 'boolean', ['default' => false, 'null' => false])
 			->addColumn('updated_at', 'datetime', ['null' => false])
 			->addColumn('deleted_at', 'datetime', ['default' => null, 'null' => true])
+			->update();
+
+		$this->table('request')
 			->changeColumn('skipped', 'boolean', ['after' => 'ip_address', 'default' => false, 'null' => false])
 			->changeColumn('requested_time', 'boolean', ['after' => 'is_autodj', 'default' => false, 'null' => false])
 			->renameColumn('id_request', 'request_id')

@@ -1,0 +1,126 @@
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Thin),
+		url("../font/roboto/Roboto-Thin.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Thin.woff") format("woff");
+	font-weight: 100;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Light),
+		url("../font/roboto/Roboto-Light.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Light.woff") format("woff");
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Regular),
+		url("../font/roboto/Roboto-Regular.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Regular.woff") format("woff");
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Medium),
+		url("../font/roboto/Roboto-Medium.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Medium.woff") format("woff");
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Bold),
+		url("../font/roboto/Roboto-Bold.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Bold.woff") format("woff");
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../font/material-icons/MaterialIcons-Regular.eot'); /* For IE6-8 */
+	src: local('Material Icons'),
+		local('MaterialIcons-Regular'),
+		url('../font/material-icons/MaterialIcons-Regular.woff2') format('woff2'),
+		url('../font/material-icons/MaterialIcons-Regular.woff') format('woff'),
+		url('../font/material-icons/MaterialIcons-Regular.ttf') format('truetype');
+}
+
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	vertical-align: middle;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+	font-feature-settings: 'liga';
+}
+
+.toast .material-icons {
+	margin-left: -10px;
+	margin-right: 10px;
+}
+
+html {
+	font-family: 'Roboto', Verdana, Geneva, sans-serif;
+}
+
+main {
+	margin: 15px 0;
+}
+
+#sidenav-overlay {
+	z-index: 990;
+}
+
+.brand-logo img {
+	height: 50px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	box-sizing: border-box;
+	margin-left: 7px;
+	margin-top: 7px;
+}
+
+nav li .dropdown-button i.material-icons {
+	margin-left: 5px;
+}
+
+nav li .dropdown-content {
+	top: 54px !important;
+}
+
+h3.card-title {
+	margin-top: 0;
+}
+
+h3.card-title + .divider {
+	margin-bottom: 15px;
+}
+
+.donor-donated-amount {
+	margin-right: 5px;
+    padding-right: 5px;
+    font-weight: 300;
+}
+
+#donations .chip.donation .delete {
+	cursor: pointer;
+	float: right;
+	font-size: 16px;
+	line-height: 32px;
+	padding-left: 8px;
+}

@@ -1,0 +1,54 @@
+@media only screen and (max-width: 992px) {
+	#brg-player-system-modal {
+		width: 95%;
+	}
+}
+
+#brg-player-system-modal .modal-content {
+	padding: 0;
+	padding-top: 10px;
+}
+
+#brg-player-system-modal .modal-content .row {
+	margin-bottom: 10px;
+}
+
+#brg-player-system-modal .btn,
+#brg-player-system-modal .btn-floating {
+	background: #600D14;
+}
+
+#brg-player-system-modal .btn:hover,
+#brg-player-system-modal .btn-floating:hover {
+	background: #4A070C;
+}
+
+#brg-player-system-modal thead {
+	background: #610C12;
+	border-bottom: 2px solid #4A070C;
+}
+
+#brg-player-system-modal th:not(:first-of-type):not(:last-of-type),
+#brg-player-system-modal td {
+	border-radius: 0;
+}
+
+#brg-player-system-modal td:not(:last-of-type) {
+	word-break: break-word;
+}
+
+#brg-player-system-modal tbody tr:nth-child(odd) {
+	background: #fff;
+}
+
+#brg-player-system-modal tbody tr:nth-child(even) {
+	background: #f5f5f5;
+}
+
+#brg-player-system-modal .modal-footer {
+	background: #600D14;
+}
+
+#brg-player-system-modal .modal-footer a {
+	color: #fff !important;
+}

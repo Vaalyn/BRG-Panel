@@ -1,0 +1,99 @@
+.color-1 {
+	background-color: #610C12 !important;
+}
+
+.btn.color-1:hover,
+.btn.color-1:focus,
+.btn-floating.color-1:hover,
+.btn-floating.color-1:focus {
+	background-color: #4A060A !important;
+}
+
+.color-2 {
+	background-color: #3D3D3D !important;
+}
+
+.color-3 {
+	background-color: #4A060A !important;
+}
+
+nav li .dropdown-content li:hover {
+	background-color: rgba(0,0,0,0.1) !important;
+}
+
+nav li .dropdown-content a,
+.side-nav li > a,
+.side-nav li > a i.material-icons {
+	color: #fff;
+}
+
+.pagination li a {
+	color: #eee;
+}
+
+.pagination li.active {
+    background-color: #610C12;
+}
+
+table.striped tbody tr:nth-child(odd) {
+	background: #fff;
+}
+
+table.striped tbody tr:nth-child(even) {
+	background: #f5f5f5;
+}
+
+table.striped tbody td {
+	color: #000;
+}
+
+.tabs .tab a {
+	color: #aaa;
+}
+
+.tabs .tab a:hover,
+.tabs .tab a.active {
+	color: #fff;
+}
+
+.tabs .indicator {
+	background-color: #0BB6FF;
+}
+
+input:not([type]):disabled,
+input:not([type])[readonly="readonly"],
+input[type=text]:not(.browser-default):disabled,
+input[type=text]:not(.browser-default)[readonly="readonly"],
+input[type=password]:not(.browser-default):disabled,
+input[type=password]:not(.browser-default)[readonly="readonly"],
+input[type=email]:not(.browser-default):disabled,
+input[type=email]:not(.browser-default)[readonly="readonly"],
+input[type=url]:not(.browser-default):disabled,
+input[type=url]:not(.browser-default)[readonly="readonly"],
+input[type=time]:not(.browser-default):disabled,
+input[type=time]:not(.browser-default)[readonly="readonly"],
+input[type=date]:not(.browser-default):disabled,
+input[type=date]:not(.browser-default)[readonly="readonly"],
+input[type=datetime]:not(.browser-default):disabled,
+input[type=datetime]:not(.browser-default)[readonly="readonly"],
+input[type=datetime-local]:not(.browser-default):disabled,
+input[type=datetime-local]:not(.browser-default)[readonly="readonly"],
+input[type=tel]:not(.browser-default):disabled,
+input[type=tel]:not(.browser-default)[readonly="readonly"],
+input[type=number]:not(.browser-default):disabled,
+input[type=number]:not(.browser-default)[readonly="readonly"],
+input[type=search]:not(.browser-default):disabled,
+input[type=search]:not(.browser-default)[readonly="readonly"],
+textarea.materialize-textarea:disabled,
+textarea.materialize-textarea[readonly="readonly"] {
+	color: #ddd;
+	border-bottom: 1px dotted rgba(222, 222, 222, 0.26);
+}
+
+.input-field label:not(.label-icon).active {
+	color: #9e9e9e !important;
+}
+
+.donor-donated-amount {
+	border-right: 2px solid #4A060A;
+}

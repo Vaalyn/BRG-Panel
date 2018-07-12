@@ -1,0 +1,116 @@
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Thin),
+		url("../font/roboto/Roboto-Thin.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Thin.woff") format("woff");
+	font-weight: 100;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Light),
+		url("../font/roboto/Roboto-Light.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Light.woff") format("woff");
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Regular),
+		url("../font/roboto/Roboto-Regular.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Regular.woff") format("woff");
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Medium),
+		url("../font/roboto/Roboto-Medium.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Medium.woff") format("woff");
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Bold),
+		url("../font/roboto/Roboto-Bold.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Bold.woff") format("woff");
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../font/material-icons/MaterialIcons-Regular.eot'); /* For IE6-8 */
+	src: local('Material Icons'),
+		local('MaterialIcons-Regular'),
+		url('../font/material-icons/MaterialIcons-Regular.woff2') format('woff2'),
+		url('../font/material-icons/MaterialIcons-Regular.woff') format('woff'),
+		url('../font/material-icons/MaterialIcons-Regular.ttf') format('truetype');
+}
+
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	vertical-align: middle;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+	font-feature-settings: 'liga';
+}
+
+html {
+	font-family: 'Roboto', Verdana, Geneva, sans-serif;
+}
+
+.brg-grey {
+	background-color: #3D3D3D !important;
+}
+
+.brg-red {
+	background-color: #610C12;
+}
+
+.btn.brg-red:hover,
+.btn.brg-red:focus,
+.btn-floating.brg-red:hover,
+.btn-floating.brg-red:focus {
+	background-color: #4A060A;
+}
+
+thead {
+	background: #610C12;
+	border-bottom: 2px solid #4A070C;
+}
+
+th:not(:first-of-type):not(:last-of-type),
+td {
+	border-radius: 0;
+}
+
+td:not(:first-of-type):not(:nth-of-type(2)) {
+	word-break: break-word;
+}
+
+tbody tr:nth-child(odd) {
+	background: #fff;
+}
+
+tbody tr:nth-child(even) {
+	background: #f5f5f5;
+}
+
+.toast .material-icons {
+	margin-left: -10px;
+	margin-right: 10px;
+}

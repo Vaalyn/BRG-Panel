@@ -1,0 +1,536 @@
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Thin),
+		url("../font/roboto/Roboto-Thin.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Thin.woff") format("woff");
+	font-weight: 100;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Light),
+		url("../font/roboto/Roboto-Light.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Light.woff") format("woff");
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Regular),
+		url("../font/roboto/Roboto-Regular.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Regular.woff") format("woff");
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Medium),
+		url("../font/roboto/Roboto-Medium.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Medium.woff") format("woff");
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Bold),
+		url("../font/roboto/Roboto-Bold.woff2") format("woff2"),
+		url("../font/roboto/Roboto-Bold.woff") format("woff");
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../font/material-icons/MaterialIcons-Regular.eot'); /* For IE6-8 */
+	src: local('Material Icons'),
+		local('MaterialIcons-Regular'),
+		url('../font/material-icons/MaterialIcons-Regular.woff2') format('woff2'),
+		url('../font/material-icons/MaterialIcons-Regular.woff') format('woff'),
+		url('../font/material-icons/MaterialIcons-Regular.ttf') format('truetype');
+}
+
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	vertical-align: middle;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+	font-feature-settings: 'liga';
+}
+
+html {
+	font-family: 'Roboto', Verdana, Geneva, sans-serif;
+}
+
+.toast .material-icons {
+	margin-left: -10px;
+	margin-right: 10px;
+}
+
+.partner .card-content {
+	padding: 10px;
+}
+
+.partner .brg-logo {
+	height: auto;
+	width: 100px;
+}
+
+.partner h1 {
+	font-size: 2.6rem;
+	margin-bottom: 0;
+	margin-top: 5px;
+}
+
+.partner h1 small {
+	font-size: 1.2rem;
+	font-weight: 300;
+}
+
+.partner h2 {
+	font-size: 1.2rem;
+	margin: 10px 0;
+}
+
+.partner .partner-banner img {
+	width: 300px;
+}
+
+.brg-player-container {
+	background: #610C12;
+	border-top: 5px solid #4A060A;
+	bottom: 0;
+	box-sizing: content-box;
+	height: 84px;
+	min-width: 400px;
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+}
+
+@media only screen and (max-width: 600px) {
+	.brg-player-container .container {
+		width: 100%;
+	}
+}
+
+.brg-player-controls {
+	display: inline-block;
+	margin-top: 8px;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.brg-player-controls-button-pause {
+	display: none;
+}
+
+.brg-player-controls-button-play:hover,
+.brg-player-controls-button-pause:hover {
+	background: #dfdfdf !important;
+}
+
+.brg-player-controls .jp-pause {
+	display: none;
+}
+
+.brg-player-controls a {
+	display: inline;
+	width: 100%;
+}
+
+.brg-player-controls .material-icons {
+	color: #333;
+}
+
+.brg-player-details {
+	display: inline-block;
+	margin-top: 10px;
+	padding-right: 5px;
+	vertical-align: top;
+	width: calc(100vw - 102px);
+}
+
+@media only screen and (min-width: 601px) {
+	.brg-player-details {
+		width: calc(100% - 200px);
+	}
+}
+
+.brg-player-live-label {
+	border-radius: 3px 0 0 3px;
+	display: none;
+	height: 36px;
+	line-height: 28px;
+	margin-bottom: 2px;
+	margin-right: -3px;
+	padding: 5px 10px;
+	vertical-align: middle;
+}
+
+.brg-player-details.live .brg-player-live-label {
+	display: inline-block;
+}
+
+.brg-player-title {
+	background: #ccc;
+	border-radius: 3px 0 0 3px;
+	box-sizing: border-box;
+	color: #fff;
+	display: inline-block;
+	font-size: 18px;
+	height: 36px;
+	margin-bottom: 2px;
+	overflow: hidden;
+	padding: 5px 0;
+	vertical-align: middle;
+	white-space: nowrap;
+	width: calc(100% - 40px);
+}
+
+.brg-player-details.live .brg-player-title {
+	border-radius: 0;
+	width: calc(100% - 88px);
+}
+
+@media only screen and (min-width: 601px) {
+	.brg-player-title {
+		width: calc(100% - 110px);
+	}
+
+	.brg-player-details.live .brg-player-title {
+		width: calc(100% - 158px);
+	}
+}
+
+.marquee span {
+	animation: marquee 10s steps(500) infinite;
+	-webkit-animation: marquee 10s steps(500) infinite;
+	animation-delay: 1.5s;
+	-webkit-animation-delay: 1.5s;
+	display: inline-block;
+	padding-left: 100%;
+	text-indent: 0;
+}
+
+.marquee span:hover {
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+}
+
+@keyframes marquee {
+    0% {
+    	-ms-transform: translate(0, 0);
+    	-webkit-transform: translate(0, 0);
+		transform: translate(0, 0);
+    }
+
+    100% {
+    	-ms-transform: translate(-100%, 0);
+    	-webkit-transform: translate(-100%, 0);
+		transform: translate(-100%, 0);
+    }
+}
+
+@-webkit-keyframes marquee {
+    0% {
+    	-ms-transform: translate(0, 0);
+    	-webkit-transform: translate(0, 0);
+		transform: translate(0, 0);
+    }
+
+    100% {
+    	-ms-transform: translate(-100%, 0);
+    	-webkit-transform: translate(-100%, 0);
+		transform: translate(-100%, 0);
+    }
+}
+
+.brg-player-history-button {
+	border-radius: 0 3px 3px 0;
+	display: inline-block;
+	height: 36px;
+	width: 40px;
+	margin-bottom: 2px;
+	margin-left: -4px;
+	padding: 0;
+	text-align: center;
+}
+
+@media only screen and (min-width: 601px) {
+	.brg-player-history-button {
+		padding: 0 8px;
+		text-align: left;
+		width: 110px;
+	}
+}
+
+.brg-player-history-button:hover {
+	background: #dfdfdf !important;
+}
+
+.brg-player-history-button .material-icons {
+	color: #333;
+}
+
+@media only screen and (min-width: 601px) {
+	.brg-player-history-button .material-icons {
+		float: left;
+		margin-right: 5px;
+	}
+}
+
+.brg-player-history-button span {
+	color: #333;
+	text-transform: none;
+}
+
+.brg-player-volume {
+	display: inline-block;
+	width: calc(100% - 172px);
+}
+
+.brg-player-volume-controls {
+	display: inline-block;
+}
+
+.brg-player-volume-controls .brg-player-volume-controls-wrapper {
+	display: inline-block;
+	height: 35px;
+	margin-right: 5px;
+	vertical-align: middle;
+}
+
+.brg-player-volume-controls-button {
+	background: #fff;
+	border-radius: 3px;
+	display: block;
+	height: 24px;
+	line-height: 24px;
+	margin-top: 5px;
+	overflow: hidden;
+	width: 24px;
+}
+
+.brg-player-volume-controls-button:hover {
+	background: #dfdfdf;
+}
+
+.brg-player-button-unmute {
+	display: none;
+}
+
+.brg-player-volume-controls .material-icons {
+	color: #333;
+}
+
+.brg-player-volume-badge {
+	border-radius: 3px 0 0 3px;
+	border-right: 2px solid #bdbdbd;
+	box-sizing: border-box;
+	color: #4A070C;
+	display: inline-block;
+	font-weight: 500;
+	height: 22px;
+	line-height: 22px;
+	margin-right: -4px;
+	overflow: hidden;
+	padding: 0 3px;
+	text-align: center;
+	vertical-align: middle;
+	width: 45px;
+}
+
+.brg-player-volume-bar-container {
+	display: inline-block;
+	margin-top: 6px;
+	vertical-align: top;
+	width: calc(100% - 79px);
+}
+
+.brg-player-volume-bar-container .brg-player-volume-bar {
+	border-radius: 0 3px 3px 0;
+	cursor: pointer;
+	height: 22px;
+	overflow: hidden;
+}
+
+.brg-player-volume-bar-container .brg-player-volume-bar-value {
+	height: 100%;
+	width: 50%;
+}
+
+.brg-player-voting {
+	display: inline-block;
+	margin-top: 5px;
+	vertical-align: top;
+}
+
+.brg-player-votes {
+	display: inline-block;
+	height: 24px;
+	line-height: 24px;
+    padding: 0 3px;
+    text-align: center;
+	vertical-align: middle;
+    width: 45px;
+}
+
+.brg-player-voting-downvote,
+.brg-player-voting-upvote {
+	background: #fff;
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    padding: 0px 3px;
+    vertical-align: middle;
+}
+
+.brg-player-voting-downvote.disabled,
+.brg-player-voting-upvote.disabled {
+	cursor: default;
+}
+
+.brg-player-voting-downvote:not(.disabled):hover,
+.brg-player-voting-upvote:not(.disabled):hover {
+	background: #dfdfdf;
+}
+
+.brg-player-voting-downvote {
+	margin-right: -4px;
+	border-radius: 3px 0 0 3px;
+}
+
+.brg-player-voting-upvote {
+	margin-left: -4px;
+	border-radius: 0 3px 3px 0;
+}
+
+.brg-player-voting-downvote.disabled .material-icons,
+.brg-player-voting-upvote.disabled .material-icons {
+	color: #ccc !important;
+}
+
+.brg-player-voting-downvote.disabled.red .material-icons,
+.brg-player-voting-upvote.disabled.green .material-icons {
+	color: #fff !important;
+}
+
+.brg-player-listener {
+	border-radius: 3px;
+	color: #fff;
+	display: inline-block;
+	height: 24px;
+	margin-top: 5px;
+	overflow: hidden;
+	padding: 0 3px;
+	text-align: center;
+	vertical-align: top;
+	width: 60px;
+}
+
+.brg-player-listener .material-icons {
+	vertical-align: middle;
+}
+
+.brg-player-listener-count {
+	font-size: 15px;
+	vertical-align: middle;
+}
+
+.brg-player-actions {
+	display: inline-block;
+	vertical-align: top;
+	width: 20px;
+}
+
+@media only screen and (min-width: 601px) {
+	.brg-player-actions {
+		width: 140px;
+	}
+}
+
+.brg-player-actions-menu-button {
+	margin-top: 8px;
+}
+
+.brg-player-actions-menu-button:hover {
+	background: #dfdfdf !important;
+}
+
+.brg-player-actions-menu-button .material-icons {
+	color: #333;
+}
+
+.brg-player-stream-selection {
+	height: 36px;
+	margin-bottom: 2px;
+	margin-top: 10px;
+	color: #333;
+}
+
+.brg-player-stream-selection:focus {
+	outline: none;
+}
+
+@media only screen and (max-width: 601px) {
+	.brg-player-actions-wrapper:not(.full-framed) {
+		position: absolute;
+		top: 9999px;
+	}
+
+	.brg-player-actions-wrapper.full-framed {
+		position: absolute;
+		left: 5px;
+		top: 100px;
+		transition: all 0.2s ease;
+		width: calc(100% - 56px);
+		z-index: 1;
+	}
+
+	.brg-player-actions-wrapper.open {
+		background: #610b11;
+		top: 0;
+	}
+}
+
+.brg-player-request-button-wrapper .btn,
+.brg-player-message-button-wrapper .btn {
+	height: 24px;
+	line-height: 24px;
+	margin-top: 5px;
+	padding: 0 10px;
+	width: 100%;
+}
+
+.brg-player-request-button-wrapper .btn:hover,
+.brg-player-message-button-wrapper .btn:hover {
+	background: #dfdfdf !important;
+}
+
+.brg-player-request-button-wrapper .btn .material-icons,
+.brg-player-message-button-wrapper .btn .material-icons {
+	margin-left: 10px;
+	margin-right: 5px;
+}
+
+.brg-player-message-button-wrapper .btn .material-icons {
+	margin-left: 2px;
+}
+
+@media only screen and (max-width: 992px) {
+	.modal {
+		width: 95%;
+	}
+}

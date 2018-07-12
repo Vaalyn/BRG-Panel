@@ -1,0 +1,15 @@
+#brg-player-actions-menu {
+	background: #600D14;
+}
+
+#brg-player-actions-menu .brg-player-modal-stream-selection {
+	color: #333;
+}
+
+#brg-player-actions-menu .modal-footer {
+	background: #4A070C;
+}
+
+#brg-player-actions-menu .modal-footer a {
+	color: #fff !important;
+}

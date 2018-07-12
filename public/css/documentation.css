@@ -1,0 +1,11 @@
+.api-url {
+	border-radius: 2px;
+	font-family: "Lucida Console", Monaco, monospace;
+	padding: 10px 15px;
+	word-wrap: break-word;
+}
+
+.json-output {
+	margin: 0;
+	padding: 10px 15px;
+}

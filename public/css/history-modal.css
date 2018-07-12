@@ -1,0 +1,39 @@
+@media only screen and (max-width: 992px) {
+	#brg-player-history-modal {
+		width: 95%;
+	}
+}
+
+#brg-player-history-modal .modal-content {
+	padding: 0;
+}
+
+#brg-player-history-modal thead {
+	background: #610C12;
+	border-bottom: 2px solid #4A070C;
+}
+
+#brg-player-history-modal th:not(:first-of-type):not(:last-of-type),
+#brg-player-history-modal td {
+	border-radius: 0;
+}
+
+#brg-player-history-modal td:not(:first-of-type):not(:nth-of-type(2)) {
+	word-break: break-word;
+}
+
+#brg-player-history-modal tbody tr:nth-child(odd) {
+	background: #fff;
+}
+
+#brg-player-history-modal tbody tr:nth-child(even) {
+	background: #f5f5f5;
+}
+
+#brg-player-history-modal .modal-footer {
+	background: #4A070C;
+}
+
+#brg-player-history-modal .modal-footer a {
+	color: #fff !important;
+}

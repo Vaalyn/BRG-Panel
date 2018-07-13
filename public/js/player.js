@@ -723,8 +723,8 @@ function buildRequestModalTrackTable(tracks) {
 
 	tracks.forEach(function(track) {
 		let row = '<tr>';
-		row += '<td>' + track.title + '</td>';
-		row += '<td>' + track.artist + '</td>';
+		row += '<td class="grey-text text-darken-4">' + track.title + '</td>';
+		row += '<td class="grey-text text-darken-4">' + track.artist + '</td>';
 		row += '<td>';
 		row += '<button class="request-track btn-floating waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="Song requesten" data-id="' + track.id + '">';
 		row += '<i class="material-icons">queue_music</i>';

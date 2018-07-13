@@ -1,7 +1,9 @@
 <?php
 
 return [
+	'api.community.user.coin.add' => '*',
 	'api.community.user.coin.get' => '*',
+	'api.community.user.coin.remove' => '*',
 	'api.donation.currently-needed-amount' => '*',
 	'api.donation.list' => '*',
 	'api.history.list' => '*',

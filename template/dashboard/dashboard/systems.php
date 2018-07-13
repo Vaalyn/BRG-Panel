@@ -109,7 +109,7 @@
 							<?php endif; ?>
 						</td>
 						<td>
-							<?php if ($systems['autodj_request']['active']) : ?>
+							<?php if ($system['autodj_request']['active']) : ?>
 								<a href="#!" id="set-autodj-request-system-active" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="deaktivieren" data-active="0">
 									<i class="material-icons">remove_circle</i>
 								</a>
@@ -123,14 +123,14 @@
 					<tr>
 						<th>Requests pro Person</th>
 						<td>
-							<span><?php echo $systems['autodj_request']['limit']; ?></span>
+							<span><?php echo $system['autodj_request']['limit']; ?></span>
 						</td>
 						<td></td>
 					</tr>
 					<tr>
 						<th>Aktive Requests</th>
 						<td>
-							<span><?php echo $systems['autodj_request']['requests']; ?></span>
+							<span><?php echo $system['autodj_request']['requests']; ?></span>
 						</td>
 						<td></td>
 					</tr>

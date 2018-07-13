@@ -41,7 +41,7 @@ class CommunityUserModelManager {
 		}
 
 		$communityUser->discord_username = $discordUsername;
-		$discordUsername->save();
+		$communityUser->save();
 
 		return $communityUser;
 	}

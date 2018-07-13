@@ -19,5 +19,10 @@ return [
 	],
 	'api.voter.add' => [
 		'https://www.bronyradiogermany.com'
-	]
+	],
+	'player' => '*',
+	'player.embed' => '*',
+	'player.embed.external' => '*',
+	'player.modal.action-menu' => '*',
+	'player.modal.history' => '*'
 ];

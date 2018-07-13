@@ -65,7 +65,7 @@
 
 					<tfoot>
 						<tr>
-							<td class="white center" colspan="3">
+							<td class="white grey-text text-darken-4 center" colspan="3">
 								Gib einen Titel und/oder Artist ein um nach Songs zu suchen
 							</td>
 						</tr>

@@ -24,5 +24,6 @@ return [
 	'player.embed' => '*',
 	'player.embed.external' => '*',
 	'player.modal.action-menu' => '*',
-	'player.modal.history' => '*'
+	'player.modal.history' => '*',
+	'player.modal.system' => '*'
 ];

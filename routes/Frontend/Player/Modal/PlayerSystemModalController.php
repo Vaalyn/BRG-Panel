@@ -52,7 +52,7 @@ class PlayerSystemModalController {
 			);
 		}
 
-		return $this->container->renderer->render($response, '/player/modal/request-offline.php');
+		return $this->renderOfflineModal($request, $response);
 	}
 
 	/**
@@ -85,6 +85,25 @@ class PlayerSystemModalController {
 	protected function renderAutoDjRequestModal(Response $response, int $limit): Response {
 		return $this->container->renderer->render($response, '/player/modal/request-autodj.php', [
 			'limit' => $limit
+		]);
+	}
+
+	/**
+	 * @param \Slim\Http\Request $request
+	 * @param \Slim\Http\Response $response
+	 *
+	 * @return Response
+	 */
+	protected function renderOfflineModal(Request $request, Response $response): Response {
+		$baseUrl = sprintf(
+			'%s://%s%s',
+			$request->getUri()->getScheme(),
+			$request->getUri()->getHost(),
+			($request->getUri()->getBasePath() !== '') ? $request->getUri()->getBasePath() . '/' : ''
+		);
+
+		return $this->container->renderer->render($response, '/player/modal/request-offline.php', [
+			'baseUrl' => $baseUrl
 		]);
 	}
 }

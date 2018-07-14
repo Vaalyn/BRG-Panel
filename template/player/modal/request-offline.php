@@ -12,7 +12,7 @@
 
 		<div class="row">
 			<div class="col s12 center">
-				<img src="<?php echo $baseUrl ?>image/request-system-offline.gif" alt="Das Request System ist deaktiviert" />
+				<img src="<?php echo $baseUrl; ?>image/request-system-offline.gif" alt="Das Request System ist deaktiviert" />
 			</div>
 		</div>
 	</div>

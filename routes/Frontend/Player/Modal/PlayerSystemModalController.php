@@ -99,7 +99,7 @@ class PlayerSystemModalController {
 			'%s://%s%s',
 			$request->getUri()->getScheme(),
 			$request->getUri()->getHost(),
-			($request->getUri()->getBasePath() !== '') ? $request->getUri()->getBasePath() . '/' : ''
+			($request->getUri()->getBasePath() !== '') ? $request->getUri()->getBasePath() . '/' : '/'
 		);
 
 		return $this->container->renderer->render($response, '/player/modal/request-offline.php', [

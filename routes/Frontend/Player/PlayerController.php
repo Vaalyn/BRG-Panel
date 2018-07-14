@@ -32,7 +32,15 @@ class PlayerController {
 		$isAutoDjRequestSystemActive = Status::find(3)->active;
 		$isMessageSystemActive       = Status::find(2)->active;
 
+		$baseUrl = sprintf(
+			'%s://%s/%s',
+			$request->getUri()->getScheme(),
+			$request->getUri()->getHost(),
+			($request->getUri()->getBasePath() !== '') ? $request->getUri()->getBasePath() . '/' : ''
+		);
+
 		return $this->container->renderer->render($response, '/player/standalone/player.php', [
+			'baseUrl' => $baseUrl,
 			'currentPartner' => $request->getQueryParams()['partner'] ?? '',
 			'host' => $this->container->config['host']['url'],
 			'isRequestSystemActive' => $isRequestSystemActive,

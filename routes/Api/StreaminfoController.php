@@ -63,6 +63,7 @@ class StreaminfoController {
 
 		$streaminfoDto = new StreaminfoDto(
 			$stream->stream_id,
+			$track->track_id,
 			$stream->title,
 			$stream->artist,
 			$stream->listener,

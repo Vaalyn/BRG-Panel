@@ -11,6 +11,11 @@ class StreaminfoDto implements JsonSerializable {
 	protected $id;
 
 	/**
+	 * @var int $trackId
+	 */
+	protected $trackId;
+
+	/**
 	 * @var string $title
 	 */
 	protected $title;
@@ -47,6 +52,7 @@ class StreaminfoDto implements JsonSerializable {
 
 	/**
 	 * @param int $id
+	 * @param int $trackId
 	 * @param string $title
 	 * @param string $artist
 	 * @param int $listener
@@ -57,6 +63,7 @@ class StreaminfoDto implements JsonSerializable {
 	 */
 	public function __construct(
 		int $id,
+		int $trackId,
 		string $title,
 		string $artist,
 		int $listener,
@@ -92,6 +99,24 @@ class StreaminfoDto implements JsonSerializable {
 	 */
 	public function getId(): int {
 		return $this->id;
+	}
+
+	/**
+	 * @param int $trackId
+	 *
+	 * @return \Dto\ApiResponse\StreaminfoDto
+	 */
+	public function setTrackId(int $trackId): StreaminfoDto {
+		$this->trackId = $trackId;
+
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getTrackId(): int {
+		return $this->trackId;
 	}
 
 	/**
@@ -226,6 +251,7 @@ class StreaminfoDto implements JsonSerializable {
 	public function jsonSerialize(): array {
 		return [
 			'id' => $this->getId(),
+			'track_id' => $this->getTrackId(),
 			'title' => $this->getTitle(),
 			'artist' => $this->getArtist(),
 			'listener' => $this->getListener(),

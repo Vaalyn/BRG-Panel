@@ -74,6 +74,7 @@ class StreaminfoDto implements JsonSerializable {
 	) {
 		$this
 			->setId($id)
+			->setTrackId($trackId)
 			->setTitle($title)
 			->setArtist($artist)
 			->setListener($listener)

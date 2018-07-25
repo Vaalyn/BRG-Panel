@@ -39,8 +39,7 @@ class GoogleCalendarApiClient {
 			'maxResults' => 1,
 			'orderBy' => 'startTime',
 			'singleEvents' => true,
-			'timeMin' => date(\DateTime::RFC3339),
-			'timeMax' => date(\DateTime::RFC3339)
+			'timeMin' => date(\DateTime::RFC3339)
 		);
 
 		/** @var Google_Service_Calendar_Events $events */

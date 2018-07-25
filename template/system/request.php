@@ -16,7 +16,7 @@
 				<label for="nickname">Dein Nickname</label>
 			</div>
 
-			<div class="input-field col m6 hide-on-small-only">
+			<div class="input-field col s12 m6">
 				<input type="text" id="url" class="white-text">
 				<label for="url">Link zum Song</label>
 			</div>

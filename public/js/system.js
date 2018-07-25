@@ -1,19 +1,19 @@
 $(document).ready(function() {
 	if (requestSystemActive) {
 		registerRequestSongClick();
-		registerTrackSearch(false);
+		registerTrackSearch();
 		registerRequestTrackClick(false);
 	} else if (messageSystemActive) {
 		registerSendMessageClick();
 	} else if (requestAutoDjSystemActive) {
-		registerTrackSearch(true);
+		registerTrackSearch();
 		registerRequestTrackClick(true);
 	}
 });
 
 var trackSearchTypingTimer;
 
-function registerTrackSearch(searchOnlyAutoDjTracks) {
+function registerTrackSearch() {
 	$(document).on(
 		'input',
 		'#title, #artist',
@@ -29,19 +29,7 @@ function registerTrackSearch(searchOnlyAutoDjTracks) {
 			}
 
 			trackSearchTypingTimer = setTimeout(function() {
-				if (searchOnlyAutoDjTracks) {
-					searchAutoDjTracks(title, artist)
-						.then(function(response) {
-							buildRequestModalTrackTable(response.result);
-						})
-						.catch(function(error) {
-							console.log(error);
-						});
-
-					return;
-				}
-
-				searchTracks(title, artist)
+				searchAutoDjTracks(title, artist)
 					.then(function(response) {
 						buildRequestModalTrackTable(response.result);
 					})
@@ -123,27 +111,6 @@ function registerSendMessageClick() {
 			})
 			.fail(function() {
 				Materialize.toast('<i class="material-icons red-text text-darken-1">error_outline</i> Es ist ein Fehler aufgetreten', 3000);
-			});
-	});
-}
-
-function searchTracks(title, artist) {
-	return new Promise(function(resolve, reject) {
-		let queryParams = {
-			title: title,
-			artist: artist
-		};
-
-		$.get(brgPlayerBaseUrl + '/api/track/list', queryParams)
-			.done(function(response) {
-				if (response.status !== 'success') {
-					reject(response.message);
-				}
-
-				resolve(response);
-			})
-			.fail(function(error) {
-				reject(error);
 			});
 	});
 }

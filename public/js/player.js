@@ -154,7 +154,7 @@ function registerPlayerActionMenu() {
 
 var trackSearchTypingTimer;
 
-function registerTrackSearch(searchOnlyAutoDjTracks) {
+function registerTrackSearch() {
 	$(document).on(
 		'input',
 		'#brg-player-system-modal #title, #brg-player-system-modal #artist',
@@ -170,19 +170,7 @@ function registerTrackSearch(searchOnlyAutoDjTracks) {
 			}
 
 			trackSearchTypingTimer = setTimeout(function() {
-				if (searchOnlyAutoDjTracks) {
-					searchAutoDjTracks(title, artist)
-						.then(function(response) {
-							buildRequestModalTrackTable(response.result);
-						})
-						.catch(function(error) {
-							console.log(error);
-						});
-
-					return;
-				}
-
-				searchTracks(title, artist)
+				searchAutoDjTracks(title, artist)
 					.then(function(response) {
 						buildRequestModalTrackTable(response.result);
 					})
@@ -349,7 +337,7 @@ function registerRequestSystemModalListeners() {
 		isRequestSystemActive().then(function(active) {
 			if (active) {
 				registerRequestSongClick();
-				registerTrackSearch(false);
+				registerTrackSearch();
 				registerRequestTrackClick(false);
 			}
 
@@ -362,7 +350,7 @@ function registerAutoDjRequestModalListeners() {
 	return new Promise(function(resolve, reject) {
 		isAutoDjRequestSystemActive().then(function(active) {
 			if (active) {
-				registerTrackSearch(true);
+				registerTrackSearch();
 				registerRequestTrackClick(true);
 			}
 
@@ -620,27 +608,6 @@ function getSystemStatus(uid) {
 function getSongHistory(page) {
 	return new Promise(function(resolve, reject) {
 		$.get(brgPlayerBaseUrl + '/api/history/' + page)
-			.done(function(response) {
-				if (response.status !== 'success') {
-					reject(response.message);
-				}
-
-				resolve(response);
-			})
-			.fail(function(error) {
-				reject(error);
-			});
-	});
-}
-
-function searchTracks(title, artist) {
-	return new Promise(function(resolve, reject) {
-		let queryParams = {
-			title: title,
-			artist: artist
-		};
-
-		$.get(brgPlayerBaseUrl + '/api/track/list', queryParams)
 			.done(function(response) {
 				if (response.status !== 'success') {
 					reject(response.message);

@@ -410,7 +410,7 @@ $(document).ready(function() {
 								if (response.status === 'success') {
 									Materialize.toast('Tags wurden geändert <i class="material-icons right green-text">done</i>', 3000);
 								} else {
-									console.log(response);
+									Materialize.toast('<i class="material-icons red-text text-darken-1">error_outline</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {

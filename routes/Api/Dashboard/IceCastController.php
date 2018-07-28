@@ -36,7 +36,7 @@ class IceCastController {
 		$song       = trim($request->getParsedBody()['song']) ?? null;
 
 		try {
-			if ($this->container->validator::stringType()->length(1, null)->validate($song)) {
+			if (!$this->container->validator::stringType()->length(1, null)->validate($song)) {
 				throw new InfoException('Es muss ein Song eingegeben werden');
 			}
 

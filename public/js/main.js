@@ -402,7 +402,7 @@ $(document).ready(function() {
 					action: function() {
 						$.ajax({
 							type: 'POST',
-							url: document.baseURI + 'api/icecast/metadata/' + mountpoint,
+							url: document.baseURI + 'api/dashboard/icecast/metadata/' + mountpoint,
 							data: {
 								song: this.$content.find('input').val()
 							},

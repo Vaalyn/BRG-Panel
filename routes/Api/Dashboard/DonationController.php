@@ -38,7 +38,7 @@ class DonationController {
 		$amount = $request->getParsedBody()['amount'] ?? null;
 
 		try {
-			if ($this->container->validator::stringType()->length(1, null)->validate($name)) {
+			if (!$this->container->validator::stringType()->length(1, null)->validate($name)) {
 				throw new InfoException('Der Name muss mindestens 1 Zeichen lang sein');
 			}
 

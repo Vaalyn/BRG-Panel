@@ -48,52 +48,70 @@ return [
 		],
 		'icecast' => [
 			'api' => [
-				'stream' 	=> 'http://radio.bronyradiogermany.com:8000/status-json.xsl',
-				'mobile' 	=> 'http://radio.bronyradiogermany.com:8000/status-json.xsl',
-				'opus' 	    => 'http://radio.bronyradiogermany.com:8000/status-json.xsl',
-				'nightdj' 	=> 'http://radio.bronyradiogermany.com:8003/status-json.xsl',
-				'daydj' 	=> 'http://radio.bronyradiogermany.com:8006/status-json.xsl'
+				'stream'  => 'http://radio.bronyradiogermany.com:8000/status-json.xsl',
+				'mobile'  => 'http://radio.bronyradiogermany.com:8000/status-json.xsl',
+				'opus'    => 'http://radio.bronyradiogermany.com:8000/status-json.xsl',
+				'nightdj' => 'http://radio.bronyradiogermany.com:8003/status-json.xsl',
+				'daydj'   => 'http://radio.bronyradiogermany.com:8006/status-json.xsl'
 			],
 			'mountpoints' => [
 				'stream' => [
-					'name'              => 'Haupt Stream',
-					'mountpoint'        => 'stream',
-					'mountpoint_autodj' => 'autodj',
-					'url'               => 'http://radio.bronyradiogermany.com:8000/',
-					'username'          => '',
-					'password'          => ''
+					'name'                        => 'Haupt Stream',
+					'mountpoint'                  => 'stream',
+					'url'                         => 'http://radio.bronyradiogermany.com:8000/',
+					'username'                    => '',
+					'password'                    => '',
+					'metadata_update_mountpoints' => [
+						'stream',
+						'autodj',
+						'live',
+						'mobile',
+						'mobile_autodj',
+						'mobile_live',
+						'opus',
+						'opus_autodj',
+						'opus_live'
+					]
 				],
 				'mobile' => [
-					'name'              => 'Mobile Stream',
-					'mountpoint'        => 'mobile',
-					'mountpoint_autodj' => 'mobile_autodj',
-					'url'               => 'http://radio.bronyradiogermany.com:8000/',
-					'username'          => '',
-					'password'          => ''
+					'name'                        => 'Mobile Stream',
+					'mountpoint'                  => 'mobile',
+					'url'                         => 'http://radio.bronyradiogermany.com:8000/',
+					'username'                    => '',
+					'password'                    => '',
+					'metadata_update_mountpoints' => []
 				],
 				'opus' => [
-					'name'              => 'Opus Stream',
-					'mountpoint'        => 'opus',
-					'mountpoint_autodj' => 'opus_autodj',
-					'url'               => 'http://radio.bronyradiogermany.com:8000/',
-					'username'          => '',
-					'password'          => ''
+					'name'                        => 'Opus Stream',
+					'mountpoint'                  => 'opus',
+					'url'                         => 'http://radio.bronyradiogermany.com:8000/',
+					'username'                    => '',
+					'password'                    => '',
+					'metadata_update_mountpoints' => []
 				],
 				'nightdj' => [
-					'name'              => 'NightDJ',
-					'mountpoint'        => 'nightdj',
-					'mountpoint_autodj' => 'nightdj_autodj',
-					'url'               => 'http://radio.bronyradiogermany.com:8003/',
-					'username'          => '',
-					'password'          => ''
+					'name'                        => 'NightDJ',
+					'mountpoint'                  => 'nightdj',
+					'url'                         => 'http://radio.bronyradiogermany.com:8003/',
+					'username'                    => '',
+					'password'                    => '',
+					'metadata_update_mountpoints' => [
+						'nightdj',
+						'nightdj_autodj',
+						'nightdj_live'
+					]
 				],
 				'daydj' => [
-					'name'              => 'DayDJ',
-					'mountpoint'        => 'daydj',
-					'mountpoint_autodj' => 'daydj_autodj',
-					'url'               => 'http://radio.bronyradiogermany.com:8006/',
-					'username'          => '',
-					'password'          => ''
+					'name'                        => 'DayDJ',
+					'mountpoint'                  => 'daydj',
+					'url'                         => 'http://radio.bronyradiogermany.com:8006/',
+					'username'                    => '',
+					'password'                    => '',
+					'metadata_update_mountpoints' => [
+						'daydj',
+						'daydj_autodj',
+						'daydj_live'
+					]
 				]
 			]
 		],

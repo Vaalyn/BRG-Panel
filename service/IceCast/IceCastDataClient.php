@@ -63,29 +63,26 @@ class IceCastDataClient {
 	public function updateMetadataSongForMountpoint(string $song, string $mountpoint): void {
 		$iceCastMetadataApiConfig = $this->mountpointConfigs[$mountpoint];
 
-		$url              = $iceCastMetadataApiConfig['url'];
-		$username         = $iceCastMetadataApiConfig['username'];
-		$password         = $iceCastMetadataApiConfig['password'];
-		$mountpointLive   = $iceCastMetadataApiConfig['mountpoint'];
-		$mountpointAutodj = $iceCastMetadataApiConfig['mountpoint_autodj'];
+		$url                       = $iceCastMetadataApiConfig['url'];
+		$username                  = $iceCastMetadataApiConfig['username'];
+		$password                  = $iceCastMetadataApiConfig['password'];
+		$mountpointsMetadataUpdate = $iceCastMetadataApiConfig['metadata_update_mountpoints'];
 
 		$url = $url . 'admin/metadata.xsl';
 
-		$optionsLive = $this->buildOptionsForMetadataSongUpdate(
-			$username,
-			$password,
-			$song,
-			$mountpointLive
-		);
-		$this->callApi($url, 200, 'GET', $optionsLive);
+		foreach ($mountpointsMetadataUpdate as $mountpoint) {
+			$options = $this->buildOptionsForMetadataSongUpdate(
+				$username,
+				$password,
+				$song,
+				$mountpoint
+			);
 
-		$optionsAutoDj = $this->buildOptionsForMetadataSongUpdate(
-			$username,
-			$password,
-			$song,
-			$mountpointAutodj
-		);
-		$this->callApi($url, 200, 'GET', $optionsAutoDj);
+			try {
+				$this->callApi($url, 200, 'GET', $options);
+			}
+			catch (ApiCallFailedException $exception) {}
+		}
 	}
 
 	/**

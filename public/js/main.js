@@ -28,17 +28,17 @@ $(document).ready(function() {
 		let email = $('#email-forgot').val();
 
 		$.post('api/user/password/forgot', {username: username, email: email})
-			.done(function(data) {
-				if (data.status === 'success') {
-					Materialize.toast('<i class="material-icons green-text text-darken-1">done</i> ' + data.message, 2000, '', function() {
+			.done(function(response) {
+				if (response.status === 'success') {
+					Materialize.toast('<i class="material-icons green-text">done</i> ' + response.message, 2000, '', function() {
 						window.location.reload();
 					});
 				} else {
-					Materialize.toast('<i class="material-icons red-text text-darken-1">error_outline</i> ' + data.errors, 3000);
+					Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 				}
 			})
 			.fail(function() {
-				Materialize.toast('<i class="material-icons red-text text-darken-1">error_outline</i> Fehler beim zurücksetzen', 3000);
+				Materialize.toast('<i class="material-icons red-text">clear</i> Fehler beim zurücksetzen', 3000);
 			});
 	});
 
@@ -55,17 +55,17 @@ $(document).ready(function() {
 		let password = $('#password').val();
 
 		$.post('api/user/password/reset', {code: code, password: password})
-			.done(function(data) {
-				if (data.status === 'success') {
-					Materialize.toast('<i class="material-icons green-text text-darken-1">done</i> ' + data.message, 2000, '', function() {
+			.done(function(response) {
+				if (response.status === 'success') {
+					Materialize.toast('<i class="material-icons green-text">done</i> ' + response.message, 2000, '', function() {
 						window.location.reload();
 					});
 				} else {
-					Materialize.toast('<i class="material-icons red-text text-darken-1">error_outline</i> ' + data.errors, 3000);
+					Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 				}
 			})
 			.fail(function() {
-				Materialize.toast('<i class="material-icons red-text text-darken-1">error_outline</i> Fehler beim zurücksetzen', 3000);
+				Materialize.toast('<i class="material-icons red-text">clear</i> Fehler beim zurücksetzen', 3000);
 			});
 	});
 
@@ -123,12 +123,14 @@ $(document).ready(function() {
 										$(button).data('active', '1');
 									}
 
-									Materialize.toast('Das Request System wurde ' + status + ' <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> Das Request System wurde ' + status, 3000);
+								} else {
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('Das Request konnte nicht ' + status + ' werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Das Request konnte nicht ' + status + ' werden', 3000);
 							}
 						});
 					}
@@ -174,12 +176,14 @@ $(document).ready(function() {
 							success: function(response) {
 								if (response.status === 'success') {
 									$(button).closest('tr').find('td:nth-child(2)').text(newRequestCount);
-									Materialize.toast('Die Request Anzahl pro Person wurde geändern <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> Die Request Anzahl pro Person wurde geändern', 3000);
+								} else {
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('Die Request Anzahl pro Person konnte nicht geändert werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Die Request Anzahl pro Person konnte nicht geändert werden', 3000);
 							}
 						});
 					}
@@ -249,12 +253,14 @@ $(document).ready(function() {
 										$(button).data('active', '1');
 									}
 
-									Materialize.toast('Das Message System wurde ' + status + ' <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> Das Message System wurde ' + status, 3000);
+								} else {
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('Das Message konnte nicht ' + status + ' werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Das Message konnte nicht ' + status + ' werden', 3000);
 							}
 						});
 					}
@@ -316,12 +322,14 @@ $(document).ready(function() {
 										$(button).data('active', '1');
 									}
 
-									Materialize.toast('Das AutoDJ Request System wurde ' + status + ' <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> Das AutoDJ Request System wurde ' + status, 3000);
+								} else {
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('Das AutoDJ Request konnte nicht ' + status + ' werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Das AutoDJ Request konnte nicht ' + status + ' werden', 3000);
 							}
 						});
 					}
@@ -361,12 +369,14 @@ $(document).ready(function() {
 							data: null,
 							success: function(response) {
 								if (response.status === 'success') {
-									Materialize.toast(botName + ' wurde neugestartet <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> ' + botName + ' wurde neugestartet', 3000);
+								} else {
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast(botName + ' konnte nicht neugestartet werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons right red-text">clear</i> ' + botName + ' konnte nicht neugestartet werden', 3000);
 							}
 						});
 					}
@@ -408,14 +418,14 @@ $(document).ready(function() {
 							},
 							success: function(response) {
 								if (response.status === 'success') {
-									Materialize.toast('Tags wurden geändert <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> Tags wurden geändert', 3000);
 								} else {
-									Materialize.toast('<i class="material-icons red-text text-darken-1">error_outline</i> ' + response.message, 3000);
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('Tags konnten nicht geändert werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Tags konnten nicht geändert werden', 3000);
 							}
 						});
 					}
@@ -463,12 +473,14 @@ $(document).ready(function() {
 									$(row).fadeOut(300, function(row) {
 										$(row).remove();
 									});
-									Materialize.toast('Request wurde als gespielt markiert <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> Request wurde als gespielt markiert', 3000);
+								} else {
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('Request konnte nicht als gespielt markiert werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Request konnte nicht als gespielt markiert werden', 3000);
 							}
 						});
 					}
@@ -508,12 +520,14 @@ $(document).ready(function() {
 									$(row).fadeOut(300, function(row) {
 										$(row).remove();
 									});
-									Materialize.toast('Request wurde abgelehnt <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> Request wurde abgelehnt', 3000);
+								} else {
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('Request konnte nicht abgelehnt werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Request konnte nicht abgelehnt werden', 3000);
 							}
 						});
 					}
@@ -561,12 +575,14 @@ $(document).ready(function() {
 									$(row).fadeOut(300, function(row) {
 										$(row).remove();
 									});
-									Materialize.toast('Nachricht wurde entfernt <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> Nachricht wurde entfernt', 3000);
+								} else {
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('Nachricht konnte nicht entfernt werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Nachricht konnte nicht entfernt werden', 3000);
 							}
 						});
 					}
@@ -612,17 +628,14 @@ $(document).ready(function() {
 							},
 							success: function(response) {
 								if (response.status === 'success') {
-									Materialize.toast('E-Mail Adresse wurde geändert <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> E-Mail Adresse wurde geändert', 3000);
 								} else {
-									$.alert({
-										title: response.title,
-										content: response.message
-									});
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('E-Mail Adresse konnte nicht geändert werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> E-Mail Adresse konnte nicht geändert werden', 3000);
 							}
 						});
 					}
@@ -662,19 +675,16 @@ $(document).ready(function() {
 							},
 							success: function(response) {
 								if (response.status === 'success') {
-									Materialize.toast('Passwort wurde geändert <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> Passwort wurde geändert', 3000);
 									$('#account-password-old').val('');
 									$('#account-password-new').val('');
 								} else {
-									$.alert({
-										title: response.title,
-										content: response.message
-									});
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('Passwort konnte nicht geändert werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Passwort konnte nicht geändert werden', 3000);
 							}
 						});
 					}
@@ -722,12 +732,14 @@ $(document).ready(function() {
 									$(row).fadeOut(300, function(row) {
 										$(row).remove();
 									});
-									Materialize.toast('Der Song wurde erfolgreich ausgeblendet <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> Der Song wurde erfolgreich ausgeblendet', 3000);
+								} else {
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('Der Song konnte nicht ausgeblendet werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Der Song konnte nicht ausgeblendet werden', 3000);
 							}
 						});
 					}
@@ -773,17 +785,14 @@ $(document).ready(function() {
 							},
 							success: function(response) {
 								if (response.status === 'success') {
-									Materialize.toast('Benötigte Spendensumme wurde geändert <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> Benötigte Spendensumme wurde geändert', 3000);
 								} else {
-									$.alert({
-										title: response.title,
-										content: response.message
-									});
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('Benötigte Spendensumme konnte nicht geändert werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Benötigte Spendensumme konnte nicht geändert werden', 3000);
 							}
 						});
 					}
@@ -823,7 +832,7 @@ $(document).ready(function() {
 							},
 							success: function(response) {
 								if (response.status === 'success') {
-									Materialize.toast('Spende wurde hinzugefügt <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> Spende wurde hinzugefügt', 3000);
 									$('#donations .row .col').append(
 										'<div class="chip brg-red white-text z-depth-1 donation">' +
 											'<span class="brg-red-dark white-text center donor-donated-amount">' + amount + '€</span>' +
@@ -834,15 +843,12 @@ $(document).ready(function() {
 									$('#donor-name').val('');
 									$('#donor-donated-amount').val('');
 								} else {
-									$.alert({
-										title: response.title,
-										content: response.message
-									});
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('Spende konnte nicht hinzugefügt werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Spende konnte nicht hinzugefügt werden', 3000);
 							}
 						});
 					}
@@ -882,12 +888,14 @@ $(document).ready(function() {
 									$(chip).fadeOut(300, function(chip) {
 										$(chip).remove();
 									});
-									Materialize.toast('Die Spende wurde erfolgreich entfernt <i class="material-icons right green-text">done</i>', 3000);
+									Materialize.toast('<i class="material-icons green-text">done</i> Die Spende wurde erfolgreich entfernt', 3000);
+								} else {
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
 								}
 							},
 							fail: function(error) {
 								console.log(error);
-								Materialize.toast('Die Spende konnte nicht entfernt werden <i class="material-icons right red-text">clear</i>', 3000);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Die Spende konnte nicht entfernt werden', 3000);
 							}
 						});
 					}

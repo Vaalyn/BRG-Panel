@@ -113,7 +113,7 @@ class DonationController {
 	public function deleteDonationAction(Request $request, Response $response, array $args): Response {
 		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
 
-		$id = $request->getParsedBody()['id'] ?? 0;
+		$id = $args['id'];
 
 		$donation = Donation::find($id);
 

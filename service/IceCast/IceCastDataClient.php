@@ -7,6 +7,8 @@ use Exception\ApiCallFailedException;
 use Exception\InvalidHttpMethodException;
 use Exception\InvalidMountpointException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+
 use Psr\Http\Message\ResponseInterface;
 
 class IceCastDataClient {
@@ -144,43 +146,43 @@ class IceCastDataClient {
 
 		$response = null;
 
-		switch ($method) {
-			case 'GET':
-				$response = $client->get($url, $options);
-				break;
+		try {
+			switch ($method) {
+				case 'GET':
+					$response = $client->get($url, $options);
+					break;
 
-			case 'POST':
-				$response = $client->post($url, $options);
-				break;
+				case 'POST':
+					$response = $client->post($url, $options);
+					break;
 
-			case 'PATCH':
-				$response = $client->patch($url, $options);
-				break;
+				default:
+					throw new InvalidHttpMethodException(
+						sprintf(
+							'"%s" is not a valid HTTP method',
+							$method
+						)
+					);
+					break;
+			}
 
-			case 'HEAD':
-				$response = $client->head($url, $options);
-				break;
-
-			case 'DELETE':
-				$response = $client->delete($url, $options);
-				break;
-
-			default:
-				throw new InvalidHttpMethodException(
+			if ($response->getStatusCode() !== $expectedStatusCode) {
+				throw new ApiCallFailedException(
 					sprintf(
-						'"%s" is not a valid HTTP method',
-						$method
+						'Api call to "%s" failed with status code "%s" expected "%s"',
+						$url,
+						$response->getStatusCode(),
+						$expectedStatusCode
 					)
 				);
-				break;
+			}
 		}
-
-		if ($response->getStatusCode() !== $expectedStatusCode) {
+		catch (RequestException $exception) {
 			throw new ApiCallFailedException(
 				sprintf(
 					'Api call to "%s" failed with status code "%s" expected "%s"',
 					$url,
-					$response->getStatusCode(),
+					$exception->getCode(),
 					$expectedStatusCode
 				)
 			);

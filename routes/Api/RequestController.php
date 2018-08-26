@@ -272,7 +272,8 @@ class RequestController {
 		$dateTimeForRequestLimit = Carbon::now()
 			->subMinutes(self::MINUTES_BETWEEN_CLIENT_AUTODJ_REQUESTS);
 
-		$requestCount = Model\Request::where('created_at', '>', $dateTimeForRequestLimit)
+		$requestCount = Model\Request::withTrashed()
+			->where('created_at', '>', $dateTimeForRequestLimit)
 			->where(function($query) {
 				$query->where('ip_address', '=', $ipAddress)
 					->orWhere('nickname', '=', $nickname);

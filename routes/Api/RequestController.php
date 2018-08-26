@@ -273,8 +273,8 @@ class RequestController {
 			->subMinutes(self::MINUTES_BETWEEN_CLIENT_AUTODJ_REQUESTS);
 
 		$requestCount = Model\Request::withTrashed()
-			->where('created_at', '>', $dateTimeForRequestLimit)
-			->where(function($query) {
+			->where('created_at', '>', $dateTimeForRequestLimit->toDateTimeString())
+			->where(function($query) use ($ipAddress, $nickname) {
 				$query->where('ip_address', '=', $ipAddress)
 					->orWhere('nickname', '=', $nickname);
 			})
@@ -346,7 +346,7 @@ class RequestController {
 
 		return Model\Request::withTrashed()
 			->where([
-				['created_at', '>', $dateTimeForArtistRequestLimit],
+				['created_at', '>', $dateTimeForArtistRequestLimit->toDateTimeString()],
 				['artist', '=', $artist]
 			])
 			->exists();
@@ -380,7 +380,7 @@ class RequestController {
 
 		return Model\Request::withTrashed()
 			->where([
-				['created_at', '>', $dateTimeForTrackRequestLimit],
+				['created_at', '>', $dateTimeForTrackRequestLimit->toDateTimeString()],
 				['title', '=', $title],
 				['artist', '=', $artist]
 			])

@@ -1,8 +1,8 @@
 <?php
 
-use Routes\Api;
-use Routes\Cron;
-use Routes\Frontend;
+use BRG\Panel\Routes\Api;
+use BRG\Panel\Routes\Cron;
+use BRG\Panel\Routes\Frontend;
 
 $app->group('/api', function() {
 	$this->post('/community/user/coin/add', Api\CommunityUserController::class . ':addCoinsAction')->setName('api.community.user.coin.add');

@@ -2,20 +2,24 @@
 
 require '../vendor/autoload.php';
 
+use BRG\Panel\Middleware\Auth\AuthMiddleware;
+use BRG\Panel\Middleware\Cors\CorsMiddleware;
+use BRG\Panel\Middleware\Session\SessionMiddleware;
+use BRG\Panel\Service\Auth\Auth;
+use BRG\Panel\Service\CentovaCast\CentovaCastApiClient;
+use BRG\Panel\Service\ErrorHandler\ErrorHandler;
+use BRG\Panel\Service\Factory\Eloquent\EloquentFactory;
+use BRG\Panel\Service\Factory\Flysystem\FlysystemFactory;
+use BRG\Panel\Service\Google\Calendar\GoogleCalendarApiClient;
+use BRG\Panel\Service\IceCast\IceCastDataClient;
+use BRG\Panel\Service\Mailer\Mailer;
 use Respect\Validation\Validator;
-use Service\CentovaCast\CentovaCastApiClient;
-use Service\ErrorHandler\ErrorHandler;
-use Service\Factory\Eloquent\EloquentFactory;
-use Service\Factory\Flysystem\FlysystemFactory;
-use Service\Google\Calendar\GoogleCalendarApiClient;
-use Service\IceCast\IceCastDataClient;
-use Service\Mailer\Mailer;
 use Slim\Views\PhpRenderer;
 
 $app = new \Slim\App(require_once __DIR__ . '/../config/config.php');
 
 $container                            = $app->getContainer();
-$container['auth']                    = new \Service\Auth\Auth($container);
+$container['auth']                    = new Auth($container);
 $container['centovaCastApiClient']    = new CentovaCastApiClient($container->config['centova']['api']);
 $container['database']                = EloquentFactory::createMultiple($container->config['database']);
 $container['errorHandler']            = new ErrorHandler();
@@ -30,9 +34,9 @@ $container['validator'] = function() {
 	return new Validator();
 };
 
-$app->add(new Middleware\Auth\AuthMiddleware($container));
-$app->add(new Middleware\Cors\CorsMiddleware($container));
-$app->add(new Middleware\Session\SessionMiddleware($container));
+$app->add(new AuthMiddleware($container));
+$app->add(new CorsMiddleware($container));
+$app->add(new SessionMiddleware($container));
 $app->add(new RKA\Middleware\IpAddress(false, []));
 
 require_once '../config/routes.php';

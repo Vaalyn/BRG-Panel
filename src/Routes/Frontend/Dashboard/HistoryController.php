@@ -3,23 +3,31 @@
 namespace BRG\Panel\Routes\Frontend\Dashboard;
 
 use BRG\Panel\Model\Manager\HistoryModelManager;
+use BRG\Panel\Service\Auth\AuthInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Views\PhpRenderer;
 
 class HistoryController {
 	/**
-	 * @var ContainerInterface
+	 * @var AuthInterface
 	 */
-	protected $container;
+	protected $authentication;
+
+	/**
+	 * @var PhpRenderer
+	 */
+	protected $renderer;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->authentication = $container->authentication;
+		$this->renderer       = $container->renderer;
 	}
 
 	/**
@@ -46,8 +54,8 @@ class HistoryController {
 			->skip(($page - 1) * $entriesPerPage)
 			->get();
 
-		return $this->container->renderer->render($response, '/dashboard/history/history.php', [
-			'auth' => $this->container->auth,
+		return $this->renderer->render($response, '/dashboard/history/history.php', [
+			'auth' => $this->authentication,
 			'carbon' => new Carbon(),
 			'history' => $history,
 			'page' => $page,

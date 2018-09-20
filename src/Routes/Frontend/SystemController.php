@@ -6,18 +6,19 @@ use BRG\Panel\Model\Status;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Views\PhpRenderer;
 
 class SystemController {
 	/**
-	 * @var ContainerInterface
+	 * @var PhpRenderer
 	 */
-	protected $container;
+	protected $renderer;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->renderer = $container->renderer;
 	}
 
 	/**
@@ -32,7 +33,7 @@ class SystemController {
 		$messageSystemStatus       = Status::find(2);
 		$autoDjRequestSystemStatus = Status::find(3);
 
-		return $this->container->renderer->render($response, '/system/system.php', [
+		return $this->renderer->render($response, '/system/system.php', [
 			'request' => $request,
 			'systems' => [
 				'request' => [

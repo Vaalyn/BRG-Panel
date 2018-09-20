@@ -17,11 +17,6 @@ use Slim\Http\Response;
 
 class VoteController {
 	/**
-	 * @var ContainerInterface
-	 */
-	protected $container;
-
-	/**
 	 * @var TrackModelManager
 	 */
 	protected $trackModelManager;
@@ -30,8 +25,6 @@ class VoteController {
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
-
 		$this->trackModelManager = new TrackModelManager();
 	}
 

@@ -8,6 +8,7 @@ use BRG\Panel\Model;
 use BRG\Panel\Model\History;
 use BRG\Panel\Model\Manager\TrackModelManager;
 use BRG\Panel\Model\Status;
+use BRG\Panel\Service\CentovaCast\CentovaCastApiClient;
 use Carbon\Carbon;
 use Psr\Container\ContainerInterface;
 use Respect\Validation\Validator;
@@ -21,9 +22,9 @@ class RequestController {
 	protected const MINUTES_BETWEEN_TRACK_REPLAYS          = 120;
 
 	/**
-	 * @var ContainerInterface
+	 * @var CentovaCastApiClient
 	 */
-	protected $container;
+	protected $centovaCastApiClient;
 
 	/**
 	 * @var Validator
@@ -36,14 +37,18 @@ class RequestController {
 	protected $trackModelManager;
 
 	/**
+	 * @var Validator
+	 */
+	protected $validator;
+
+	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
-
-		$this->stringNotEmptyValidator = $this->container->validator::stringType()->length(1, null);
-
-		$this->trackModelManager = new TrackModelManager();
+		$this->centovaCastApiClient    = $container->centovaCastApiClient;
+		$this->stringNotEmptyValidator = $container->validator::stringType()->length(1, null);
+		$this->trackModelManager       = new TrackModelManager();
+		$this->validator               = $container->validator;
 	}
 
 	/**
@@ -116,7 +121,7 @@ class RequestController {
 
 			$this->checkIfTrackCanBeRequested($track->title, $track->artist->name);
 
-			$requestSuccessful = $this->container->centovaCastApiClient->requestSong(
+			$requestSuccessful = $this->centovaCastApiClient->requestSong(
 				$track->title,
 				$track->artist->name,
 				$nickname
@@ -230,7 +235,7 @@ class RequestController {
 		}
 
 		if ($this->stringNotEmptyValidator->validate($url)) {
-			if (!$this->container->validator::url()->validate($url)) {
+			if (!$this->validator::url()->validate($url)) {
 				throw new InfoException('Der Link / die Url ist ungültig');
 			}
 		}

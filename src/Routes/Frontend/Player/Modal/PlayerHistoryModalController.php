@@ -5,18 +5,19 @@ namespace BRG\Panel\Routes\Frontend\Player\Modal;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Views\PhpRenderer;
 
 class PlayerHistoryModalController {
 	/**
-	 * @var ContainerInterface
+	 * @var PhpRenderer
 	 */
-	protected $container;
+	protected $renderer;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->renderer = $container->renderer;
 	}
 
 	/**
@@ -27,6 +28,6 @@ class PlayerHistoryModalController {
 	 * @return Response
 	 */
 	public function __invoke(Request $request, Response $response, array $args): Response {
-		return $this->container->renderer->render($response, '/player/modal/history.php');
+		return $this->renderer->render($response, '/player/modal/history.php');
 	}
 }

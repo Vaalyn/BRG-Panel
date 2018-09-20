@@ -6,21 +6,22 @@ use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
 use BRG\Panel\Dto\CentovaCast\CentovaCastTrackDto;
 use BRG\Panel\Exception\InvalidMountpointException;
 use BRG\Panel\Model\History;
+use BRG\Panel\Service\CentovaCast\CentovaCastApiClient;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 class HistoryController {
 	/**
-	 * @var ContainerInterface
+	 * @var CentovaCastApiClient
 	 */
-	protected $container;
+	protected $centovaCastApiClient;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->centovaCastApiClient = $container->centovaCastApiClient;
 	}
 
 	/**
@@ -34,7 +35,7 @@ class HistoryController {
 		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
 
 		try {
-			$centovaCastTrackDtos = $this->container->centovaCastApiClient->fetchSongHistory('stream');
+			$centovaCastTrackDtos = $this->centovaCastApiClient->fetchSongHistory('stream');
 
 			/** @var CentovaCastTrackDto $centovaCastTrackDto */
 			foreach ($centovaCastTrackDtos as $centovaCastTrackDto) {

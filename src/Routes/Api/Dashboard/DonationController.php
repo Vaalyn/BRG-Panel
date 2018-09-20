@@ -8,20 +8,21 @@ use BRG\Panel\Model\Donation;
 use BRG\Panel\Model\Donor;
 use BRG\Panel\Model\Setting;
 use Psr\Container\ContainerInterface;
+use Respect\Validation\Validator;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 class DonationController {
 	/**
-	 * @var ContainerInterface
+	 * @var Validator
 	 */
-	protected $container;
+	protected $validator;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->validator = $container->validator;
 	}
 
 	/**
@@ -38,11 +39,11 @@ class DonationController {
 		$amount = $request->getParsedBody()['amount'] ?? null;
 
 		try {
-			if (!$this->container->validator::stringType()->length(1, null)->validate($name)) {
+			if (!$this->validator::stringType()->length(1, null)->validate($name)) {
 				throw new InfoException('Der Name muss mindestens 1 Zeichen lang sein');
 			}
 
-			if (!$this->container->validator->numeric()->min(0, true)->validate($amount)) {
+			if (!$this->validator->numeric()->min(0, true)->validate($amount)) {
 				throw new InfoException('Keine gültige Spendensumme');
 			}
 
@@ -85,7 +86,7 @@ class DonationController {
 
 		$amount = $request->getParsedBody()['amount'] ?? null;
 
-		if (!$this->container->validator->numeric()->min(0, true)->validate($amount)) {
+		if (!$this->validator->numeric()->min(0, true)->validate($amount)) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage('Keine gültige Spendensumme');

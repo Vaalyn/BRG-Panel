@@ -5,21 +5,29 @@ namespace BRG\Panel\Routes\Api\Dashboard;
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
 use BRG\Panel\Exception\InfoException;
 use BRG\Panel\Model\Stream;
+use BRG\Panel\Service\IceCast\IceCastDataClient;
 use Psr\Container\ContainerInterface;
+use Respect\Validation\Validator;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 class IceCastController {
 	/**
-	 * @var ContainerInterface
+	 * @var IceCastDataClient
 	 */
-	protected $container;
+	protected $iceCastDataClient;
+
+	/**
+	 * @var Validator
+	 */
+	protected $validator;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->iceCastDataClient = $container->iceCastDataClient;
+		$this->validator         = $container->validator;
 	}
 
 	/**
@@ -36,7 +44,7 @@ class IceCastController {
 		$song       = trim($request->getParsedBody()['song']) ?? null;
 
 		try {
-			if (!$this->container->validator::stringType()->length(1, null)->validate($song)) {
+			if (!$this->validator::stringType()->length(1, null)->validate($song)) {
 				throw new InfoException('Es muss ein Song eingegeben werden');
 			}
 
@@ -44,7 +52,7 @@ class IceCastController {
 				throw new InfoException('Invalid mountpoint');
 			}
 
-			$this->container->iceCastDataClient->updateMetadataSongForMountpoint($song, $mountpoint);
+			$this->iceCastDataClient->updateMetadataSongForMountpoint($song, $mountpoint);
 
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('success');

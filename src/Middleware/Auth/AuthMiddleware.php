@@ -2,15 +2,27 @@
 
 namespace BRG\Panel\Middleware\Auth;
 
+use BRG\Panel\Service\Auth\AuthInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Router;
 
 class AuthMiddleware {
 	/**
-	 * @var ContainerInterface
+	 * @var AuthInterface
 	 */
-	private $container;
+	protected $authentication;
+
+	/**
+	 * @var array
+	 */
+	protected $config;
+
+	/**
+	 * @var Router
+	 */
+	protected $router;
 
 	/**
 	 * @param ContainerInterface $container
@@ -18,7 +30,9 @@ class AuthMiddleware {
 	 * @return void
 	 */
 	public function __construct(ContainerInterface $container) {
-        $this->container = $container;
+        $this->authentication = $container->authentication;
+		$this->config         = $container->config;
+		$this->router         = $container->router;
     }
 
 	/**
@@ -33,16 +47,16 @@ class AuthMiddleware {
 
 		if ($currentRoute !== null) {
 			$currentRouteName = $currentRoute->getName();
-			$protectedRoutes  = $this->container->config['auth']['routes'];
-			$localRoutes      = $this->container->config['auth']['local'];
-			$authorizedRoutes = $this->container->config['auth']['authorized'];
+			$protectedRoutes  = $this->config['auth']['routes'];
+			$localRoutes      = $this->config['auth']['local'];
+			$authorizedRoutes = $this->config['auth']['authorized'];
 
 			if (!empty($currentRoute) && (in_array($currentRouteName, $protectedRoutes) || array_key_exists($currentRouteName, $protectedRoutes))) {
-				if (!$this->container->auth->check()) {
-					return $response->withRedirect($this->container->router->pathFor('login'));
+				if (!$this->authentication->check()) {
+					return $response->withRedirect($this->router->pathFor('login'));
 				}
 
-				if (isset($protectedRoutes[$currentRouteName]) && in_array('admin', $protectedRoutes[$currentRouteName]) && !$this->container->auth->isAdmin()) {
+				if (isset($protectedRoutes[$currentRouteName]) && in_array('admin', $protectedRoutes[$currentRouteName]) && !$this->authentication->isAdmin()) {
 					return $response->withStatus(400)
 								->withHeader('Content-Type', 'application/json')
 								->write(json_encode(array(
@@ -53,7 +67,7 @@ class AuthMiddleware {
 			}
 
 			if (!empty($currentRoute) && in_array($currentRouteName, $localRoutes)) {
-				if ($request->getAttribute('ip_address') != $this->container->config['host']['ip']) {
+				if ($request->getAttribute('ip_address') != $this->config['host']['ip']) {
 					return $response->withStatus(400)
 								->withHeader('Content-Type', 'application/json')
 								->write(json_encode(array(

@@ -7,18 +7,19 @@ use Carbon\Carbon;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Views\PhpRenderer;
 
 class HistoryController {
 	/**
-	 * @var ContainerInterface
+	 * @var PhpRenderer
 	 */
-	protected $container;
+	protected $renderer;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->renderer = $container->renderer;
 	}
 
 	/**
@@ -39,7 +40,7 @@ class HistoryController {
 			->take($entriesPerPage)
 			->get();
 
-		return $this->container->renderer->render($response, '/history/history.php', [
+		return $this->renderer->render($response, '/history/history.php', [
 			'carbon' => new Carbon(),
 			'history' => $history,
 			'request' => $request

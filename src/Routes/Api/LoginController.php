@@ -2,21 +2,22 @@
 
 namespace BRG\Panel\Routes\Api;
 
+use BRG\Panel\Service\Auth\AuthInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 class LoginController {
 	/**
-	 * @var ContainerInterface
+	 * @var AuthInterface
 	 */
-	protected $container;
+	protected $authentication;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->authentication = $container->authentication;
 	}
 
 	/**
@@ -31,7 +32,7 @@ class LoginController {
 		$password = $request->getParsedBody()['password'] ?? null;
 		$rememberMe = true;
 
-		if (!$this->container->auth->attempt($username, $password, $rememberMe)) {
+		if (!$this->authentication->attempt($username, $password, $rememberMe)) {
 			return $response->write(json_encode(array(
 				'status' => 'error',
 				'errors' => $exception->getMessage()

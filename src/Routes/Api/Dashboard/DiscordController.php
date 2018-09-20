@@ -11,15 +11,15 @@ use Slim\Http\Response;
 
 class DiscordController {
 	/**
-	 * @var ContainerInterface
+	 * @var array
 	 */
-	protected $container;
+	protected $config;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->config = $container->config;
 	}
 
 	/**

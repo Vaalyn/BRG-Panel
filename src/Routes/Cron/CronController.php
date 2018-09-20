@@ -10,9 +10,9 @@ use Slim\Http\Response;
 
 class CronController {
 	/**
-	 * @var ContainerInterface
+	 * @var array
 	 */
-	protected $container;
+	protected $config;
 
 	/**
 	 * @var Jobby
@@ -23,7 +23,8 @@ class CronController {
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->config = $container->config;
+		$this->cronManager = new Jobby();
 	}
 
 	/**
@@ -35,8 +36,6 @@ class CronController {
 	 */
 	public function __invoke(Request $request, Response $response, array $args): Response {
 		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
-		$this->cronManager = new Jobby();
 
 		$this->registerCrons();
 
@@ -66,7 +65,7 @@ class CronController {
 			$cronCommand = sprintf(
 				'sleep %s; curl %s/cron/current/event/update',
 				$executions * 10,
-				$this->container->config['host']['url']
+				$this->config['host']['url']
 			);
 
 			$cronName = sprintf('CurrentEventUpdate-%s', $executions + 1);
@@ -86,7 +85,7 @@ class CronController {
 	protected function addHistoryCron(): void {
 		$cronCommand = sprintf(
 			'curl %s/cron/history/update',
-			$this->container->config['host']['url']
+			$this->config['host']['url']
 		);
 
 		$this->cronManager->add('HistoryUpdate', [
@@ -99,14 +98,14 @@ class CronController {
 	 * @return void
 	 */
 	protected function addStreaminfoCron(): void {
-		$mountpoints = $this->container->config['icecast']['mountpoints'];
+		$mountpoints = $this->config['icecast']['mountpoints'];
 
 		foreach ($mountpoints as $mountpoint) {
 			for ($executions = 0; $executions < 6; $executions++) {
 				$cronCommand = sprintf(
 					'sleep %s; curl %s/cron/streaminfo/update/%s',
 					$executions * 10,
-					$this->container->config['host']['url'],
+					$this->config['host']['url'],
 					$mountpoint['mountpoint']
 				);
 
@@ -132,7 +131,7 @@ class CronController {
 	protected function addTrackCron(): void {
 		$cronCommand = sprintf(
 			'curl %s/cron/track/autodj/update',
-			$this->container->config['host']['url']
+			$this->config['host']['url']
 		);
 
 		$this->cronManager->add('TrackUpdate', [

@@ -2,21 +2,43 @@
 
 namespace BRG\Panel\Routes\Frontend;
 
+use BRG\Panel\Service\Auth\AuthInterface;
 use Psr\Container\ContainerInterface;
+use Slim\Flash\Messages;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Router;
+use Slim\Views\PhpRenderer;
 
 class LoginController {
 	/**
-	 * @var ContainerInterface
+	 * @var AuthInterface
 	 */
-	protected $container;
+	protected $authentication;
+
+	/**
+	 * @var Messages
+	 */
+	protected $flashMessages;
+
+	/**
+	 * @var PhpRenderer
+	 */
+	protected $renderer;
+
+	/**
+	 * @var Router
+	 */
+	protected $router;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->authentication = $container->authentication;
+		$this->flashMessages  = $container->flashMessages;
+		$this->renderer       = $container->renderer;
+		$this->router         = $container->router;
 	}
 
 	/**
@@ -27,17 +49,17 @@ class LoginController {
 	 * @return Response
 	 */
 	public function getLoginAction(Request $request, Response $response, array $args): Response {
-		if ($this->container->auth->check()) {
+		if ($this->authentication->check()) {
 			if (count($request->getHeader('HTTP_REFERER'))) {
 				return $response->withRedirect($request->getHeader('HTTP_REFERER')[0]);
 			}
 
-			return $response->withRedirect($this->container->router->pathFor('dashboard'));
+			return $response->withRedirect($this->router->pathFor('dashboard'));
 		}
 
-		return $this->container->renderer->render($response, '/login/login.php', [
-			'auth' => $this->container->auth,
-			'flashMessages' => $this->container->flash->getMessages(),
+		return $this->renderer->render($response, '/login/login.php', [
+			'auth' => $this->authentication,
+			'flashMessages' => $this->flashMessages->getMessages(),
 			'request' => $request
 		]);
 	}
@@ -55,15 +77,15 @@ class LoginController {
 		$referer = $request->getParsedBody()['referer'] ?? null;
 		$rememberMe = isset($request->getParsedBody()['remember_me']) ? true : false;
 
-		if (!$this->container->auth->attempt($username, $password, $rememberMe)) {
-			$this->container->flash->addMessage('Login error', 'Username or password incorrect');
-			return $response->withRedirect($this->container->router->pathFor('login'));
+		if (!$this->authentication->attempt($username, $password, $rememberMe)) {
+			$this->flashMessages->addMessage('Login error', 'Username or password incorrect');
+			return $response->withRedirect($this->router->pathFor('login'));
 		}
 
 		if ($referer !== null && substr_compare($referer, 'login', -5) !== 0) {
 			return $response->withRedirect($referer);
 		}
 
-		return $response->withRedirect($this->container->router->pathFor('dashboard'));
+		return $response->withRedirect($this->router->pathFor('dashboard'));
 	}
 }

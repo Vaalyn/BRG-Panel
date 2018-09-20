@@ -13,11 +13,6 @@ use Slim\Http\Response;
 
 class MessageController {
 	/**
-	 * @var ContainerInterface
-	 */
-	protected $container;
-
-	/**
 	 * @var Validator
 	 */
 	protected $stringNotEmptyValidator;
@@ -26,9 +21,7 @@ class MessageController {
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
-
-		$this->stringNotEmptyValidator = $this->container->validator::stringType()->length(1, null);
+		$this->stringNotEmptyValidator = $container->validator::stringType()->length(1, null);
 	}
 
 	/**

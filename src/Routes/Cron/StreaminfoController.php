@@ -9,20 +9,21 @@ use BRG\Panel\Model\Manager\TrackModelManager;
 use BRG\Panel\Model\Manager\ArtistModelManager;
 use BRG\Panel\Model\Setting;
 use BRG\Panel\Model\Stream;
+use BRG\Panel\Service\IceCast\IceCastDataClient;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 class StreaminfoController {
 	/**
-	 * @var ContainerInterface
-	 */
-	protected $container;
-
-	/**
 	 * @var ArtistModelManager
 	 */
 	protected $artistModelManager;
+
+	/**
+	 * @var IceCastDataClient
+	 */
+	protected $iceCastDataClient;
 
 	/**
 	 * @var TrackModelManager
@@ -33,9 +34,8 @@ class StreaminfoController {
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
-
 		$this->artistModelManager = new ArtistModelManager();
+		$this->iceCastDataClient  = $container->iceCastDataClient;
 		$this->trackModelManager  = new TrackModelManager();
 	}
 
@@ -53,7 +53,7 @@ class StreaminfoController {
 
 		try {
 			/** @var IceCastStreamDto $iceCastStreamDto */
-			$iceCastStreamDto = $this->container->iceCastDataClient->fetchMountpoint($mountpoint);
+			$iceCastStreamDto = $this->iceCastDataClient->fetchMountpoint($mountpoint);
 
 			$stream = Stream::where('mountpoint', '=', $mountpoint)->first();
 

@@ -13,11 +13,6 @@ use Slim\Http\Response;
 
 class StreaminfoController {
 	/**
-	 * @var ContainerInterface
-	 */
-	protected $container;
-
-	/**
 	 * @var TrackModelManager
 	 */
 	protected $trackModelManager;
@@ -26,8 +21,6 @@ class StreaminfoController {
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
-
 		$this->trackModelManager = new TrackModelManager();
 	}
 

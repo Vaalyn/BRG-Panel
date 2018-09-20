@@ -2,21 +2,29 @@
 
 namespace BRG\Panel\Routes\Frontend;
 
+use BRG\Panel\Service\Auth\AuthInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Router;
 
 class LogoutController {
 	/**
-	 * @var ContainerInterface
+	 * @var AuthInterface
 	 */
-	protected $container;
+	protected $authentication;
+
+	/**
+	 * @var Router
+	 */
+	protected $router;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->authentication = $container->authentication;
+		$this->router         = $container->router;
 	}
 
 	/**
@@ -27,7 +35,8 @@ class LogoutController {
 	 * @return Response
 	 */
 	public function __invoke(Request $request, Response $response, array $args): Response {
-		$this->container->auth->logout();
-		return $response->withRedirect($this->container->router->pathFor('login'));
+		$this->authentication->logout();
+
+		return $response->withRedirect($this->router->pathFor('login'));
 	}
 }

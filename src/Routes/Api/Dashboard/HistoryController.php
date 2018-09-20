@@ -6,20 +6,15 @@ use BRG\Panel\Model\Manager\HistoryModelManager;
 use Illuminate\Database\Eloquent\Builder;
 use League\Csv\Writer;
 use Psr\Container\ContainerInterface;
+use Slim\Http\Stream;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 class HistoryController {
 	/**
-	 * @var ContainerInterface
-	 */
-	protected $container;
-
-	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
 	}
 
 	/**
@@ -40,7 +35,7 @@ class HistoryController {
 		$historyCsvFile = tmpfile();
 		fwrite($historyCsvFile, $csvWriter->getContent());
 
-		$downloadFileStream = new \Slim\Http\Stream($historyCsvFile);
+		$downloadFileStream = new Stream($historyCsvFile);
 
 		return $response->withStatus(200)
 			->withHeader('Content-Type', 'text/csv')

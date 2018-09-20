@@ -6,18 +6,19 @@ use BRG\Panel\Model\Status;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Views\PhpRenderer;
 
 class PlayerSystemModalController {
 	/**
-	 * @var ContainerInterface
+	 * @var PhpRenderer
 	 */
-	protected $container;
+	protected $renderer;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->renderer = $container->renderer;
 	}
 
 	/**
@@ -62,7 +63,7 @@ class PlayerSystemModalController {
 	 * @return Response
 	 */
 	protected function renderRequestModal(Response $response, int $limit): Response {
-		return $this->container->renderer->render($response, '/player/modal/request.php', [
+		return $this->renderer->render($response, '/player/modal/request.php', [
 			'limit' => $limit
 		]);
 	}
@@ -73,7 +74,7 @@ class PlayerSystemModalController {
 	 * @return Response
 	 */
 	protected function renderMessageModal(Response $response): Response {
-		return $this->container->renderer->render($response, '/player/modal/message.php');
+		return $this->renderer->render($response, '/player/modal/message.php');
 	}
 
 	/**
@@ -83,7 +84,7 @@ class PlayerSystemModalController {
 	 * @return Response
 	 */
 	protected function renderAutoDjRequestModal(Response $response, int $limit): Response {
-		return $this->container->renderer->render($response, '/player/modal/request-autodj.php', [
+		return $this->renderer->render($response, '/player/modal/request-autodj.php', [
 			'limit' => $limit
 		]);
 	}
@@ -102,7 +103,7 @@ class PlayerSystemModalController {
 			($request->getUri()->getBasePath() !== '') ? $request->getUri()->getBasePath() . '/' : '/'
 		);
 
-		return $this->container->renderer->render($response, '/player/modal/request-offline.php', [
+		return $this->renderer->render($response, '/player/modal/request-offline.php', [
 			'baseUrl' => $baseUrl
 		]);
 	}

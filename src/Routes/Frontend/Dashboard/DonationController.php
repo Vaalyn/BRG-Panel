@@ -4,21 +4,29 @@ namespace BRG\Panel\Routes\Frontend\Dashboard;
 
 use BRG\Panel\Model\Donation;
 use BRG\Panel\Model\Setting;
+use BRG\Panel\Service\Auth\AuthInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Views\PhpRenderer;
 
 class DonationController {
 	/**
-	 * @var ContainerInterface
+	 * @var AuthInterface
 	 */
-	protected $container;
+	protected $authentication;
+
+	/**
+	 * @var PhpRenderer
+	 */
+	protected $renderer;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->authentication = $container->authentication;
+		$this->renderer       = $container->renderer;
 	}
 
 	/**
@@ -34,8 +42,8 @@ class DonationController {
 
 		$donations = Donation::with('donor')->get();
 
-		return $this->container->renderer->render($response, '/dashboard/donation/donation.php', [
-			'auth' => $this->container->auth,
+		return $this->renderer->render($response, '/dashboard/donation/donation.php', [
+			'auth' => $this->authentication,
 			'currentlyNeededDonationAmount' => $currentlyNeededAmountSetting,
 			'donations' => $donations,
 			'request' => $request

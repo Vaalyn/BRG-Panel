@@ -4,6 +4,7 @@ namespace BRG\Panel\Service\Auth;
 
 use BRG\Panel\Model\AuthToken;
 use BRG\Panel\Model\User;
+use BRG\Panel\Service\Session\Session;
 use Carbon\Carbon;
 use Psr\Container\ContainerInterface;
 use Ramsey\Uuid\Uuid;
@@ -11,37 +12,43 @@ use WhichBrowser\Parser;
 
 class Auth implements AuthInterface {
 	/**
-	 * @var ContainerInterface
+	 * @var array
 	 */
-	private $container;
+	protected $config;
+
+	/**
+	 * @var Session
+	 */
+	protected $session;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->config  = $container->config;
+		$this->session = $container->session;
 	}
 
 	/**
 	 * @return null|User
 	 */
 	public function user(): ?User {
-		return User::where('user_id', '=', $this->container->session->get('user_id'))->first();
+		return User::where('user_id', '=', $this->session->get('user_id'))->first();
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function check(): bool {
-		if (!$this->container->session->exists('user_id')) {
+		if (!$this->session->exists('user_id')) {
 			$this->checkLoginCookie();
 		}
 
-		if (!User::where('user_id', '=', $this->container->session->get('user_id'))->exists()) {
+		if (!User::where('user_id', '=', $this->session->get('user_id'))->exists()) {
 			$this->logout();
 		}
 
-		return $this->container->session->exists('user_id');
+		return $this->session->exists('user_id');
 	}
 
 	/**
@@ -70,7 +77,7 @@ class Auth implements AuthInterface {
 		}
 
 		if (password_verify($password, $user->password)) {
-			$this->container->session->set('user_id', $user->user_id);
+			$this->session->set('user_id', $user->user_id);
 
 			if ($rememberMe) {
 				$this->setLoginCookie($user);
@@ -87,7 +94,7 @@ class Auth implements AuthInterface {
 	 */
 	public function invalidateAuthTokens(): void {
 		$invalidationDateTime = new Carbon();
-		$invalidationDateTime->subSeconds($this->container->config['auth']['cookie']['expire']);
+		$invalidationDateTime->subSeconds($this->config['auth']['cookie']['expire']);
 
 		$authTokens = AuthToken::where('created_at', '<', $invalidationDateTime->toDateTimeString())->get();
 
@@ -109,18 +116,18 @@ class Auth implements AuthInterface {
 	 * @return void
 	 */
 	public function logout(): void {
-		unset($_COOKIE[$this->container->config['auth']['cookie']['name']]);
+		unset($_COOKIE[$this->config['auth']['cookie']['name']]);
 		setcookie(
-			$this->container->config['auth']['cookie']['name'],
+			$this->config['auth']['cookie']['name'],
 			'',
 			time() - 3600,
 			'/',
-			$this->container->config['auth']['cookie']['domain'],
-			$this->container->config['auth']['cookie']['secure'],
-			$this->container->config['auth']['cookie']['httponly']
+			$this->config['auth']['cookie']['domain'],
+			$this->config['auth']['cookie']['secure'],
+			$this->config['auth']['cookie']['httponly']
 		);
 
-		$this->container->session->destroy();
+		$this->session->destroy();
 	}
 
 	/**
@@ -130,16 +137,16 @@ class Auth implements AuthInterface {
 	 */
 	private function setLoginCookie(User $user): void {
 		setcookie(
-			$this->container->config['auth']['cookie']['name'],
+			$this->config['auth']['cookie']['name'],
 			json_encode([
 				'username' => $user->username,
 				'token' => $this->generateLoginCookieToken($user)
 			]),
-			time() + $this->container->config['auth']['cookie']['expire'],
+			time() + $this->config['auth']['cookie']['expire'],
 			'/',
-			$this->container->config['auth']['cookie']['domain'],
-			$this->container->config['auth']['cookie']['secure'],
-			$this->container->config['auth']['cookie']['httponly']
+			$this->config['auth']['cookie']['domain'],
+			$this->config['auth']['cookie']['secure'],
+			$this->config['auth']['cookie']['httponly']
 		);
 	}
 
@@ -170,7 +177,7 @@ class Auth implements AuthInterface {
 		$authToken->browser       = $browser;
 		$authToken->save();
 
-		$this->container->session->set('auth_token_id', $authToken->auth_token_id);
+		$this->session->set('auth_token_id', $authToken->auth_token_id);
 
 		return $token;
 	}
@@ -181,13 +188,13 @@ class Auth implements AuthInterface {
 	private function checkLoginCookie(): void {
 		$this->invalidateAuthTokens();
 
-		if (isset($_COOKIE[$this->container->config['auth']['cookie']['name']])) {
-			$cookie     = json_decode($_COOKIE[$this->container->config['auth']['cookie']['name']]);
+		if (isset($_COOKIE[$this->config['auth']['cookie']['name']])) {
+			$cookie     = json_decode($_COOKIE[$this->config['auth']['cookie']['name']]);
 			$authTokens = User::where('username', '=', $cookie->username)->first()->authTokens;
 
 			foreach ($authTokens as $authToken) {
 				if (password_verify($cookie->token, $authToken->token)) {
-					$this->container->session
+					$this->session
 						->set('user_id', $authToken->user->user_id)
 						->set('auth_token_id', $authToken->auth_token_id);
 

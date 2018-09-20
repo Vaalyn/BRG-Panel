@@ -10,9 +10,9 @@ use Slim\Http\Response;
 
 class ErrorHandler {
 	/**
-	 * @var ContainerInterface
+	 * @var array
 	 */
-	protected $container;
+	protected $settings;
 
 	/**
 	 * @param ContainerInterface $container
@@ -20,7 +20,7 @@ class ErrorHandler {
 	 * @return Closure
 	 */
 	public function __invoke(ContainerInterface $container): Closure {
-		$this->container = $container;
+		$this->settings = $container->settings;
 
 		return function(Request $request, Response $response, \Throwable $error) {
 			return $this->createErrorResponse($response, $error);
@@ -36,7 +36,7 @@ class ErrorHandler {
 	private function createErrorResponse(Response $response, Throwable $error): Response {
 		$message = 'Beim Verarbeiten der Anfrage ist ein Fehler aufgetreten.';
 
-		if ($this->container->settings['displayErrorDetails']) {
+		if ($this->settings['displayErrorDetails']) {
 			$message .= '<pre>' . $error . '</pre>';
 		}
 

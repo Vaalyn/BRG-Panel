@@ -4,21 +4,29 @@ namespace BRG\Panel\Routes\Api\Dashboard;
 
 use BRG\Panel\Exception\InfoException;
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
+use BRG\Panel\Service\Auth\AuthInterface;
 use Psr\Container\ContainerInterface;
+use Respect\Validation\Validator;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 class UserController {
 	/**
-	 * @var ContainerInterface
+	 * @var AuthInterface
 	 */
-	protected $container;
+	protected $authentication;
+
+	/**
+	 * @var Validator
+	 */
+	protected $validator;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->authentication = $container->authentication;
+		$this->validator      = $container->validator;
 	}
 
 	/**
@@ -33,7 +41,7 @@ class UserController {
 
 		$email = $request->getParsedBody()['email'] ?? null;
 
-		if (!$this->container->validator->email()->validate($email)) {
+		if (!$this->validator->email()->validate($email)) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage('Keine gültige E-Mail Adresse');
@@ -41,7 +49,7 @@ class UserController {
 			return $response->write(json_encode($apiResponse));
 		}
 
-		$user        = $this->container->auth->user();
+		$user        = $this->authentication->user();
 		$user->email = $email;
 		$user->save();
 
@@ -69,7 +77,7 @@ class UserController {
 				throw new InfoException('Das Passwort muss mindestens 8 Zeichen lang sein');
 			}
 
-			$user = $this->container->auth->user();
+			$user = $this->authentication->user();
 
 			if (!password_verify($passwordOld, $user->password_new)) {
 				throw new InfoException('Das alte Passwort ist nicht korrekt');

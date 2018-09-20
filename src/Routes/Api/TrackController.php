@@ -11,11 +11,6 @@ use Slim\Http\Response;
 
 class TrackController {
 	/**
-	 * @var ContainerInterface
-	 */
-	protected $container;
-
-	/**
 	 * @var TrackModelManager
 	 */
 	protected $trackModelManager;
@@ -24,8 +19,6 @@ class TrackController {
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
-
 		$this->trackModelManager = new TrackModelManager();
 	}
 

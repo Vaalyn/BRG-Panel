@@ -6,18 +6,26 @@ use BRG\Panel\Model\Status;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Views\PhpRenderer;
 
 class PlayerController {
 	/**
-	 * @var ContainerInterface
+	 * @var array
 	 */
-	protected $container;
+	protected $config;
+
+	/**
+	 * @var PhpRenderer
+	 */
+	protected $renderer;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->config   = $container->config;
+		$this->renderer = $container->renderer;
+
 	}
 
 	/**
@@ -32,14 +40,14 @@ class PlayerController {
 		$isAutoDjRequestSystemActive = Status::find(3)->active;
 		$isMessageSystemActive       = Status::find(2)->active;
 
-		return $this->container->renderer->render($response, '/player/standalone/player.php', [
+		return $this->renderer->render($response, '/player/standalone/player.php', [
 			'currentPartner' => $request->getQueryParams()['partner'] ?? '',
-			'host' => $this->container->config['host']['url'],
+			'host' => $this->config['host']['url'],
 			'isRequestSystemActive' => $isRequestSystemActive,
 			'isAutoDjRequestSystemActive' => $isAutoDjRequestSystemActive,
 			'isMessageSystemActive' => $isMessageSystemActive,
-			'mountpoints' => $this->container->config['icecast']['mountpoints'],
-			'partners' => $this->container->config['partners'],
+			'mountpoints' => $this->config['icecast']['mountpoints'],
+			'partners' => $this->config['partners'],
 			'preSelectedMountpoint' => $request->getQueryParams()['mountpoint'] ?? '',
 			'request' => $request
 		]);

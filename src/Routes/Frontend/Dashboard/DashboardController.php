@@ -6,21 +6,29 @@ use BRG\Panel\Model;
 use BRG\Panel\Model\Message;
 use BRG\Panel\Model\Status;
 use BRG\Panel\Model\Stream;
+use BRG\Panel\Service\Auth\AuthInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Views\PhpRenderer;
 
 class DashboardController {
 	/**
-	 * @var ContainerInterface
+	 * @var AuthInterface
 	 */
-	protected $container;
+	protected $authentication;
+
+	/**
+	 * @var PhpRenderer
+	 */
+	protected $renderer;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->authentication = $container->authentication;
+		$this->renderer       = $container->renderer;
 	}
 
 	/**
@@ -43,8 +51,8 @@ class DashboardController {
 		$dayDjStream   = Stream::where('mountpoint', '=', 'daydj')->first();
 		$nightDjStream = Stream::where('mountpoint', '=', 'nightdj')->first();
 
-		return $this->container->renderer->render($response, '/dashboard/dashboard/dashboard.php', [
-			'auth' => $this->container->auth,
+		return $this->renderer->render($response, '/dashboard/dashboard/dashboard.php', [
+			'auth' => $this->authentication,
 			'request' => $request,
 			'stream' => [
 				'stream' 	=> $mainStream,

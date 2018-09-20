@@ -17,11 +17,6 @@ class TrackController {
 	protected const CENTOVA_CAST_JINGLES_PATHNAME = 'Jingles/';
 
 	/**
-	 * @var ContainerInterface
-	 */
-	protected $container;
-
-	/**
 	 * @var ArtistModelManager
 	 */
 	protected $artistModelManager;
@@ -35,8 +30,6 @@ class TrackController {
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
-
 		$this->artistModelManager = new ArtistModelManager();
 		$this->trackModelManager  = new TrackModelManager();
 	}

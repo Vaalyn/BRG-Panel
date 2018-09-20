@@ -3,22 +3,44 @@
 namespace BRG\Panel\Routes\Frontend;
 
 use BRG\Panel\Model\RecoveryCode;
+use BRG\Panel\Service\Auth\AuthInterface;
 use Carbon\Carbon;
 use Psr\Container\ContainerInterface;
+use Slim\Flash\Messages;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Router;
+use Slim\Views\PhpRenderer;
 
 class PasswordResetController {
 	/**
-	 * @var ContainerInterface
+	 * @var AuthInterface
 	 */
-	protected $container;
+	protected $authentication;
+
+	/**
+	 * @var Messages
+	 */
+	protected $flashMessages;
+
+	/**
+	 * @var PhpRenderer
+	 */
+	protected $renderer;
+
+	/**
+	 * @var Router
+	 */
+	protected $router;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->authentication = $container->authentication;
+		$this->flashMessages  = $container->flashMessages;
+		$this->renderer       = $container->renderer;
+		$this->router         = $container->router;
 	}
 
 	/**
@@ -47,13 +69,13 @@ class PasswordResetController {
 		}
 
 		if (!isset($validRecoveryCode)) {
-			return $response->withRedirect($this->container->router->pathFor('login'));
+			return $response->withRedirect($this->router->pathFor('login'));
 		}
 
-		return $this->container->renderer->render($response, '/password-reset/password-reset.php', [
-			'auth' => $this->container->auth,
+		return $this->renderer->render($response, '/password-reset/password-reset.php', [
+			'auth' => $this->authentication,
 			'code' => $code,
-			'flashMessages' => $this->container->flash->getMessages(),
+			'flashMessages' => $this->flashMessages->getMessages(),
 			'request' => $request
 		]);
 	}

@@ -3,22 +3,30 @@
 namespace BRG\Panel\Routes\Frontend\Dashboard;
 
 use BRG\Panel\Model;
+use BRG\Panel\Service\Auth\AuthInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Illuminate\Database\Query\Expression;
+use Slim\Views\PhpRenderer;
 
 class StatisticController {
 	/**
-	 * @var ContainerInterface
+	 * @var AuthInterface
 	 */
-	protected $container;
+	protected $authentication;
+
+	/**
+	 * @var PhpRenderer
+	 */
+	protected $renderer;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->authentication = $container->authentication;
+		$this->renderer       = $container->renderer;
 	}
 
 	/**
@@ -47,8 +55,8 @@ class StatisticController {
 			->skip(($page - 1) * $entriesPerPage)
 			->get();
 
-		return $this->container->renderer->render($response, '/dashboard/statistic/request.php', [
-			'auth' => $this->container->auth,
+		return $this->renderer->render($response, '/dashboard/statistic/request.php', [
+			'auth' => $this->authentication,
 			'page' => $page,
 			'pages' => $pages,
 			'path' => $request->getUri()->getPath(),
@@ -85,8 +93,8 @@ class StatisticController {
 			->skip(($page - 1) * $entriesPerPage)
 			->get();
 
-		return $this->container->renderer->render($response, '/dashboard/statistic/request.php', [
-			'auth' => $this->container->auth,
+		return $this->renderer->render($response, '/dashboard/statistic/request.php', [
+			'auth' => $this->authentication,
 			'page' => $page,
 			'pages' => $pages,
 			'path' => $request->getUri()->getPath(),
@@ -125,8 +133,8 @@ class StatisticController {
 			->skip(($page - 1) * $entriesPerPage)
 			->get();
 
-		return $this->container->renderer->render($response, '/dashboard/statistic/request.php', [
-			'auth' => $this->container->auth,
+		return $this->renderer->render($response, '/dashboard/statistic/request.php', [
+			'auth' => $this->authentication,
 			'page' => $page,
 			'pages' => $pages,
 			'path' => $request->getUri()->getPath(),
@@ -164,8 +172,8 @@ class StatisticController {
 			->skip(($page - 1) * $entriesPerPage)
 			->get();
 
-		return $this->container->renderer->render($response, '/dashboard/statistic/request.php', [
-			'auth' => $this->container->auth,
+		return $this->renderer->render($response, '/dashboard/statistic/request.php', [
+			'auth' => $this->authentication,
 			'page' => $page,
 			'pages' => $pages,
 			'path' => $request->getUri()->getPath(),

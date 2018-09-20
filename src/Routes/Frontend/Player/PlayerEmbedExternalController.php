@@ -2,21 +2,35 @@
 
 namespace BRG\Panel\Routes\Frontend\Player;
 
+use BRG\Panel\Service\Auth\AuthInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Views\PhpRenderer;
 
 class PlayerEmbedExternalController {
 	/**
-	 * @var ContainerInterface
+	 * @var AuthInterface
 	 */
-	protected $container;
+	protected $authentication;
+
+	/**
+	 * @var array
+	 */
+	protected $config;
+
+	/**
+	 * @var PhpRenderer
+	 */
+	protected $renderer;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->authentication = $container->authentication;
+		$this->config         = $container->config;
+		$this->renderer       = $container->renderer;
 	}
 
 	/**
@@ -27,11 +41,11 @@ class PlayerEmbedExternalController {
 	 * @return Response
 	 */
 	public function __invoke(Request $request, Response $response, array $args): Response {
-		return $this->container->renderer->render($response, '/player/standalone/player.php', [
-			'auth' => $this->container->auth,
+		return $this->renderer->render($response, '/player/standalone/player.php', [
+			'auth' => $this->authentication,
 			'external' => true,
-			'host' => $this->container->config['host']['url'],
-			'mountpoints' => $this->container->config['icecast']['mountpoints'],
+			'host' => $this->config['host']['url'],
+			'mountpoints' => $this->config['icecast']['mountpoints'],
 			'preSelectedMountpoint' => $request->getQueryParams()['mountpoint'] ?? '',
 			'request' => $request
 		]);

@@ -9,15 +9,15 @@ use Slim\Http\Response;
 
 class CorsMiddleware {
 	/**
-	 * @var ContainerInterface
+	 * @var array
 	 */
-	private $container;
+	protected $config;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-        $this->container = $container;
+        $this->config = $container->config;
     }
 
 	/**
@@ -34,7 +34,7 @@ class CorsMiddleware {
 			return $next($request, $response);
 		}
 
-		$corsRoutes = $this->container->config['cors'];
+		$corsRoutes = $this->config['cors'];
 
 		$currentRouteName = $currentRoute->getName();
 

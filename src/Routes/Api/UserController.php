@@ -7,23 +7,38 @@ use BRG\Panel\Exception\MailNotSendException;
 use BRG\Panel\Model\Manager\UserModelManager;
 use BRG\Panel\Model\RecoveryCode;
 use BRG\Panel\Model\User;
+use BRG\Panel\Service\Mailer\MailerInterface;
 use Carbon\Carbon;
 use Psr\Container\ContainerInterface;
 use Ramsey\Uuid\Uuid;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Router;
+use Slim\Views\PhpRenderer;
 
 class UserController {
 	/**
-	 * @var ContainerInterface
+	 * @var MailerInterface
 	 */
-	protected $container;
+	protected $mailer;
+
+	/**
+	 * @var PhpRenderer
+	 */
+	protected $renderer;
+
+	/**
+	 * @var Router
+	 */
+	protected $router;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->container = $container;
+		$this->mailer   = $container->mailer;
+		$this->renderer = $container->renderer;
+		$this->router   = $container->router;
 	}
 
 	/**
@@ -64,11 +79,11 @@ class UserController {
 				'%s://%s%s%s',
 				$request->getUri()->getScheme(),
 				$request->getUri()->getHost(),
-				$this->container->router->pathFor('password-reset', ['code' => null]),
+				$this->router->pathFor('password-reset', ['code' => null]),
 				$code
 			);
 
-			$passwordResetEmailMessage = $this->container->renderer->fetch(
+			$passwordResetEmailMessage = $this->renderer->fetch(
 				'/mailer/user/reset-password/reset-password.php',
 				[
 					'passwordResetUrl' => $passwordResetUrl
@@ -76,7 +91,7 @@ class UserController {
 			);
 
 			try {
-				$this->container->mailer->sendMail(
+				$this->mailer->sendMail(
 					'BRG-Panel Passwort vergessen',
 					$email,
 					$user->username,

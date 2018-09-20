@@ -23,12 +23,7 @@
     },
 	"autoload": {
         "psr-4": {
-			"Dto\\": "dto",
-			"Exception\\": "exception",
-			"Middleware\\": "middleware",
-			"Model\\": "model",
-			"Routes\\": "routes",
-			"Service\\": "service"
+			"BRG\\Panel\\": "src"
         }
     }
 }

@@ -1,50 +1,90 @@
 <?php
 
 return [
-	'settings' => [
-		'determineRouteBeforeAppMiddleware' => true,
-		'displayErrorDetails' => false
-	],
 	'config' => [
-		'session' => [
-			'name'     => 'BRG_PANEL_SESSID',
-			'lifetime' => 1200,
-			'path'     => '/',
-			'domain'   => '',
-			'secure'   => false,
-			'httponly' => true
-		],
-		'database' => [
-			'centova' => [
-				'driver'    => 'mysql',
-				'host' 	    => '',
-				'database' 	=> '',
-				'username' 	=> '',
-				'password' 	=> '',
-				'charset'   => 'utf8',
-				'collation' => 'utf8_general_ci',
-				'prefix'    => '',
-				'port'      => 3306
+		'authentication' => [
+			'cookie' => [
+				'expire'   => 2592000,
+				'domain'   => '',
+				'httponly' => true,
+				'name'     => 'remember',
+				'secure'   => false
 			],
-			'panel' => [
-				'driver'    => '',
-				'host' 	    => '',
-				'database' 	=> '',
-				'username' 	=> '',
-				'password' 	=> '',
-				'charset'   => 'utf8',
-				'collation' => 'utf8_general_ci',
-				'prefix'    => '',
-				'port'      => 3306
-			]
+			'host' => [
+				'ip' => '127.0.0.1'
+			],
+			'local' => require_once __DIR__ . '/routes/local.php',
+			'routes' => require_once __DIR__ . '/routes/authenticated.php'
+		],
+		'authorization' => [
+			'authorizers' => require_once __DIR__ . '/authorizers.php',
+			'routes' => require_once __DIR__ . '/routes/authorized.php'
 		],
 		'centova' => [
 			'api' => [
-				'url' 		=> '',
-				'username' 	=> '',
-				'password' 	=> '',
-				'rpc_url' => ''
+				'url'      => '',
+				'username' => '',
+				'password' => '',
+				'rpc_url'  => ''
 			]
+		],
+		'cors' => require_once __DIR__ . '/routes/cors.php',
+		'database' => [
+			'centova' => [
+				'charset'   => 'utf8',
+				'collation' => 'utf8_general_ci',
+				'database' 	=> '',
+				'driver'    => 'mysql',
+				'host' 	    => '',
+				'password' 	=> '',
+				'port'      => 3306,
+				'prefix'    => '',
+				'username' 	=> ''
+			],
+			'panel' => [
+				'charset'   => 'utf8',
+				'collation' => 'utf8_general_ci',
+				'database' 	=> '',
+				'driver'    => '',
+				'host' 	    => '',
+				'password' 	=> '',
+				'port'      => 3306,
+				'prefix'    => '',
+				'username' 	=> ''
+			]
+		],
+		'discord' => [
+			'bot' => [
+				'lucy_light' => [
+					'server' => [
+						'command' => [
+							'restart' => ''
+						],
+						'host' => '',
+						'user' => '',
+						'ssh_key_path' => __DIR__ . '/../ssh/id_brg_panel_rsa'
+					]
+				]
+			]
+		],
+		'flysystem' => [
+			'files' => [
+				'adapter' => 'League\Flysystem\Adapter\Local',
+				'arguments' => [
+					'path' => __DIR__ . '/../files'
+				],
+				'config' => []
+			]
+		],
+		'google' => [
+			'calendar' => [
+				'api_key' => '',
+				'calendar_id' => ''
+			]
+		],
+		'host' => [
+			'ip' => '',
+			'url' => ''
 		],
 		'icecast' => [
 			'api' => [
@@ -115,62 +155,29 @@ return [
 				]
 			]
 		],
-		'google' => [
-			'calendar' => [
-				'api_key' => '',
-				'calendar_id' => ''
-			]
-		],
-		'auth' => [
-			'cookie' => [
-				'name'     => 'remember',
-				'expire'   => 2592000,
-				'domain'   => '',
-				'secure'   => true,
-				'httponly' => true
-			],
-			'routes' => require_once __DIR__ . '/routePermissions.php',
-			'local' => require_once __DIR__ . '/routePermissionsLocal.php',
-			'authorized' => require_once __DIR__ . '/routePermissionsAuthorized.php'
-		],
-		'cors' => require_once __DIR__ . '/routeCors.php',
-		'host' => [
-			'ip' => '',
-			'url' => ''
-		],
-		'discord' => [
-			'bot' => [
-				'lucy_light' => [
-					'server' => [
-						'host' => '',
-						'user' => '',
-						'ssh_key_path' => __DIR__ . '/../ssh/id_brg_panel_rsa',
-						'command' => [
-							'restart' => ''
-						]
-					]
-				]
-			]
-		],
 		'mailer' => [
+			'authMode' => 'plain',
 			'from' => 'Brony Radio Germany',
 			'fromAddress' => 'no-reply@bronyradiogermany.com',
-			'username' => '',
-			'password' => '',
 			'host' => '',
+			'password' => '',
 			'port' => 587,
+			'username' => '',
 			'security' => 'tls',
-			'authMode' => 'plain'
 		],
-		'flysystem' => [
-			'files' => [
-				'adapter' => 'League\Flysystem\Adapter\Local',
-				'arguments' => [
-					'path' => __DIR__ . '/../files'
-				],
-				'config' => []
-			]
-		],
-		'partners' => require_once __DIR__ . '/partners.php'
+		'menu' => require_once __DIR__ . '/menu.php',
+		'partners' => require_once __DIR__ . '/partners.php',
+		'session' => [
+			'domain'   => '',
+			'httponly' => true,
+			'lifetime' => 1200,
+			'name'     => 'BRG_PANEL_SESSID',
+			'path'     => '/',
+			'secure'   => false,
+		]
+	],
+	'settings' => [
+		'determineRouteBeforeAppMiddleware' => true,
+		'displayErrorDetails' => false
 	]
 ];

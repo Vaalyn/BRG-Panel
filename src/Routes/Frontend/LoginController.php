@@ -2,7 +2,7 @@
 
 namespace BRG\Panel\Routes\Frontend;
 
-use BRG\Panel\Service\Auth\AuthInterface;
+use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Flash\Messages;
 use Slim\Http\Request;
@@ -12,7 +12,7 @@ use Slim\Views\PhpRenderer;
 
 class LoginController {
 	/**
-	 * @var AuthInterface
+	 * @var AuthenticationInterface
 	 */
 	protected $authentication;
 
@@ -58,7 +58,7 @@ class LoginController {
 		}
 
 		return $this->renderer->render($response, '/login/login.php', [
-			'auth' => $this->authentication,
+			'authentication' => $this->authentication,
 			'flashMessages' => $this->flashMessages->getMessages(),
 			'request' => $request
 		]);

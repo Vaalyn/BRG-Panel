@@ -17,7 +17,7 @@ class User extends Model {
 	/**
 	 * @return HasMany
 	 */
-	public function authTokens(): HasMany {
-	    return $this->hasMany(AuthToken::class, 'user_id');
+	public function authenticationTokens(): HasMany {
+	    return $this->hasMany(AuthenticationToken::class, 'user_id');
 	}
 }

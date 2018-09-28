@@ -3,7 +3,7 @@
 namespace BRG\Panel\Routes\Frontend\Dashboard;
 
 use BRG\Panel\Model\Manager\HistoryModelManager;
-use BRG\Panel\Service\Auth\AuthInterface;
+use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Psr\Container\ContainerInterface;
@@ -13,7 +13,7 @@ use Slim\Views\PhpRenderer;
 
 class HistoryController {
 	/**
-	 * @var AuthInterface
+	 * @var AuthenticationInterface
 	 */
 	protected $authentication;
 
@@ -55,7 +55,7 @@ class HistoryController {
 			->get();
 
 		return $this->renderer->render($response, '/dashboard/history/history.php', [
-			'auth' => $this->authentication,
+			'authentication' => $this->authentication,
 			'carbon' => new Carbon(),
 			'history' => $history,
 			'page' => $page,

@@ -3,7 +3,7 @@
 namespace BRG\Panel\Routes\Frontend\Dashboard;
 
 use BRG\Panel\Model;
-use BRG\Panel\Service\Auth\AuthInterface;
+use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Psr\Container\ContainerInterface;
 use Respect\Validation\Validator;
 use Slim\Http\Request;
@@ -12,7 +12,7 @@ use Slim\Views\PhpRenderer;
 
 class RequestController {
 	/**
-	 * @var AuthInterface
+	 * @var AuthenticationInterface
 	 */
 	protected $authentication;
 
@@ -60,7 +60,7 @@ class RequestController {
 			->get();
 
 		return $this->renderer->render($response, '/dashboard/request/request.php', [
-			'auth' => $this->authentication,
+			'authentication' => $this->authentication,
 			'page' => $page,
 			'pages' => $pages,
 			'path' => $request->getUri()->getPath(),

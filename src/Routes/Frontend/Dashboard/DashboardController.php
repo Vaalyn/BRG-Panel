@@ -6,7 +6,7 @@ use BRG\Panel\Model;
 use BRG\Panel\Model\Message;
 use BRG\Panel\Model\Status;
 use BRG\Panel\Model\Stream;
-use BRG\Panel\Service\Auth\AuthInterface;
+use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -14,7 +14,7 @@ use Slim\Views\PhpRenderer;
 
 class DashboardController {
 	/**
-	 * @var AuthInterface
+	 * @var AuthenticationInterface
 	 */
 	protected $authentication;
 
@@ -52,7 +52,7 @@ class DashboardController {
 		$nightDjStream = Stream::where('mountpoint', '=', 'nightdj')->first();
 
 		return $this->renderer->render($response, '/dashboard/dashboard/dashboard.php', [
-			'auth' => $this->authentication,
+			'authentication' => $this->authentication,
 			'request' => $request,
 			'stream' => [
 				'stream' 	=> $mainStream,

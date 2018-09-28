@@ -3,7 +3,7 @@
 namespace BRG\Panel\Routes\Frontend;
 
 use BRG\Panel\Model\RecoveryCode;
-use BRG\Panel\Service\Auth\AuthInterface;
+use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Carbon\Carbon;
 use Psr\Container\ContainerInterface;
 use Slim\Flash\Messages;
@@ -14,7 +14,7 @@ use Slim\Views\PhpRenderer;
 
 class PasswordResetController {
 	/**
-	 * @var AuthInterface
+	 * @var AuthenticationInterface
 	 */
 	protected $authentication;
 
@@ -73,7 +73,7 @@ class PasswordResetController {
 		}
 
 		return $this->renderer->render($response, '/password-reset/password-reset.php', [
-			'auth' => $this->authentication,
+			'authentication' => $this->authentication,
 			'code' => $code,
 			'flashMessages' => $this->flashMessages->getMessages(),
 			'request' => $request

@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AuthToken extends Model {
+class AuthenticationToken extends Model {
 	use SoftDeletes;
 
 	protected $connection = 'panel';
-	protected $table      = 'auth_token';
-	protected $primaryKey = 'auth_token_id';
+	protected $table      = 'authentication_token';
+	protected $primaryKey = 'authentication_token_id';
 	protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
 
 	public $incrementing = false;

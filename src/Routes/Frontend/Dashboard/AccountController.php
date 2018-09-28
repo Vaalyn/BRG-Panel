@@ -2,7 +2,7 @@
 
 namespace BRG\Panel\Routes\Frontend\Dashboard;
 
-use BRG\Panel\Service\Auth\AuthInterface;
+use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -10,7 +10,7 @@ use Slim\Views\PhpRenderer;
 
 class AccountController {
 	/**
-	 * @var AuthInterface
+	 * @var AuthenticationInterface
 	 */
 	protected $authentication;
 
@@ -36,7 +36,7 @@ class AccountController {
 	 */
 	public function __invoke(Request $request, Response $response, array $args): Response {
 		return $this->renderer->render($response, '/dashboard/account/account.php', [
-			'auth' => $this->authentication,
+			'authentication' => $this->authentication,
 			'request' => $request,
 			'user' => $this->authentication->user()
 		]);

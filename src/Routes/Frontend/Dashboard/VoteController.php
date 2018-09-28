@@ -3,7 +3,7 @@
 namespace BRG\Panel\Routes\Frontend\Dashboard;
 
 use BRG\Panel\Model\Track;
-use BRG\Panel\Service\Auth\AuthInterface;
+use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -11,7 +11,7 @@ use Slim\Views\PhpRenderer;
 
 class VoteController {
 	/**
-	 * @var AuthInterface
+	 * @var AuthenticationInterface
 	 */
 	protected $authentication;
 
@@ -63,7 +63,7 @@ class VoteController {
 			->get();
 
 		return $this->renderer->render($response, '/dashboard/vote/vote.php', [
-			'auth' => $this->authentication,
+			'authentication' => $this->authentication,
 			'page' => $page,
 			'pages' => $pages,
 			'path' => $request->getUri()->getPath(),

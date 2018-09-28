@@ -4,7 +4,7 @@ namespace BRG\Panel\Routes\Frontend\Dashboard;
 
 use BRG\Panel\Model\Donation;
 use BRG\Panel\Model\Setting;
-use BRG\Panel\Service\Auth\AuthInterface;
+use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -12,7 +12,7 @@ use Slim\Views\PhpRenderer;
 
 class DonationController {
 	/**
-	 * @var AuthInterface
+	 * @var AuthenticationInterface
 	 */
 	protected $authentication;
 
@@ -43,7 +43,7 @@ class DonationController {
 		$donations = Donation::with('donor')->get();
 
 		return $this->renderer->render($response, '/dashboard/donation/donation.php', [
-			'auth' => $this->authentication,
+			'authentication' => $this->authentication,
 			'currentlyNeededDonationAmount' => $currentlyNeededAmountSetting,
 			'donations' => $donations,
 			'request' => $request

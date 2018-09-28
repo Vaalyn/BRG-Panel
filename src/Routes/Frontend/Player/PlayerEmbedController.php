@@ -2,7 +2,7 @@
 
 namespace BRG\Panel\Routes\Frontend\Player;
 
-use BRG\Panel\Service\Auth\AuthInterface;
+use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -10,7 +10,7 @@ use Slim\Views\PhpRenderer;
 
 class PlayerEmbedController {
 	/**
-	 * @var AuthInterface
+	 * @var AuthenticationInterface
 	 */
 	protected $authentication;
 
@@ -42,7 +42,7 @@ class PlayerEmbedController {
 	 */
 	public function __invoke(Request $request, Response $response, array $args): Response {
 		return $this->renderer->render($response, '/player/embed/player.php', [
-			'auth' => $this->authentication,
+			'authentication' => $this->authentication,
 			'host' => $this->config['host']['url'],
 			'mountpoints' => $this->config['icecast']['mountpoints'],
 			'preSelectedMountpoint' => $request->getQueryParams()['mountpoint'] ?? '',

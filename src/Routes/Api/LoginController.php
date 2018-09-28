@@ -2,14 +2,14 @@
 
 namespace BRG\Panel\Routes\Api;
 
-use BRG\Panel\Service\Auth\AuthInterface;
+use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 class LoginController {
 	/**
-	 * @var AuthInterface
+	 * @var AuthenticationInterface
 	 */
 	protected $authentication;
 

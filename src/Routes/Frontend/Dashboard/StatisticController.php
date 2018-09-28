@@ -3,7 +3,7 @@
 namespace BRG\Panel\Routes\Frontend\Dashboard;
 
 use BRG\Panel\Model;
-use BRG\Panel\Service\Auth\AuthInterface;
+use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -12,7 +12,7 @@ use Slim\Views\PhpRenderer;
 
 class StatisticController {
 	/**
-	 * @var AuthInterface
+	 * @var AuthenticationInterface
 	 */
 	protected $authentication;
 
@@ -56,7 +56,7 @@ class StatisticController {
 			->get();
 
 		return $this->renderer->render($response, '/dashboard/statistic/request.php', [
-			'auth' => $this->authentication,
+			'authentication' => $this->authentication,
 			'page' => $page,
 			'pages' => $pages,
 			'path' => $request->getUri()->getPath(),
@@ -94,7 +94,7 @@ class StatisticController {
 			->get();
 
 		return $this->renderer->render($response, '/dashboard/statistic/request.php', [
-			'auth' => $this->authentication,
+			'authentication' => $this->authentication,
 			'page' => $page,
 			'pages' => $pages,
 			'path' => $request->getUri()->getPath(),
@@ -134,7 +134,7 @@ class StatisticController {
 			->get();
 
 		return $this->renderer->render($response, '/dashboard/statistic/request.php', [
-			'auth' => $this->authentication,
+			'authentication' => $this->authentication,
 			'page' => $page,
 			'pages' => $pages,
 			'path' => $request->getUri()->getPath(),
@@ -173,7 +173,7 @@ class StatisticController {
 			->get();
 
 		return $this->renderer->render($response, '/dashboard/statistic/request.php', [
-			'auth' => $this->authentication,
+			'authentication' => $this->authentication,
 			'page' => $page,
 			'pages' => $pages,
 			'path' => $request->getUri()->getPath(),

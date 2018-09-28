@@ -4,7 +4,7 @@ namespace BRG\Panel\Routes\Api\Dashboard;
 
 use BRG\Panel\Exception\InfoException;
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
-use BRG\Panel\Service\Auth\AuthInterface;
+use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Psr\Container\ContainerInterface;
 use Respect\Validation\Validator;
 use Slim\Http\Request;
@@ -12,7 +12,7 @@ use Slim\Http\Response;
 
 class UserController {
 	/**
-	 * @var AuthInterface
+	 * @var AuthenticationInterface
 	 */
 	protected $authentication;
 

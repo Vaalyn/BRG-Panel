@@ -96,6 +96,13 @@ return [
 					]
 				]
 			],
+			'cloud' => [
+				'display_name' => '',
+				'icon' => 'cloud_circle',
+				'url' => 'https://cloud.bronyradiogermany.com',
+				'route_name' => null,
+				'classes' => []
+			],
 			'my_account' => [
 				'display_name' => '',
 				'icon' => 'account_circle',

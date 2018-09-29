@@ -1,6 +1,9 @@
 /config/config.php
+/config/plugins.php
 /files/*
 !/files/.gitkeep
+/plugin/*
+!/plugin/.gitkeep
 /ssh/*rsa
 
 /vendor/*

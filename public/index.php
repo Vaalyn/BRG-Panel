@@ -16,14 +16,26 @@ use BRG\Panel\Service\Google\Calendar\GoogleCalendarApiClient;
 use BRG\Panel\Service\IceCast\IceCastDataClient;
 use BRG\Panel\Service\Mailer\Mailer;
 use BRG\Panel\Service\MenuBuilder\MenuBuilder;
+use BRG\Panel\Service\Plugin\PluginLoader;
 use BRG\Panel\Service\Session\Session;
 use Respect\Validation\Validator;
 use Slim\Flash\Messages;
 use Slim\Views\PhpRenderer;
 
-$app = new \Slim\App(require_once __DIR__ . '/../config/config.php');
+$app          = new \Slim\App(require_once __DIR__ . '/../config/config.php');
+$container    = $app->getContainer();
+$pluginLoader = new PluginLoader();
 
-$container                            = $app->getContainer();
+if (file_exists(__DIR__ . '/../config/plugins.php')) {
+	$plugins = require_once __DIR__ . '/../config/plugins.php';
+
+	foreach ($plugins as $plugin) {
+		$pluginLoader->registerPlugin(new $plugin);
+	}
+}
+
+$pluginLoader->loadPlugins($container);
+
 $container['authorization']           = new Authorization($container);
 $container['session']                 = (new Session($container->config['session']))->start();
 $container['authentication']          = new Authentication($container);
@@ -43,6 +55,10 @@ $container['validator'] = function() {
 	return new Validator();
 };
 
+$pluginLoader->registerPluginServices($container);
+
+$pluginLoader->registerPluginMiddlewares($app, $container);
+
 $app->add(new MenuMiddleware($container));
 $app->add(new AuthorizationMiddleware($container));
 $app->add(new AuthenticationMiddleware($container));
@@ -50,5 +66,7 @@ $app->add(new CorsMiddleware($container));
 $app->add(new RKA\Middleware\IpAddress(false, []));
 
 require_once '../config/routes.php';
+
+$pluginLoader->registerPluginRoutes($app, $container);
 
 $app->run();

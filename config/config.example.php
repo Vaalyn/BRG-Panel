@@ -167,6 +167,7 @@ return [
 		],
 		'menu' => require_once __DIR__ . '/menu.php',
 		'partners' => require_once __DIR__ . '/partners.php',
+		'plugins' => [],
 		'session' => [
 			'domain'   => '',
 			'httponly' => true,

@@ -19,8 +19,20 @@
         "slim/php-view": "^2.2",
         "slim/slim": "^3.8",
         "swiftmailer/swiftmailer": "^6.0",
+		"vaalyn/config-loader-service": "dev-master",
+        "vaalyn/plugin-service": "dev-master",
         "wikimedia/composer-merge-plugin": "^1.4"
     },
+	"repositories": [
+		{
+			"type": "git",
+			"url": "git@github.com:Vaalyn/config-loader-service.git"
+		},
+		{
+			"type": "git",
+			"url": "git@github.com:Vaalyn/plugin-service.git"
+		}
+	],
 	"autoload": {
         "psr-4": {
 			"BRG\\Panel\\": "src"

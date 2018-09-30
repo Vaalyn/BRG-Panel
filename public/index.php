@@ -16,11 +16,11 @@ use BRG\Panel\Service\Google\Calendar\GoogleCalendarApiClient;
 use BRG\Panel\Service\IceCast\IceCastDataClient;
 use BRG\Panel\Service\Mailer\Mailer;
 use BRG\Panel\Service\MenuBuilder\MenuBuilder;
-use BRG\Panel\Service\Plugin\PluginLoader;
 use BRG\Panel\Service\Session\Session;
 use Respect\Validation\Validator;
 use Slim\Flash\Messages;
 use Slim\Views\PhpRenderer;
+use Vaalyn\PluginService\PluginLoader;
 
 $app          = new \Slim\App(require_once __DIR__ . '/../config/config.php');
 $container    = $app->getContainer();

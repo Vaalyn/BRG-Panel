@@ -1,5 +1,6 @@
 {
     "require": {
+		"php": ">=7.2.0",
         "akrabat/ip-address-middleware": "^1.0",
         "bjeavons/zxcvbn-php": "^0.3.0",
         "google/apiclient": "^2.2",
@@ -23,16 +24,6 @@
         "vaalyn/plugin-service": "dev-master",
         "wikimedia/composer-merge-plugin": "^1.4"
     },
-	"repositories": [
-		{
-			"type": "git",
-			"url": "git@github.com:Vaalyn/config-loader-service.git"
-		},
-		{
-			"type": "git",
-			"url": "git@github.com:Vaalyn/plugin-service.git"
-		}
-	],
 	"autoload": {
         "psr-4": {
 			"BRG\\Panel\\": "src"

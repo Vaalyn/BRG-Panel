@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60e460b6d4681f99697057307e459f90",
+    "content-hash": "decc9480a63506245a615c66bb03380d",
     "packages": [
         {
             "name": "akrabat/ip-address-middleware",
@@ -735,7 +735,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v5.7.6",
+            "version": "v5.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -779,16 +779,16 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.7.6",
+            "version": "v5.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "2daf3c078610f744e2a4dc2f44fb5060cce9835b"
+                "reference": "72e125b25d3f7aabbf4b2ef68590db7637b8223c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/2daf3c078610f744e2a4dc2f44fb5060cce9835b",
-                "reference": "2daf3c078610f744e2a4dc2f44fb5060cce9835b",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/72e125b25d3f7aabbf4b2ef68590db7637b8223c",
+                "reference": "72e125b25d3f7aabbf4b2ef68590db7637b8223c",
                 "shasum": ""
             },
             "require": {
@@ -819,20 +819,20 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2018-09-18T12:50:05+00:00"
+            "time": "2018-09-27T14:15:29+00:00"
         },
         {
             "name": "illuminate/database",
-            "version": "v5.7.6",
+            "version": "v5.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "6f97d818c90f751e69d1696e4b17acac6bef7aed"
+                "reference": "88bf47e1c125e5b261b984c9a6a9eb8d1c26da61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/6f97d818c90f751e69d1696e4b17acac6bef7aed",
-                "reference": "6f97d818c90f751e69d1696e4b17acac6bef7aed",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/88bf47e1c125e5b261b984c9a6a9eb8d1c26da61",
+                "reference": "88bf47e1c125e5b261b984c9a6a9eb8d1c26da61",
                 "shasum": ""
             },
             "require": {
@@ -878,20 +878,20 @@
                 "orm",
                 "sql"
             ],
-            "time": "2018-09-25T14:27:46+00:00"
+            "time": "2018-10-02T13:58:04+00:00"
         },
         {
             "name": "illuminate/support",
-            "version": "v5.7.6",
+            "version": "v5.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "f7c68e8c8aab200cc8ad84f974d5511cda58a742"
+                "reference": "d01c9ac04dee022ff3cd931e60e989a0d950812a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/f7c68e8c8aab200cc8ad84f974d5511cda58a742",
-                "reference": "f7c68e8c8aab200cc8ad84f974d5511cda58a742",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/d01c9ac04dee022ff3cd931e60e989a0d950812a",
+                "reference": "d01c9ac04dee022ff3cd931e60e989a0d950812a",
                 "shasum": ""
             },
             "require": {
@@ -937,20 +937,20 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2018-09-19T18:36:57+00:00"
+            "time": "2018-10-01T13:13:54+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.67",
+            "version": "v1.2.68",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "618b74b6fb1bc11737aecb9e7d5f4903dd75a9d1"
+                "reference": "be0f5bae4af052918ff98a396c96bdfb4bd73ac0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/618b74b6fb1bc11737aecb9e7d5f4903dd75a9d1",
-                "reference": "618b74b6fb1bc11737aecb9e7d5f4903dd75a9d1",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/be0f5bae4af052918ff98a396c96bdfb4bd73ac0",
+                "reference": "be0f5bae4af052918ff98a396c96bdfb4bd73ac0",
                 "shasum": ""
             },
             "require": {
@@ -986,7 +986,7 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2018-09-04T19:04:44+00:00"
+            "time": "2018-10-01T21:26:06+00:00"
         },
         {
             "name": "jenssegers/agent",
@@ -3244,10 +3244,17 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:Vaalyn/config-loader-service.git",
-                "reference": "e4ea85aaa645f3bb0572405e2564c05a2abe2651"
+                "url": "https://github.com/Vaalyn/config-loader-service.git",
+                "reference": "e8e6cb78e7395c72123feb30fac987f081ca4abd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vaalyn/config-loader-service/zipball/e8e6cb78e7395c72123feb30fac987f081ca4abd",
+                "reference": "e8e6cb78e7395c72123feb30fac987f081ca4abd",
+                "shasum": ""
             },
             "require": {
+                "php": ">=7.2.0",
                 "psr/container": "^1.0"
             },
             "type": "library",
@@ -3256,6 +3263,7 @@
                     "Vaalyn\\ConfigLoaderService\\": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -3266,17 +3274,31 @@
                 }
             ],
             "description": "A config loader service for the Slim Framework 3",
-            "time": "2018-09-30T12:50:33+00:00"
+            "homepage": "https://github.com/Vaalyn/config-loader-service",
+            "keywords": [
+                "config",
+                "configuration",
+                "loader",
+                "slim"
+            ],
+            "time": "2018-10-02T16:50:37+00:00"
         },
         {
             "name": "vaalyn/plugin-service",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:Vaalyn/plugin-service.git",
-                "reference": "3621387cbe5b7ea76510a592ad96d8b1bbe0410f"
+                "url": "https://github.com/Vaalyn/plugin-service.git",
+                "reference": "e1c0dbaa3815f856cfdeeb7d1baa08636d315c30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vaalyn/plugin-service/zipball/e1c0dbaa3815f856cfdeeb7d1baa08636d315c30",
+                "reference": "e1c0dbaa3815f856cfdeeb7d1baa08636d315c30",
+                "shasum": ""
             },
             "require": {
+                "php": ">=7.2.0",
                 "psr/container": "^1.0",
                 "slim/slim": "^3.11",
                 "vaalyn/config-loader-service": "dev-master"
@@ -3287,6 +3309,7 @@
                     "Vaalyn\\PluginService\\": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -3297,7 +3320,15 @@
                 }
             ],
             "description": "A plugin service for the Slim Framework 3",
-            "time": "2018-09-30T17:13:38+00:00"
+            "homepage": "https://github.com/Vaalyn/plugin-service",
+            "keywords": [
+                "extend",
+                "loader",
+                "plugin",
+                "service",
+                "slim"
+            ],
+            "time": "2018-10-02T16:55:32+00:00"
         },
         {
             "name": "wikimedia/composer-merge-plugin",
@@ -3358,6 +3389,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=7.2.0"
+    },
     "platform-dev": []
 }

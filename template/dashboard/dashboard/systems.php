@@ -1,4 +1,4 @@
-<div class="card color-2 white-text">
+<div id="systems" class="card color-2 white-text">
 	<div class="card-content">
 		<div class="card-title center">BRG Systeme</div>
 		<div class="divider"></div>
@@ -42,7 +42,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Requests pro Person</th>
+						<th>Requests&nbsp;pro&nbsp;Person</th>
 						<td>
 							<span><?php echo $system['request']['limit']; ?></span>
 						</td>
@@ -53,11 +53,22 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Aktive Requests</th>
+						<th>Aktive&nbsp;Requests</th>
 						<td>
 							<span><?php echo $system['request']['requests']; ?></span>
 						</td>
 						<td></td>
+					</tr>
+					<tr>
+						<th>Regeln</th>
+						<td>
+							<span><?php echo $system['request']['rules']; ?></span>
+						</td>
+						<td>
+							<a href="#!" class="set-system-rules tooltipped" data-system-id="<?php echo $system['request']['id']; ?>" data-position="top" data-delay="50" data-tooltip="Regeln ändern">
+								<i class="material-icons">input</i>
+							</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -87,11 +98,22 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Vorhandene Nachrichten</th>
+						<th>Vorhandene&nbsp;Nachrichten</th>
 						<td>
 							<span><?php echo $system['message']['messages']; ?></span>
 						</td>
 						<td></td>
+					</tr>
+					<tr>
+						<th>Regeln</th>
+						<td>
+							<span><?php echo $system['message']['rules']; ?></span>
+						</td>
+						<td>
+							<a href="#!" class="set-system-rules tooltipped" data-system-id="<?php echo $system['message']['id']; ?>" data-position="top" data-delay="50" data-tooltip="Regeln ändern">
+								<i class="material-icons">input</i>
+							</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -121,16 +143,23 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Requests pro Person</th>
+						<th>Requests&nbsp;pro&nbsp;Person</th>
 						<td>
 							<span><?php echo $system['autodj_request']['limit']; ?></span>
 						</td>
 						<td></td>
 					</tr>
 					<tr>
-						<th>Aktive Requests</th>
+						<th>Aktive&nbsp;Requests</th>
 						<td>
 							<span><?php echo $system['autodj_request']['requests']; ?></span>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<th>Regeln</th>
+						<td>
+							<span><?php echo $system['autodj_request']['rules']; ?></span>
 						</td>
 						<td></td>
 					</tr>

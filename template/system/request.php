@@ -8,6 +8,14 @@
 	</div>
 </div>
 
+<?php if (strlen($systems['request']['rules']) > 1) : ?>
+	<div class="row">
+		<div class="col s12 center white-text">
+			<?php echo htmlentities($systems['request']['rules']); ?>
+		</div>
+	</div>
+<?php endif; ?>
+
 <div class="row">
 	<div class="col s12">
 		<div class="row">

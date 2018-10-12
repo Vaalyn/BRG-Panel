@@ -61,19 +61,25 @@ class DashboardController {
 			],
 			'system' => [
 				'request' => [
-					'active' => $requestSystemStatus->active,
-					'limit' => $requestSystemStatus->limit,
-					'requests' => $requestsCount
+					'active'   => $requestSystemStatus->active,
+					'id'       => $requestSystemStatus->status_id,
+					'limit'    => $requestSystemStatus->limit,
+					'requests' => $requestsCount,
+					'rules'    => $requestSystemStatus->rules
 				],
 				'message' => [
-					'active' => $messageSystemStatus->active,
-					'limit' => $messageSystemStatus->limit,
-					'messages' => $messagesCount
+					'active'   => $messageSystemStatus->active,
+					'id'       => $messageSystemStatus->status_id,
+					'limit'    => $messageSystemStatus->limit,
+					'messages' => $messagesCount,
+					'rules'    => $messageSystemStatus->rules
 				],
 				'autodj_request' => [
-					'active' => $autoDjRequestSystemStatus->active,
-					'limit' => $autoDjRequestSystemStatus->limit,
-					'requests' => $autoDjRequestsCount
+					'active'     => $autoDjRequestSystemStatus->active,
+					'id'         => $autoDjRequestSystemStatus->status_id,
+					'limit'      => $autoDjRequestSystemStatus->limit,
+					'requests'   => $autoDjRequestsCount,
+					'rules'      => $autoDjRequestsCount->rules
 				]
 			]
 		]);

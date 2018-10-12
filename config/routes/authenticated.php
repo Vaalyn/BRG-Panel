@@ -14,6 +14,7 @@ return [
 	'api.dashboard.system.message.active',
 	'api.dashboard.system.request.active',
 	'api.dashboard.system.request.limit',
+	'api.dashboard.system.rules',
 	'api.dashboard.track.votes.ignore',
 	'api.dashboard.user.email',
 	'api.dashboard.user.password',

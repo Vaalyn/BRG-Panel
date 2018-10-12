@@ -345,6 +345,70 @@ $(document).ready(function() {
 		});
 	});
 
+	$('#systems .set-system-rules').click(function(event) {
+		event.preventDefault();
+		var button = this;
+
+		$.confirm({
+			theme: 'supervan',
+			title: 'Regeln ändern',
+			content: '' +
+				'<form action="" class="set-system-rules-form">' +
+					'<div class="row">' +
+						'<div class="input-field col s8 m6 l4 offset-s2 offset-m3 offset-l4">' +
+							'<input type="text" class="name form-control" id="set-system-rules-input" required />' +
+							'<label for="set-system-rules-input">Regeln</label>' +
+						'</div>' +
+					'</div>' +
+				'</form>',
+			buttons: {
+				save: {
+					text: 'Speichern',
+					btnClass: 'btn green',
+					action: function() {
+						var rules = this.$content.find('#set-system-rules-input').val();
+						var systemId = $(button).data('system-id');
+
+						$.ajax({
+							type: 'POST',
+							url: document.baseURI + 'api/dashboard/system/' + systemId + '/rules',
+							data: {
+								rules: rules
+							},
+							success: function(response) {
+								if (response.status === 'success') {
+									$(button).closest('tr').find('td:nth-child(2)').text(rules);
+									Materialize.toast('<i class="material-icons green-text">done</i> Die Regeln wurden geändern', 3000);
+								} else {
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
+								}
+							},
+							fail: function(error) {
+								console.log(error);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Die Regeln konnten nicht geändert werden', 3000);
+							}
+						});
+					}
+				},
+				cancel: {
+					text: 'Abbrechen',
+					btnClass: 'btn red',
+					action: function() {
+						return true;
+					}
+				}
+			},
+			onContentReady: function() {
+				var jc = this;
+				this.$content.find('form').on('submit', function(e) {
+					e.preventDefault();
+				});
+
+				Materialize.updateTextFields();
+			}
+		});
+	});
+
 	$('.bot-restart').click(function(event) {
 		event.preventDefault();
 		var button = this;

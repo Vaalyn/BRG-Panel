@@ -34,14 +34,17 @@ class PlayerSystemModalController {
 		if ($requestSystemStatus->active) {
 			return $this->renderRequestModal(
 				$response,
-				$requestSystemStatus->limit
+				$requestSystemStatus
 			);
 		}
 
 		$messageSystemStatus = Status::find(2);
 
 		if ($messageSystemStatus->active) {
-			return $this->renderMessageModal($response);
+			return $this->renderMessageModal(
+				$response,
+				$messageSystemStatus
+			);
 		}
 
 		$autoDjRequestSystemStatus = Status::find(3);
@@ -49,7 +52,7 @@ class PlayerSystemModalController {
 		if ($autoDjRequestSystemStatus->active) {
 			return $this->renderAutoDjRequestModal(
 				$response,
-				$autoDjRequestSystemStatus->limit
+				$autoDjRequestSystemStatus
 			);
 		}
 
@@ -58,34 +61,39 @@ class PlayerSystemModalController {
 
 	/**
 	 * @param Response $response
-	 * @param int $limit
+	 * @param Status $systemStatus
 	 *
 	 * @return Response
 	 */
-	protected function renderRequestModal(Response $response, int $limit): Response {
+	protected function renderRequestModal(Response $response, Status $systemStatus): Response {
 		return $this->renderer->render($response, '/player/modal/request.php', [
-			'limit' => $limit
+			'limit' => $systemStatus->limit,
+			'rules' => $systemStatus->rules
 		]);
 	}
 
 	/**
 	 * @param Response $response
+	 * @param Status $systemStatus
 	 *
 	 * @return Response
 	 */
-	protected function renderMessageModal(Response $response): Response {
-		return $this->renderer->render($response, '/player/modal/message.php');
+	protected function renderMessageModal(Response $response, Status $systemStatus): Response {
+		return $this->renderer->render($response, '/player/modal/message.php', [
+			'rules' => $systemStatus->rules
+		]);
 	}
 
 	/**
 	 * @param Response $response
-	 * @param int $limit
+	 * @param Status $systemStatus
 	 *
 	 * @return Response
 	 */
-	protected function renderAutoDjRequestModal(Response $response, int $limit): Response {
+	protected function renderAutoDjRequestModal(Response $response, Status $systemStatus): Response {
 		return $this->renderer->render($response, '/player/modal/request-autodj.php', [
-			'limit' => $limit
+			'limit' => $systemStatus->limit,
+			'rules' => $systemStatus->rules
 		]);
 	}
 

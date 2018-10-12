@@ -6,6 +6,14 @@
 			</div>
 		</div>
 
+		<?php if (strlen($rules) > 1) : ?>
+			<div class="row">
+				<div class="col s12 center white-text">
+					<?php echo htmlentities($rules); ?>
+				</div>
+			</div>
+		<?php endif; ?>
+
 		<div class="row">
 			<div class="col s12 m6 center">
 				<a href="https://brg.drweissbrot.net/autodj/add" class="btn-flat blue-text text-lighten-1">Song für AutoDj vorschlagen</a>

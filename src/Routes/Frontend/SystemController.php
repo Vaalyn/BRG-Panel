@@ -38,15 +38,18 @@ class SystemController {
 			'systems' => [
 				'request' => [
 					'active' => $requestSystemStatus->active,
-					'limit' => $requestSystemStatus->limit
+					'limit' => $requestSystemStatus->limit,
+					'rules' => $requestSystemStatus->rules
 				],
 				'message' => [
 					'active' => $messageSystemStatus->active,
-					'limit' => $messageSystemStatus->limit
+					'limit' => $messageSystemStatus->limit,
+					'rules' => $messageSystemStatus->rules
 				],
 				'autodj_request' => [
 					'active' => $autoDjRequestSystemStatus->active,
-					'limit' => $autoDjRequestSystemStatus->limit
+					'limit' => $autoDjRequestSystemStatus->limit,
+					'rules' => $autoDjRequestSystemStatus->rules
 				]
 			]
 		]);

@@ -1,5 +1,13 @@
 <div id="brg-player-system-modal" class="modal modal-fixed-footer grey darken-4">
 	<div class="modal-content">
+		<?php if (strlen($rules) > 1) : ?>
+			<div class="row">
+				<div class="col s12 center white-text">
+					<?php echo htmlentities($rules); ?>
+				</div>
+			</div>
+		<?php endif; ?>
+		
 		<div class="row">
 			<div class="col s12">
 				<div class="row">

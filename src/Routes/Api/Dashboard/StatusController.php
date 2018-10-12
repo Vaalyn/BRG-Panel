@@ -135,4 +135,43 @@ class StatusController {
 
 		return $response->write(json_encode($apiResponse));
 	}
+
+	/**
+	 * @param Request $request
+	 * @param Response $response
+	 * @param array $args
+	 *
+	 * @return Response
+	 */
+	public function setSystemStatusRulesAction(Request $request, Response $response, array $args): Response {
+		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
+
+		$statusId = (int) $args['statusId'];
+		$rules    = $request->getParsedBody()['rules'] ?? '';
+
+		if ($statusId !== 1 && $statusId !== 2) {
+			$apiResponse = (new JsonApiResponseDto())
+				->setStatus('error')
+				->setMessage('Die Regeln dürfen für dieses System nicht geändert werden');
+
+			return $response->write(json_encode($apiResponse));
+		}
+
+		$status = Status::find($statusId);
+		$status->rules = $rules;
+		$status->save();
+
+		$statusDto = new StatusDto(
+			$status->status_id,
+			$status->active,
+			$status->limit,
+			$status->description
+		);
+
+		$apiResponse = (new JsonApiResponseDto())
+			->setStatus('success')
+			->setResult($statusDto);
+
+		return $response->write(json_encode($apiResponse));
+	}
 }

@@ -64,6 +64,8 @@ $app->group('/api/dashboard', function() {
 	$this->post('/system/request/status/{active}', Api\Dashboard\StatusController::class . ':changeRequestSystemStatusActiveAction')->setName('api.dashboard.system.request.active');
 	$this->post('/system/request/limit/{limit}', Api\Dashboard\StatusController::class . ':setRequestSystemStatusRequestLimitAction')->setName('api.dashboard.system.request.limit');
 
+	$this->post('/system/{statusId}/rules', Api\Dashboard\StatusController::class . ':setSystemStatusRulesAction')->setName('api.dashboard.system.rules');
+
 	$this->post('/track/{id}/votes/ignore', Api\Dashboard\TrackController::class . ':setIgnoreVotesForTrackAction')->setName('api.dashboard.track.votes.ignore');
 });
 

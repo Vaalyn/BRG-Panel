@@ -3246,12 +3246,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vaalyn/authentication-service.git",
-                "reference": "380c41518a2876560a06709fc833b880ea015b7c"
+                "reference": "c6654929ec4fb49ef2e7f298ad7a38e08ceaeeb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vaalyn/authentication-service/zipball/380c41518a2876560a06709fc833b880ea015b7c",
-                "reference": "380c41518a2876560a06709fc833b880ea015b7c",
+                "url": "https://api.github.com/repos/Vaalyn/authentication-service/zipball/c6654929ec4fb49ef2e7f298ad7a38e08ceaeeb4",
+                "reference": "c6654929ec4fb49ef2e7f298ad7a38e08ceaeeb4",
                 "shasum": ""
             },
             "require": {
@@ -3289,7 +3289,7 @@
                 "service",
                 "slim"
             ],
-            "time": "2018-10-13T18:02:06+00:00"
+            "time": "2018-10-14T14:38:38+00:00"
         },
         {
             "name": "vaalyn/authorization-service",
@@ -3297,12 +3297,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vaalyn/authorization-service.git",
-                "reference": "c01ac6b5c8e77233a5e5c3d85f4e67e80b4ff300"
+                "reference": "106e62c4c9f90b2f236e573a03b1e40e92dd0dc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vaalyn/authorization-service/zipball/c01ac6b5c8e77233a5e5c3d85f4e67e80b4ff300",
-                "reference": "c01ac6b5c8e77233a5e5c3d85f4e67e80b4ff300",
+                "url": "https://api.github.com/repos/Vaalyn/authorization-service/zipball/106e62c4c9f90b2f236e573a03b1e40e92dd0dc5",
+                "reference": "106e62c4c9f90b2f236e573a03b1e40e92dd0dc5",
                 "shasum": ""
             },
             "require": {
@@ -3336,7 +3336,7 @@
                 "service",
                 "slim"
             ],
-            "time": "2018-10-14T12:37:54+00:00"
+            "time": "2018-10-14T14:42:33+00:00"
         },
         {
             "name": "vaalyn/config-loader-service",

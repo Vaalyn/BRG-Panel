@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "decc9480a63506245a615c66bb03380d",
+    "content-hash": "59855c90a311ca2d2ea6bb8e97b5493f",
     "packages": [
         {
             "name": "akrabat/ip-address-middleware",
@@ -420,16 +420,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.70",
+            "version": "v0.71",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "759a1a246409eae1c723abc72d817205a1d5549f"
+                "reference": "f066aac8c0ea88cf5880611d589fd1e01c4fd082"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/759a1a246409eae1c723abc72d817205a1d5549f",
-                "reference": "759a1a246409eae1c723abc72d817205a1d5549f",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/f066aac8c0ea88cf5880611d589fd1e01c4fd082",
+                "reference": "f066aac8c0ea88cf5880611d589fd1e01c4fd082",
                 "shasum": ""
             },
             "require": {
@@ -453,7 +453,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2018-09-16T00:22:55+00:00"
+            "time": "2018-10-09T00:22:49+00:00"
         },
         {
             "name": "google/auth",
@@ -735,20 +735,21 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v5.7.7",
+            "version": "v5.7.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
-                "reference": "0fc33b14ae6cf9a1e694fd43f2a274e590a824b2"
+                "reference": "73cde7bd4985eefb1d468a745e1d50d03e276121"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/0fc33b14ae6cf9a1e694fd43f2a274e590a824b2",
-                "reference": "0fc33b14ae6cf9a1e694fd43f2a274e590a824b2",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/73cde7bd4985eefb1d468a745e1d50d03e276121",
+                "reference": "73cde7bd4985eefb1d468a745e1d50d03e276121",
                 "shasum": ""
             },
             "require": {
                 "illuminate/contracts": "5.7.*",
+                "illuminate/support": "5.7.*",
                 "php": "^7.1.3",
                 "psr/container": "^1.0"
             },
@@ -775,20 +776,20 @@
             ],
             "description": "The Illuminate Container package.",
             "homepage": "https://laravel.com",
-            "time": "2018-05-28T08:50:10+00:00"
+            "time": "2018-10-07T15:52:17+00:00"
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.7.7",
+            "version": "v5.7.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "72e125b25d3f7aabbf4b2ef68590db7637b8223c"
+                "reference": "64df81d3382d876f1c1d3d5481d89c93b61b8279"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/72e125b25d3f7aabbf4b2ef68590db7637b8223c",
-                "reference": "72e125b25d3f7aabbf4b2ef68590db7637b8223c",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/64df81d3382d876f1c1d3d5481d89c93b61b8279",
+                "reference": "64df81d3382d876f1c1d3d5481d89c93b61b8279",
                 "shasum": ""
             },
             "require": {
@@ -819,20 +820,20 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2018-09-27T14:15:29+00:00"
+            "time": "2018-10-08T13:34:14+00:00"
         },
         {
             "name": "illuminate/database",
-            "version": "v5.7.7",
+            "version": "v5.7.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "88bf47e1c125e5b261b984c9a6a9eb8d1c26da61"
+                "reference": "1f4a0881ca0012732ae7b73809cf50ef8d964547"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/88bf47e1c125e5b261b984c9a6a9eb8d1c26da61",
-                "reference": "88bf47e1c125e5b261b984c9a6a9eb8d1c26da61",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/1f4a0881ca0012732ae7b73809cf50ef8d964547",
+                "reference": "1f4a0881ca0012732ae7b73809cf50ef8d964547",
                 "shasum": ""
             },
             "require": {
@@ -878,20 +879,20 @@
                 "orm",
                 "sql"
             ],
-            "time": "2018-10-02T13:58:04+00:00"
+            "time": "2018-10-06T18:48:42+00:00"
         },
         {
             "name": "illuminate/support",
-            "version": "v5.7.7",
+            "version": "v5.7.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "d01c9ac04dee022ff3cd931e60e989a0d950812a"
+                "reference": "ea95697233b06650382eb0f5798be22b4e520dea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/d01c9ac04dee022ff3cd931e60e989a0d950812a",
-                "reference": "d01c9ac04dee022ff3cd931e60e989a0d950812a",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/ea95697233b06650382eb0f5798be22b4e520dea",
+                "reference": "ea95697233b06650382eb0f5798be22b4e520dea",
                 "shasum": ""
             },
             "require": {
@@ -937,20 +938,20 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2018-10-01T13:13:54+00:00"
+            "time": "2018-10-07T15:51:39+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.68",
+            "version": "v1.2.70",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "be0f5bae4af052918ff98a396c96bdfb4bd73ac0"
+                "reference": "02ba61b12c0125ed3b5ba7a3e18908841a046fd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/be0f5bae4af052918ff98a396c96bdfb4bd73ac0",
-                "reference": "be0f5bae4af052918ff98a396c96bdfb4bd73ac0",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/02ba61b12c0125ed3b5ba7a3e18908841a046fd0",
+                "reference": "02ba61b12c0125ed3b5ba7a3e18908841a046fd0",
                 "shasum": ""
             },
             "require": {
@@ -986,7 +987,7 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2018-10-01T21:26:06+00:00"
+            "time": "2018-10-10T20:50:02+00:00"
         },
         {
             "name": "jenssegers/agent",
@@ -1631,16 +1632,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.0.4",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "fa6ee28600d21d49b2b4e1006b48426cec8e579c"
+                "reference": "d0230c5c77a7e3cfa69446febf340978540958c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/fa6ee28600d21d49b2b4e1006b48426cec8e579c",
-                "reference": "fa6ee28600d21d49b2b4e1006b48426cec8e579c",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/d0230c5c77a7e3cfa69446febf340978540958c0",
+                "reference": "d0230c5c77a7e3cfa69446febf340978540958c0",
                 "shasum": ""
             },
             "require": {
@@ -1656,7 +1657,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -1678,7 +1679,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2018-09-18T07:03:24+00:00"
+            "time": "2018-10-10T09:24:14+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2297,16 +2298,16 @@
         },
         {
             "name": "respect/validation",
-            "version": "1.1.25",
+            "version": "1.1.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Respect/Validation.git",
-                "reference": "5a067faec79d0cd74aa189fc535a644fa29e0c70"
+                "reference": "48b06254c4af1a2d6c1715eb3a2bb3cb72e08bfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Respect/Validation/zipball/5a067faec79d0cd74aa189fc535a644fa29e0c70",
-                "reference": "5a067faec79d0cd74aa189fc535a644fa29e0c70",
+                "url": "https://api.github.com/repos/Respect/Validation/zipball/48b06254c4af1a2d6c1715eb3a2bb3cb72e08bfc",
+                "reference": "48b06254c4af1a2d6c1715eb3a2bb3cb72e08bfc",
                 "shasum": ""
             },
             "require": {
@@ -2314,7 +2315,7 @@
                 "symfony/polyfill-mbstring": "^1.2"
             },
             "require-dev": {
-                "egulias/email-validator": "~1.2",
+                "egulias/email-validator": "~1.2 || ~2.1",
                 "mikey179/vfsstream": "^1.5",
                 "phpunit/phpunit": "~4.0",
                 "symfony/validator": "~2.6.9",
@@ -2341,7 +2342,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD Style"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -2356,7 +2357,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2018-08-29T20:30:50+00:00"
+            "time": "2018-10-11T12:18:10+00:00"
         },
         {
             "name": "robmorgan/phinx",
@@ -2658,7 +2659,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v4.1.5",
+            "version": "v4.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -2721,16 +2722,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.1.5",
+            "version": "v4.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "d3dbe91fd5b8b11ecb73508c844bc6a490de15b4"
+                "reference": "dc7122fe5f6113cfaba3b3de575d31112c9aa60b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/d3dbe91fd5b8b11ecb73508c844bc6a490de15b4",
-                "reference": "d3dbe91fd5b8b11ecb73508c844bc6a490de15b4",
+                "url": "https://api.github.com/repos/symfony/console/zipball/dc7122fe5f6113cfaba3b3de575d31112c9aa60b",
+                "reference": "dc7122fe5f6113cfaba3b3de575d31112c9aa60b",
                 "shasum": ""
             },
             "require": {
@@ -2785,20 +2786,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-09-30T03:38:13+00:00"
+            "time": "2018-10-03T08:15:46+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.1.5",
+            "version": "v4.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "a10ae719b02c47ecba5c684ca2b505f3a49bf397"
+                "reference": "596d12b40624055c300c8b619755b748ca5cf0b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/a10ae719b02c47ecba5c684ca2b505f3a49bf397",
-                "reference": "a10ae719b02c47ecba5c684ca2b505f3a49bf397",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/596d12b40624055c300c8b619755b748ca5cf0b5",
+                "reference": "596d12b40624055c300c8b619755b748ca5cf0b5",
                 "shasum": ""
             },
             "require": {
@@ -2835,7 +2836,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-09-30T03:38:13+00:00"
+            "time": "2018-10-02T12:40:59+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -3064,16 +3065,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.1.5",
+            "version": "v4.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "c64647828bc7733ba9427f1eeb1b542588635427"
+                "reference": "ee33c0322a8fee0855afcc11fff81e6b1011b529"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/c64647828bc7733ba9427f1eeb1b542588635427",
-                "reference": "c64647828bc7733ba9427f1eeb1b542588635427",
+                "url": "https://api.github.com/repos/symfony/process/zipball/ee33c0322a8fee0855afcc11fff81e6b1011b529",
+                "reference": "ee33c0322a8fee0855afcc11fff81e6b1011b529",
                 "shasum": ""
             },
             "require": {
@@ -3109,20 +3110,20 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-09-08T13:24:10+00:00"
+            "time": "2018-10-02T12:40:59+00:00"
         },
         {
             "name": "symfony/translation",
-            "version": "v4.1.5",
+            "version": "v4.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "6e49130ddf150b7bfe9e34edb2f3f698aa1aa43b"
+                "reference": "9f0b61e339160a466ebcde167a6c5521c810e304"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/6e49130ddf150b7bfe9e34edb2f3f698aa1aa43b",
-                "reference": "6e49130ddf150b7bfe9e34edb2f3f698aa1aa43b",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/9f0b61e339160a466ebcde167a6c5521c810e304",
+                "reference": "9f0b61e339160a466ebcde167a6c5521c810e304",
                 "shasum": ""
             },
             "require": {
@@ -3178,20 +3179,20 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2018-09-21T12:49:42+00:00"
+            "time": "2018-10-02T16:36:10+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.1.5",
+            "version": "v4.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "ac5af7c14c4f8abf0f77419e8397eff7a370df19"
+                "reference": "367e689b2fdc19965be435337b50bc8adf2746c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/ac5af7c14c4f8abf0f77419e8397eff7a370df19",
-                "reference": "ac5af7c14c4f8abf0f77419e8397eff7a370df19",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/367e689b2fdc19965be435337b50bc8adf2746c9",
+                "reference": "367e689b2fdc19965be435337b50bc8adf2746c9",
                 "shasum": ""
             },
             "require": {
@@ -3237,7 +3238,105 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-09-30T03:38:13+00:00"
+            "time": "2018-10-02T16:36:10+00:00"
+        },
+        {
+            "name": "vaalyn/authentication-service",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vaalyn/authentication-service.git",
+                "reference": "380c41518a2876560a06709fc833b880ea015b7c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vaalyn/authentication-service/zipball/380c41518a2876560a06709fc833b880ea015b7c",
+                "reference": "380c41518a2876560a06709fc833b880ea015b7c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.7",
+                "jenssegers/agent": "^2.6",
+                "nesbot/carbon": "^1.34",
+                "php": ">=7.2.0",
+                "psr/container": "^1.0",
+                "ramsey/uuid": "^3.8",
+                "respect/validation": "^1.1",
+                "slim/slim": "^3.11",
+                "vaalyn/session-service": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vaalyn\\AuthenticationService\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Vaalyn",
+                    "email": "vaalyndev@gmail.com"
+                }
+            ],
+            "description": "An authentication service for the Slim Framework 3 using the Eloquent ORM",
+            "homepage": "https://github.com/Vaalyn/authentication-service",
+            "keywords": [
+                "Authentication",
+                "eloquent",
+                "service",
+                "slim"
+            ],
+            "time": "2018-10-13T18:02:06+00:00"
+        },
+        {
+            "name": "vaalyn/authorization-service",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vaalyn/authorization-service.git",
+                "reference": "c01ac6b5c8e77233a5e5c3d85f4e67e80b4ff300"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vaalyn/authorization-service/zipball/c01ac6b5c8e77233a5e5c3d85f4e67e80b4ff300",
+                "reference": "c01ac6b5c8e77233a5e5c3d85f4e67e80b4ff300",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.7",
+                "php": ">=7.2.0",
+                "psr/container": "^1.0",
+                "respect/validation": "^1.1",
+                "slim/slim": "^3.11"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vaalyn\\AuthorizationService\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Vaalyn",
+                    "email": "vaalyndev@gmail.com"
+                }
+            ],
+            "description": "An authorization service for the Slim Framework 3 using the Eloquent ORM",
+            "homepage": "https://github.com/Vaalyn/authorization-service",
+            "keywords": [
+                "authorization",
+                "eloquent",
+                "service",
+                "slim"
+            ],
+            "time": "2018-10-14T12:37:54+00:00"
         },
         {
             "name": "vaalyn/config-loader-service",
@@ -3282,6 +3381,53 @@
                 "slim"
             ],
             "time": "2018-10-02T16:50:37+00:00"
+        },
+        {
+            "name": "vaalyn/menu-builder-service",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vaalyn/menu-builder-service.git",
+                "reference": "40b1e5fb3409e192a2c0562ca4920ed1eb342a03"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vaalyn/menu-builder-service/zipball/40b1e5fb3409e192a2c0562ca4920ed1eb342a03",
+                "reference": "40b1e5fb3409e192a2c0562ca4920ed1eb342a03",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0",
+                "vaalyn/authentication-service": "dev-master",
+                "vaalyn/authorization-service": "dev-master",
+                "vaalyn/session-service": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vaalyn\\MenuBuilderService\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Vaalyn",
+                    "email": "vaalyndev@gmail.com"
+                }
+            ],
+            "description": "A menu builder service for the Slim Framework 3",
+            "homepage": "https://github.com/Vaalyn/menu-builder-service",
+            "keywords": [
+                "builder",
+                "menu",
+                "navigation",
+                "service",
+                "slim"
+            ],
+            "time": "2018-10-13T21:25:40+00:00"
         },
         {
             "name": "vaalyn/plugin-service",
@@ -3329,6 +3475,48 @@
                 "slim"
             ],
             "time": "2018-10-02T16:55:32+00:00"
+        },
+        {
+            "name": "vaalyn/session-service",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vaalyn/session-service.git",
+                "reference": "9664840ee04059a5df8e4bd0ab47d916d72f6486"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vaalyn/session-service/zipball/9664840ee04059a5df8e4bd0ab47d916d72f6486",
+                "reference": "9664840ee04059a5df8e4bd0ab47d916d72f6486",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vaalyn\\SessionService\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Vaalyn",
+                    "email": "vaalyndev@gmail.com"
+                }
+            ],
+            "description": "A session service for the Slim Framework 3",
+            "homepage": "https://github.com/Vaalyn/session-service",
+            "keywords": [
+                "service",
+                "session",
+                "slim"
+            ],
+            "time": "2018-10-09T19:57:22+00:00"
         },
         {
             "name": "wikimedia/composer-merge-plugin",
@@ -3384,8 +3572,12 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "vaalyn/authentication-service": 20,
+        "vaalyn/authorization-service": 20,
         "vaalyn/config-loader-service": 20,
-        "vaalyn/plugin-service": 20
+        "vaalyn/menu-builder-service": 20,
+        "vaalyn/plugin-service": 20,
+        "vaalyn/session-service": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

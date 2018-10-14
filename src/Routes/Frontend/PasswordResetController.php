@@ -3,7 +3,6 @@
 namespace BRG\Panel\Routes\Frontend;
 
 use BRG\Panel\Model\RecoveryCode;
-use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Carbon\Carbon;
 use Psr\Container\ContainerInterface;
 use Slim\Flash\Messages;
@@ -11,6 +10,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Router;
 use Slim\Views\PhpRenderer;
+use Vaalyn\AuthenticationService\AuthenticationInterface;
 
 class PasswordResetController {
 	/**

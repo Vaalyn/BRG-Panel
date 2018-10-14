@@ -3,12 +3,12 @@
 namespace BRG\Panel\Routes\Frontend\Dashboard;
 
 use BRG\Panel\Model;
-use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Illuminate\Database\Query\Expression;
 use Slim\Views\PhpRenderer;
+use Vaalyn\AuthenticationService\AuthenticationInterface;
 
 class StatisticController {
 	/**

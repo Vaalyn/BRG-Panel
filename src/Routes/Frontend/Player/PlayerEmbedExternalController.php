@@ -2,11 +2,11 @@
 
 namespace BRG\Panel\Routes\Frontend\Player;
 
-use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\PhpRenderer;
+use Vaalyn\AuthenticationService\AuthenticationInterface;
 
 class PlayerEmbedExternalController {
 	/**

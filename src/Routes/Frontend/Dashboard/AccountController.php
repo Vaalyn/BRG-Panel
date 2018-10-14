@@ -2,11 +2,12 @@
 
 namespace BRG\Panel\Routes\Frontend\Dashboard;
 
-use BRG\Panel\Service\Authentication\AuthenticationInterface;
+use BRG\Panel\Model\User;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\PhpRenderer;
+use Vaalyn\AuthenticationService\AuthenticationInterface;
 
 class AccountController {
 	/**
@@ -38,7 +39,7 @@ class AccountController {
 		return $this->renderer->render($response, '/dashboard/account/account.php', [
 			'authentication' => $this->authentication,
 			'request' => $request,
-			'user' => $this->authentication->user()
+			'user' => User::find($this->authentication->user()->getUserId())
 		]);
 	}
 }

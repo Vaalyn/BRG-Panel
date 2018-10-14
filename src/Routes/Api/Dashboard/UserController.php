@@ -4,11 +4,12 @@ namespace BRG\Panel\Routes\Api\Dashboard;
 
 use BRG\Panel\Exception\InfoException;
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
-use BRG\Panel\Service\Authentication\AuthenticationInterface;
+use BRG\Panel\Model\User;
 use Psr\Container\ContainerInterface;
 use Respect\Validation\Validator;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Vaalyn\AuthenticationService\AuthenticationInterface;
 
 class UserController {
 	/**
@@ -49,7 +50,7 @@ class UserController {
 			return $response->write(json_encode($apiResponse));
 		}
 
-		$user        = $this->authentication->user();
+		$user        = User::find($this->authentication->user()->getUserId());
 		$user->email = $email;
 		$user->save();
 
@@ -77,7 +78,7 @@ class UserController {
 				throw new InfoException('Das Passwort muss mindestens 8 Zeichen lang sein');
 			}
 
-			$user = $this->authentication->user();
+			$user = User::find($this->authentication->user()->getUserId());
 
 			if (!password_verify($passwordOld, $user->password_new)) {
 				throw new InfoException('Das alte Passwort ist nicht korrekt');

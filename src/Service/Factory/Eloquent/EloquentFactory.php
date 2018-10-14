@@ -28,12 +28,22 @@ class EloquentFactory {
 	public static function createMultiple(array $config): Manager {
 		$capsule = new Manager;
 
+		$defaultConnectionName = null;
+
 		foreach ($config as $name => $databaseConfig) {
 			$capsule->addConnection($databaseConfig, $name);
+
+			if ($databaseConfig['default'] === true) {
+				$defaultConnectionName = $name;
+			}
 		}
 
 		$capsule->setAsGlobal();
 		$capsule->bootEloquent();
+
+		if ($defaultConnectionName !== null) {
+			$capsule->getDatabaseManager()->setDefaultConnection($defaultConnectionName);
+		}
 
 		return $capsule;
 	}

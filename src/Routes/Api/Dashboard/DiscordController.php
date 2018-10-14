@@ -13,13 +13,13 @@ class DiscordController {
 	/**
 	 * @var array
 	 */
-	protected $config;
+	protected $discordConfig;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->config = $container->config;
+		$this->discordConfig = $container->config['discord'];
 	}
 
 	/**
@@ -32,7 +32,7 @@ class DiscordController {
 	public function restartLucyLightAction(Request $request, Response $response, array $args): Response {
 		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
 
-		$botServerConfig = $this->config['discord']['bot']['lucy_light']['server'];
+		$botServerConfig = $this->discordConfig['bot']['lucy_light']['server'];
 
 		$key = new RSA();
 		$key->loadKey(file_get_contents($botServerConfig['ssh_key_path']));

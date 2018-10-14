@@ -2,10 +2,10 @@
 
 namespace BRG\Panel\Routes\Api;
 
-use BRG\Panel\Service\Authentication\AuthenticationInterface;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Vaalyn\AuthenticationService\AuthenticationInterface;
 
 class LoginController {
 	/**

@@ -1,6 +1,6 @@
 <?php
 
 return [
-	'admin' => '\BRG\Panel\Service\Authorization\Authorizer\AdminAuthorizer',
-	'authorizationToken' => '\BRG\Panel\Service\Authorization\Authorizer\AuthorizationTokenAuthorizer'
+	'admin' => '\Vaalyn\AuthorizationService\Authorizer\AdminAuthorizer',
+	'authorizationToken' => '\Vaalyn\AuthorizationService\Authorizer\AuthorizationTokenAuthorizer'
 ];

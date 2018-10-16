@@ -420,16 +420,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.71",
+            "version": "v0.72",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "f066aac8c0ea88cf5880611d589fd1e01c4fd082"
+                "reference": "e8c6b72963b19e707b8a6c46fe3515207bb03bd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/f066aac8c0ea88cf5880611d589fd1e01c4fd082",
-                "reference": "f066aac8c0ea88cf5880611d589fd1e01c4fd082",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/e8c6b72963b19e707b8a6c46fe3515207bb03bd2",
+                "reference": "e8c6b72963b19e707b8a6c46fe3515207bb03bd2",
                 "shasum": ""
             },
             "require": {
@@ -453,7 +453,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2018-10-09T00:22:49+00:00"
+            "time": "2018-10-13T00:23:17+00:00"
         },
         {
             "name": "google/auth",
@@ -1182,16 +1182,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.47",
+            "version": "1.0.48",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "a11e4a75f256bdacf99d20780ce42d3b8272975c"
+                "reference": "a6ded5b2f6055e2db97b4b859fdfca2b952b78aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a11e4a75f256bdacf99d20780ce42d3b8272975c",
-                "reference": "a11e4a75f256bdacf99d20780ce42d3b8272975c",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a6ded5b2f6055e2db97b4b859fdfca2b952b78aa",
+                "reference": "a6ded5b2f6055e2db97b4b859fdfca2b952b78aa",
                 "shasum": ""
             },
             "require": {
@@ -1262,20 +1262,20 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2018-09-14T15:30:29+00:00"
+            "time": "2018-10-15T13:53:10+00:00"
         },
         {
             "name": "league/flysystem-sftp",
-            "version": "1.0.16",
+            "version": "1.0.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem-sftp.git",
-                "reference": "322839636847e0dba0f714e9ad0db813d65efcf2"
+                "reference": "49e216f1074b42e3ff344809e700672c2a3264ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem-sftp/zipball/322839636847e0dba0f714e9ad0db813d65efcf2",
-                "reference": "322839636847e0dba0f714e9ad0db813d65efcf2",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-sftp/zipball/49e216f1074b42e3ff344809e700672c2a3264ed",
+                "reference": "49e216f1074b42e3ff344809e700672c2a3264ed",
                 "shasum": ""
             },
             "require": {
@@ -1304,7 +1304,7 @@
                 }
             ],
             "description": "Flysystem adapter for SFTP",
-            "time": "2018-07-08T21:01:51+00:00"
+            "time": "2018-10-14T21:07:28+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -3482,12 +3482,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vaalyn/session-service.git",
-                "reference": "9664840ee04059a5df8e4bd0ab47d916d72f6486"
+                "reference": "57fc9bc111246d8fa44d3100175fa64cd50b988a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vaalyn/session-service/zipball/9664840ee04059a5df8e4bd0ab47d916d72f6486",
-                "reference": "9664840ee04059a5df8e4bd0ab47d916d72f6486",
+                "url": "https://api.github.com/repos/Vaalyn/session-service/zipball/57fc9bc111246d8fa44d3100175fa64cd50b988a",
+                "reference": "57fc9bc111246d8fa44d3100175fa64cd50b988a",
                 "shasum": ""
             },
             "require": {
@@ -3516,7 +3516,7 @@
                 "session",
                 "slim"
             ],
-            "time": "2018-10-09T19:57:22+00:00"
+            "time": "2018-10-15T20:35:36+00:00"
         },
         {
             "name": "wikimedia/composer-merge-plugin",

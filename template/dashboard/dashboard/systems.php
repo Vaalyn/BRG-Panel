@@ -61,7 +61,7 @@
 					</tr>
 					<tr>
 						<th>Regeln</th>
-						<td>
+						<td class="break-word">
 							<span><?php echo $system['request']['rules']; ?></span>
 						</td>
 						<td>
@@ -106,7 +106,7 @@
 					</tr>
 					<tr>
 						<th>Regeln</th>
-						<td>
+						<td class="break-word">
 							<span><?php echo $system['message']['rules']; ?></span>
 						</td>
 						<td>
@@ -158,7 +158,7 @@
 					</tr>
 					<tr>
 						<th>Regeln</th>
-						<td>
+						<td class="break-word">
 							<span><?php echo $system['autodj_request']['rules']; ?></span>
 						</td>
 						<td></td>

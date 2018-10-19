@@ -124,3 +124,7 @@ h3.card-title + .divider {
 	line-height: 32px;
 	padding-left: 8px;
 }
+
+.break-word {
+	word-break: break-word;
+}

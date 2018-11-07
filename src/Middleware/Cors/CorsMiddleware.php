@@ -76,7 +76,7 @@ class CorsMiddleware {
 	 * @return Response
 	 */
 	protected function setCorsHeaderForOriginFromArray(Response $response, array $allowedOrigins): Response {
-		$origin = $_SERVER['HTTP_ORIGIN'];
+		$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 
 		if (!Validator::url($origin)) {
 			return $response;

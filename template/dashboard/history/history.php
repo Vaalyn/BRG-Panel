@@ -85,7 +85,7 @@
 								</tbody>
 							</table>
 
-							<?php include(__DIR__ . '/pagination.php'); ?>
+							<?php include(__DIR__ . '/../pagination.php'); ?>
 						</div>
 					</div>
 				</div>

@@ -79,7 +79,7 @@ class DashboardController {
 					'id'         => $autoDjRequestSystemStatus->status_id,
 					'limit'      => $autoDjRequestSystemStatus->limit,
 					'requests'   => $autoDjRequestsCount,
-					'rules'      => $autoDjRequestsCount->rules
+					'rules'      => $autoDjRequestSystemStatus->rules
 				]
 			]
 		]);

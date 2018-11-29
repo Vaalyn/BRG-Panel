@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "59855c90a311ca2d2ea6bb8e97b5493f",
+    "content-hash": "0141d0fbe6223ecdfd474a2194a9c98c",
     "packages": [
         {
             "name": "akrabat/ip-address-middleware",
@@ -3339,6 +3339,49 @@
             "time": "2018-10-28T12:22:30+00:00"
         },
         {
+            "name": "vaalyn/azuracast-api-client",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vaalyn/azuracast-api-client.git",
+                "reference": "18cb4c0942f4423ba7f3419fcd476e51d3171fe8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vaalyn/azuracast-api-client/zipball/18cb4c0942f4423ba7f3419fcd476e51d3171fe8",
+                "reference": "18cb4c0942f4423ba7f3419fcd476e51d3171fe8",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3",
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vaalyn\\AzuraCastApiClient\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Vaalyn",
+                    "email": "vaalyndev@gmail.com"
+                }
+            ],
+            "description": "An API client library for the AzuraCast API",
+            "homepage": "https://github.com/Vaalyn/azuracast-api-client",
+            "keywords": [
+                "api",
+                "azuracast",
+                "client"
+            ],
+            "time": "2018-11-26T21:03:50+00:00"
+        },
+        {
             "name": "vaalyn/config-loader-service",
             "version": "dev-master",
             "source": {
@@ -3574,6 +3617,7 @@
     "stability-flags": {
         "vaalyn/authentication-service": 20,
         "vaalyn/authorization-service": 20,
+        "vaalyn/azuracast-api-client": 20,
         "vaalyn/config-loader-service": 20,
         "vaalyn/menu-builder-service": 20,
         "vaalyn/plugin-service": 20,

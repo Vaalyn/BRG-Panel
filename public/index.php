@@ -3,6 +3,7 @@
 require '../vendor/autoload.php';
 
 use BRG\Panel\Middleware\Cors\CorsMiddleware;
+use BRG\Panel\Middleware\PaginationLinkParameters\PaginationLinkParametersMiddleware;
 use BRG\Panel\Service\CentovaCast\CentovaCastApiClient;
 use BRG\Panel\Service\ErrorHandler\ErrorHandler;
 use BRG\Panel\Service\Factory\Eloquent\EloquentFactory;
@@ -60,6 +61,7 @@ $pluginLoader->registerPluginServices($container);
 $pluginLoader->registerPluginMiddlewares($app, $container);
 
 $app->add(new MenuMiddleware($container));
+$app->add(new PaginationLinkParametersMiddleware($container));
 $app->add(new AuthorizationMiddleware($container));
 $app->add(new AuthenticationMiddleware($container));
 $app->add(new CorsMiddleware($container));

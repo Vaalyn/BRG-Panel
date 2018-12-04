@@ -3,25 +3,25 @@
 namespace BRG\Panel\Routes\Cron;
 
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
-use BRG\Panel\Dto\CentovaCast\CentovaCastTrackDto;
-use BRG\Panel\Exception\InvalidMountpointException;
 use BRG\Panel\Model\History;
-use BRG\Panel\Service\CentovaCast\CentovaCastApiClient;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Vaalyn\AzuraCastApiClient\AzuraCastApiClient;
+use Vaalyn\AzuraCastApiClient\Dto\SongHistoryDto;
+use Vaalyn\AzuraCastApiClient\Exception\AzuraCastApiClientRequestException;
 
 class HistoryController {
 	/**
-	 * @var CentovaCastApiClient
+	 * @var AzuraCastApiClient
 	 */
-	protected $centovaCastApiClient;
+	protected $azuraCastApiClient;
 
 	/**
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->centovaCastApiClient = $container->centovaCastApiClient;
+		$this->azuraCastApiClient = $container->azuraCastApiClient;
 	}
 
 	/**
@@ -35,22 +35,30 @@ class HistoryController {
 		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
 
 		try {
-			$centovaCastTrackDtos = $this->centovaCastApiClient->fetchSongHistory('stream');
+			$nowPlayingDto = $this->azuraCastApiClient->nowPlayingOnStation(1);
+			$songHistoryDtos = $nowPlayingDto->getSongHistory();
 
-			/** @var CentovaCastTrackDto $centovaCastTrackDto */
-			foreach ($centovaCastTrackDtos as $centovaCastTrackDto) {
-				if (time() < $centovaCastTrackDto->getTime()) {
+			usort($songHistoryDtos, function($firstSongHistoryDto, $secondSongHistoryDto) {
+				return $firstSongHistoryDto->getPlayedAt() > $secondSongHistoryDto->getPlayedAt();
+			});
+
+			/** @var SongHistoryDto $songHistoryDto */
+			foreach ($songHistoryDtos as $songHistoryDto) {
+				if (time() < $songHistoryDto->getPlayedAt()) {
 					continue;
 				}
 
-				$datePlayed = date('Y-m-d', $centovaCastTrackDto->getTime());
-				$timePlayed = date('H:i:s', $centovaCastTrackDto->getTime());
+				$datePlayed = date('Y-m-d', $songHistoryDto->getPlayedAt());
+				$timePlayed = date('H:i:s', $songHistoryDto->getPlayedAt());
+
+				$artist = $songHistoryDto->getSong()->getArtist();
+				$title = $songHistoryDto->getSong()->getTitle();
 
 				$historyQuery = History::where([
 					['date_played', '=', $datePlayed],
 					['time_played', '=', $timePlayed],
-					['artist', '=', $centovaCastTrackDto->getArtist()],
-					['title', '=', $centovaCastTrackDto->getTitle()]
+					['artist', '=', $artist],
+					['title', '=', $title]
 				]);
 
 				if ($historyQuery->exists()) {
@@ -60,8 +68,8 @@ class HistoryController {
 				$history              = new History();
 				$history->date_played = $datePlayed;
 				$history->time_played = $timePlayed;
-				$history->artist      = $centovaCastTrackDto->getArtist();
-				$history->title       = $centovaCastTrackDto->getTitle();
+				$history->artist      = $artist;
+				$history->title       = $title;
 				$history->save();
 			}
 
@@ -70,7 +78,7 @@ class HistoryController {
 
 			return $response->write(json_encode($apiResponse));
 		}
-		catch (InvalidMountpointException $exception) {
+		catch (AzuraCastApiClientRequestException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());

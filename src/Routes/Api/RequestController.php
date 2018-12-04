@@ -8,23 +8,28 @@ use BRG\Panel\Model;
 use BRG\Panel\Model\History;
 use BRG\Panel\Model\Manager\TrackModelManager;
 use BRG\Panel\Model\Status;
-use BRG\Panel\Service\CentovaCast\CentovaCastApiClient;
 use Carbon\Carbon;
 use Psr\Container\ContainerInterface;
 use Respect\Validation\Validator;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Vaalyn\AzuraCastApiClient\AzuraCastApiClient;
+
+use Vaalyn\AzuraCastApiClient\Exception\AzuraCastApiClientRequestException;
+use Vaalyn\AzuraCastApiClient\Exception\AzuraCastRequestsDisabledException;
 
 class RequestController {
+	protected const STATION_ID = 1;
+
 	protected const MINUTES_BETWEEN_CLIENT_AUTODJ_REQUESTS = 60;
 	protected const MINUTES_BETWEEN_ARTIST_REPLAYS         = 20;
 	protected const MINUTES_BETWEEN_TRACK_REQUESTS         = 240;
 	protected const MINUTES_BETWEEN_TRACK_REPLAYS          = 120;
 
 	/**
-	 * @var CentovaCastApiClient
+	 * @var AzuraCastApiClient
 	 */
-	protected $centovaCastApiClient;
+	protected $azuraCastApiClient;
 
 	/**
 	 * @var Validator
@@ -45,7 +50,7 @@ class RequestController {
 	 * @param ContainerInterface $container
 	 */
 	public function __construct(ContainerInterface $container) {
-		$this->centovaCastApiClient    = $container->centovaCastApiClient;
+		$this->azuraCastApiClient      = $container->azuraCastApiClient;
 		$this->stringNotEmptyValidator = $container->validator::stringType()->length(1, null);
 		$this->trackModelManager       = new TrackModelManager();
 		$this->validator               = $container->validator;
@@ -113,21 +118,24 @@ class RequestController {
 
 			$track = $this->trackModelManager->findTrackById($id);
 
-			if (!isset($track)) {
-				throw new InfoException(sprintf('Es wurde kein Song mit der ID %s gefunden', $id));
+			if (!isset($track) || $track->requestable_song_id === '') {
+				throw new InfoException(sprintf('Es wurde kein requestbarer Song mit der ID %s gefunden', $id));
 			}
 
 			$this->checkIfClientHasReachedAutoDjRequestLimit($nickname, $ipAddress);
 
 			$this->checkIfTrackCanBeRequested($track->title, $track->artist->name);
 
-			$requestSuccessful = $this->centovaCastApiClient->requestSong(
-				$track->title,
-				$track->artist->name,
-				$nickname
-			);
-
-			if (!$requestSuccessful) {
+			try {
+				$this->azuraCastApiClient->requestSong(
+					self::STATION_ID,
+					$track->requestable_song_id
+				);
+			}
+			catch (AzuraCastRequestsDisabledException $exception) {
+				throw new InfoException('Das AutoDj Request System ist nicht aktiv');
+			}
+			catch (AzuraCastApiClientRequestException $exception) {
 				throw new InfoException('Beim einreichen des Requests ist ein Fehler aufgetreten');
 			}
 

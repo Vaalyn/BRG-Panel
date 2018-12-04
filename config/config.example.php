@@ -20,12 +20,19 @@ return [
 			'authorizers' => require_once __DIR__ . '/authorizers.php',
 			'routes' => require_once __DIR__ . '/routes/authorized.php'
 		],
-		'centova' => [
-			'api' => [
-				'url'      => '',
-				'username' => '',
-				'password' => '',
-				'rpc_url'  => ''
+		'azura' => [
+			'host' => '',
+			'api_key' => '',
+			'stations' => [
+				'brg' => [
+					'station_id' => 1
+				],
+				'brg_daydj' => [
+					'station_id' => 3
+				],
+				'brg_nightdj' => [
+					'station_id' => 4
+				]
 			]
 		],
 		'cors' => require_once __DIR__ . '/routes/cors.php',
@@ -89,13 +96,6 @@ return [
 			'url' => ''
 		],
 		'icecast' => [
-			'api' => [
-				'stream'  => 'http://radio.bronyradiogermany.com:8000/status-json.xsl',
-				'mobile'  => 'http://radio.bronyradiogermany.com:8000/status-json.xsl',
-				'opus'    => 'http://radio.bronyradiogermany.com:8000/status-json.xsl',
-				'nightdj' => 'http://radio.bronyradiogermany.com:8003/status-json.xsl',
-				'daydj'   => 'http://radio.bronyradiogermany.com:8006/status-json.xsl'
-			],
 			'mountpoints' => [
 				'stream' => [
 					'name'                        => 'Haupt Stream',

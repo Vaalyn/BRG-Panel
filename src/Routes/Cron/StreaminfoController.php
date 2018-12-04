@@ -3,16 +3,14 @@
 namespace BRG\Panel\Routes\Cron;
 
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
-use BRG\Panel\Dto\IceCast\IceCastStreamDto;
-use BRG\Panel\Exception\InvalidMountpointException;
 use BRG\Panel\Model\Manager\TrackModelManager;
 use BRG\Panel\Model\Manager\ArtistModelManager;
-use BRG\Panel\Model\Setting;
 use BRG\Panel\Model\Stream;
-use BRG\Panel\Service\IceCast\IceCastDataClient;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Vaalyn\AzuraCastApiClient\AzuraCastApiClient;
+use Vaalyn\AzuraCastApiClient\Exception\AzuraCastApiClientRequestException;
 
 class StreaminfoController {
 	/**
@@ -21,9 +19,9 @@ class StreaminfoController {
 	protected $artistModelManager;
 
 	/**
-	 * @var IceCastDataClient
+	 * @var AzuraCastApiClient
 	 */
-	protected $iceCastDataClient;
+	protected $azuraCastApiClient;
 
 	/**
 	 * @var TrackModelManager
@@ -35,7 +33,7 @@ class StreaminfoController {
 	 */
 	public function __construct(ContainerInterface $container) {
 		$this->artistModelManager = new ArtistModelManager();
-		$this->iceCastDataClient  = $container->iceCastDataClient;
+		$this->azuraCastApiClient  = $container->azuraCastApiClient;
 		$this->trackModelManager  = new TrackModelManager();
 	}
 
@@ -49,34 +47,43 @@ class StreaminfoController {
 	public function __invoke(Request $request, Response $response, array $args): Response {
 		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
 
-		$mountpoint = $args['mountpoint'];
+		$stationId = (int) $args['stationId'];
 
 		try {
-			/** @var IceCastStreamDto $iceCastStreamDto */
-			$iceCastStreamDto = $this->iceCastDataClient->fetchMountpoint($mountpoint);
+			$nowPlayingDto = $this->azuraCastApiClient->nowPlayingOnStation($stationId);
 
-			$stream = Stream::where('mountpoint', '=', $mountpoint)->first();
+			$artist = $nowPlayingDto->getCurrentSong()->getSong()->getArtist();
+			$title  = $nowPlayingDto->getCurrentSong()->getSong()->getTitle();
 
-			if (!isset($stream)) {
-				$stream         = new Stream();
-				$stream->status = 'Online';
+			foreach ($nowPlayingDto->getStation()->getMounts() as $mountDto) {
+				$mountpoint = str_replace('/', '', $mountDto->getName());
+
+				$stream = Stream::where('mountpoint', '=', $mountpoint)->first();
+
+				if (!isset($stream)) {
+					$stream         = new Stream();
+					$stream->status = 'Online';
+				}
+
+				$stream->mountpoint = $mountpoint;
+				$stream->listener   = $nowPlayingDto->getListeners()->getTotal();
+				$stream->artist     = $artist;
+				$stream->title      = $title;
+				$stream->save();
 			}
 
-			$stream->mountpoint = $mountpoint;
-			$stream->listener   = $iceCastStreamDto->getListeners();
-			$stream->artist     = $iceCastStreamDto->getArtist();
-			$stream->title      = $iceCastStreamDto->getTitle();
-			$stream->save();
-
-			$this->persistTrackAndArtist($stream->title, $stream->artist);
+			$this->persistTrackAndArtist(
+				$title,
+				$artist,
+				$nowPlayingDto->getLive()->getIsLive()
+			);
 
 			$apiResponse = (new JsonApiResponseDto())
-				->setStatus('success')
-				->setResult($stream);
+				->setStatus('success');
 
 			return $response->write(json_encode($apiResponse));
 		}
-		catch (InvalidMountpointException $exception) {
+		catch (AzuraCastApiClientRequestException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());
@@ -88,20 +95,13 @@ class StreaminfoController {
 	/**
 	 * @param string $title
 	 * @param string $artistName
+	 * @param bool $isLive
 	 *
 	 * @return void
 	 */
-	protected function persistTrackAndArtist(string $title, string $artistName): void {
+	protected function persistTrackAndArtist(string $title, string $artistName, bool $isLive): void {
 		$artist = $this->artistModelManager->createArtist($artistName);
 
-		$currentEventSetting = Setting::where('key', '=', 'current_event')->first();
-
-		$isAutoDjTrack = false;
-
-		if ($currentEventSetting->value === 'DJ-Pony Lucy' || $currentEventSetting->value === 'DJ-Pony Mary') {
-			$isAutoDjTrack = true;
-		}
-
-		$this->trackModelManager->createTrack($title, $artist->artist_id, $isAutoDjTrack);
+		$this->trackModelManager->createTrack($title, $artist->artist_id, !$isLive);
 	}
 }

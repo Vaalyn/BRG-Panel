@@ -73,7 +73,7 @@ $app->group('/cron', function() {
 	$this->get('', Cron\CronController::class)->setName('cron');
 	$this->get('/current/event/update', Cron\CurrentEventController::class)->setName('cron.current.event.update');
 	$this->get('/history/update', Cron\HistoryController::class)->setName('cron.history.update');
-	$this->get('/streaminfo/update/{mountpoint}', Cron\StreaminfoController::class)->setName('cron.streaminfo.update');
+	$this->get('/streaminfo/update/{stationId}', Cron\StreaminfoController::class)->setName('cron.streaminfo.update');
 	$this->get('/track/autodj/update', Cron\TrackController::class)->setName('cron.track.autodj.update');
 });
 

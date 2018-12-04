@@ -67,7 +67,10 @@ class TrackModelManager {
 	 * @return Collection
 	 */
 	public function searchAutoDjTracksByTitleAndArtist(?string $title = null, ?string $artist = null): Collection {
-		$tracksQuery = Track::with('artist')->where('autodj', '=', true);
+		$tracksQuery = Track::with('artist')->where([
+			['autodj', '=', true],
+			['requestable_song_id', '<>', '']
+		]);
 
 		if ($title !== null) {
 			$tracksQuery->where('title', 'LIKE', '%' . $title . '%');
@@ -90,6 +93,7 @@ class TrackModelManager {
 	 * @param string|null $url
 	 * @param string|null $pathname
 	 * @param bool|null $ignoreVotes
+	 * @param string|null $requestableSongId
 	 *
 	 * @return Track
 	 */
@@ -97,10 +101,11 @@ class TrackModelManager {
 		string $title,
 		int $artistId,
 		bool $isAutoDjTrack,
-		int $length = null,
-		string $url = null,
-		string $pathname = null,
-		bool $ignoreVotes = null
+		?int $length = null,
+		?string $url = null,
+		?string $pathname = null,
+		?bool $ignoreVotes = null,
+		?string $requestableSongId = null
 	): Track {
 		$track = Track::where([
 			['title', '=', $title],
@@ -109,19 +114,21 @@ class TrackModelManager {
 
 		if (!isset($track)) {
 			$track = new Track();
-			$track->pathname     = $pathname ?? '';
-			$track->length       = $length ?? 0;
-			$track->url          = $url ?? '';
-			$track->ignore_votes = $ignoreVotes ?? false;
+			$track->pathname            = $pathname ?? '';
+			$track->length              = $length ?? 0;
+			$track->url                 = $url ?? '';
+			$track->ignore_votes        = $ignoreVotes ?? false;
+			$track->requestable_song_id = $requestableSongId ?? '';
 		}
 
-		$track->pathname     = $pathname ?? $track->pathname;
-		$track->title        = $title;
-		$track->length       = $length ?? $track->length;
-		$track->url          = $url ?? $track->url;
-		$track->artist_id    = $artistId;
-		$track->autodj       = $isAutoDjTrack;
-		$track->ignore_votes = $ignoreVotes ?? $track->ignore_votes;
+		$track->pathname            = $pathname ?? $track->pathname;
+		$track->title               = $title;
+		$track->length              = $length ?? $track->length;
+		$track->url                 = $url ?? $track->url;
+		$track->artist_id           = $artistId;
+		$track->autodj              = $isAutoDjTrack;
+		$track->ignore_votes        = $ignoreVotes ?? $track->ignore_votes;
+		$track->requestable_song_id = $requestableSongId ?? $track->requestable_song_id;
 		$track->save();
 
 		return $track;

@@ -98,20 +98,21 @@ class CronController {
 	 * @return void
 	 */
 	protected function addStreaminfoCron(): void {
-		$mountpoints = $this->config['icecast']['mountpoints'];
+		$stations = $this->config['azura']['stations'];
 
-		foreach ($mountpoints as $mountpoint) {
+		foreach ($stations as $stationName => $station) {
 			for ($executions = 0; $executions < 6; $executions++) {
 				$cronCommand = sprintf(
 					'sleep %s; curl %s/cron/streaminfo/update/%s',
 					$executions * 10,
 					$this->config['host']['url'],
-					$mountpoint['mountpoint']
+					$station['station_id']
 				);
 
 				$cronName = sprintf(
-					'StreaminfoUpdate-%s-%s',
-					$mountpoint['mountpoint'],
+					'StreaminfoUpdate-%s-(%s)-%s',
+					$stationName,
+					$station['station_id'],
 					$executions + 1
 				);
 

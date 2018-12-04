@@ -4,7 +4,6 @@ require '../vendor/autoload.php';
 
 use BRG\Panel\Middleware\Cors\CorsMiddleware;
 use BRG\Panel\Middleware\PaginationLinkParameters\PaginationLinkParametersMiddleware;
-use BRG\Panel\Service\CentovaCast\CentovaCastApiClient;
 use BRG\Panel\Service\ErrorHandler\ErrorHandler;
 use BRG\Panel\Service\Factory\Eloquent\EloquentFactory;
 use BRG\Panel\Service\Factory\Flysystem\FlysystemFactory;
@@ -18,6 +17,7 @@ use Vaalyn\AuthenticationService\Authentication;
 use Vaalyn\AuthenticationService\Middleware\AuthenticationMiddleware;
 use Vaalyn\AuthorizationService\Authorization;
 use Vaalyn\AuthorizationService\Middleware\AuthorizationMiddleware;
+use Vaalyn\AzuraCastApiClient\AzuraCastApiClient;
 use Vaalyn\MenuBuilderService\MenuBuilder;
 use Vaalyn\MenuBuilderService\Middleware\MenuMiddleware;
 use Vaalyn\PluginService\PluginLoader;
@@ -41,7 +41,7 @@ $container['session']                 = (new Session($container->config['session
 $container['database']                = EloquentFactory::createMultiple($container->config['database']);
 $container['authorization']           = new Authorization($container);
 $container['authentication']          = new Authentication($container, $container->database);
-$container['centovaCastApiClient']    = new CentovaCastApiClient($container->config['centova']['api']);
+$container['azuraCastApiClient']      = new AzuraCastApiClient($container->config['azura']['host'], $container->config['azura']['api_key']);
 $container['errorHandler']            = new ErrorHandler();
 $container['files']                   = FlysystemFactory::create($container->config['flysystem']['files']);
 $container['flashMessages']           = new Messages();

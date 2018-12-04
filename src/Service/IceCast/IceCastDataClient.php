@@ -2,20 +2,13 @@
 
 namespace BRG\Panel\Service\IceCast;
 
-use BRG\Panel\Dto\IceCast\IceCastStreamDto;
 use BRG\Panel\Exception\ApiCallFailedException;
 use BRG\Panel\Exception\InvalidHttpMethodException;
-use BRG\Panel\Exception\InvalidMountpointException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 
 class IceCastDataClient {
-	/**
-	 * @var array
-	 */
-	protected $mountpointApiUrls;
-
 	/**
 	 * @var array
 	 */
@@ -25,34 +18,7 @@ class IceCastDataClient {
 	 * @param array $config
 	 */
 	public function __construct(array $config) {
-		$this->mountpointApiUrls = $config['api'];
 		$this->mountpointConfigs = $config['mountpoints'];
-	}
-
-	/**
-	 * @param string $mountpoint
-	 *
-	 * @return IceCastStreamDto
-	 */
-	public function fetchMountpoint(string $mountpoint): IceCastStreamDto {
-		if (!array_key_exists($mountpoint, $this->mountpointApiUrls)) {
-			throw new InvalidMountpointException(
-				sprintf(
-					'There is no mountpoint with the name "%s"',
-					$mountpoint
-				)
-			);
-		}
-
-		$url = $this->mountpointApiUrls[$mountpoint];
-
-		$mountpointApiResult = $this->callApi($url, 200)
-			->getBody()
-			->getContents();
-
-		$iceCastStreamDto = $this->getIceCastStreamDtoFromMountpointApiResult($mountpointApiResult);
-
-		return $iceCastStreamDto;
 	}
 
 	/**
@@ -84,19 +50,6 @@ class IceCastDataClient {
 			}
 			catch (ApiCallFailedException $exception) {}
 		}
-	}
-
-	/**
-	 * @param string $result
-	 *
-	 * @return IceCastStreamDto
-	 */
-	protected function getIceCastStreamDtoFromMountpointApiResult(string $result): IceCastStreamDto {
-		$iceCastStreamData = json_decode($result, true);
-
-		$iceCastStreamDtoTransformer = new IceCastStreamDtoTransformer();
-
-		return $iceCastStreamDtoTransformer->arrayToDto($iceCastStreamData['icestats']);
 	}
 
 	/**

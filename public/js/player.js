@@ -673,15 +673,15 @@ function getCurrentStreamUrl() {
 function getStreamUrl(streamName) {
 	switch (streamName) {
 		case 'stream':
-			return 'http://radio.bronyradiogermany.com:8000/stream';
+			return 'https://radio.bronyradiogermany.com:8000/stream';
 		case 'mobile':
-			return 'http://radio.bronyradiogermany.com:8000/mobile';
+			return 'https://radio.bronyradiogermany.com:8000/mobile';
 		case 'opus':
-			return 'http://radio.bronyradiogermany.com:8000/opus';
+			return 'https://radio.bronyradiogermany.com:8000/opus';
 		case 'nightdj':
-			return 'http://radio.bronyradiogermany.com:8003/nightdj_autodj';
+			return 'https://radio.bronyradiogermany.com:8003/nightdj';
 		case 'daydj':
-			return 'http://radio.bronyradiogermany.com:8006/daydj_autodj';
+			return 'https://radio.bronyradiogermany.com:8006/daydj';
 	}
 }
 

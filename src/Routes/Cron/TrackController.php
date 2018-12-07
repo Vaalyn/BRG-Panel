@@ -13,10 +13,6 @@ use Vaalyn\AzuraCastApiClient\AzuraCastApiClient;
 use Vaalyn\AzuraCastApiClient\Dto\RequestableSongDto;
 
 class TrackController {
-	protected const CENTOVA_CAST_ACCOUNT_ID = 2;
-	protected const CENTOVA_CAST_DISABLED_TRACKS_PATHNAME = 'gesperrt/%';
-	protected const CENTOVA_CAST_JINGLES_PATHNAME = 'Jingles/%';
-
 	/**
 	 * @var ArtistModelManager
 	 */

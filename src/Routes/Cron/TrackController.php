@@ -109,7 +109,7 @@ class TrackController {
 			$title,
 			$artist->artist_id,
 			true,
-			$length,
+			null,
 			null,
 			null,
 			null,

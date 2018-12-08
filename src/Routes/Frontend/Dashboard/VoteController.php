@@ -53,7 +53,7 @@ class VoteController {
 			->where('ignore_votes', '=', false)
 			->groupBy('track.track_id');
 
-		$pages = max([ceil($tracksQuery->count() / $entriesPerPage), 1]);
+		$pages = max([ceil($tracksQuery->getQuery()->getCountForPagination() / $entriesPerPage), 1]);
 
 		$tracks = $tracksQuery
 			->orderBy('upvotes', 'DESC')

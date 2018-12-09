@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	$('.button-collapse').sideNav();
 	$('.modal').modal();
+	$('select').material_select();
 
 	$('.datepicker').pickadate({
 		monthsFull: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],

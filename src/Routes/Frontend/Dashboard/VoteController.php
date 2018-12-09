@@ -73,6 +73,7 @@ class VoteController {
 		$artist        = $request->getQueryParams()['artist'] ?? null;
 		$minVotes      = (int) ($request->getQueryParams()['min_votes'] ?? 0);
 		$includeHidden = isset($request->getQueryParams()['include_hidden']);
+		$sortBy        = $request->getQueryParams()['sort_by'] ?? null;
 
 		$tracksWithVotesQuery = Track::selectRaw(
 				'track.*,
@@ -102,8 +103,23 @@ class VoteController {
 			$tracksWithVotesQuery->havingRaw('SUM(upvote) + SUM(downvote) >= ' . $minVotes);
 		}
 
-		return $tracksWithVotesQuery
-			->orderBy('upvotes', 'DESC')
-			->orderBy('downvotes');
+		switch ($sortBy) {
+			case 'upvotes':
+				return $tracksWithVotesQuery->orderBy('upvotes');
+
+			case 'downvotes':
+				return $tracksWithVotesQuery->orderBy('downvotes');
+
+			case 'upvotes_desc':
+				return $tracksWithVotesQuery->orderBy('upvotes', 'DESC');
+
+			case 'downvotes_desc':
+				return $tracksWithVotesQuery->orderBy('downvotes', 'DESC');
+
+			default:
+				return $tracksWithVotesQuery
+					->orderBy('upvotes', 'DESC')
+					->orderBy('downvotes');
+		}
 	}
 }

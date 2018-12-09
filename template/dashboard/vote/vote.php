@@ -7,17 +7,27 @@
 						<div class="card-content white-text">
 							<form action="dashboard/vote" method="get">
 								<div class="row">
-									<div class="input-field col s6 m3">
+									<div class="input-field col s6 m2">
 										<label for="title">Titel</label>
 										<input type="text" name="title" id="title" class="validate white-text" value="<?php if (isset($_GET['title'])) { echo htmlentities($_GET['title']); } ?>">
 									</div>
-									<div class="input-field col s6 m3">
+									<div class="input-field col s6 m2">
 										<label for="artist">Artist</label>
 										<input type="text" name="artist" id="artist" class="validate white-text" value="<?php if (isset($_GET['artist'])) { echo htmlentities($_GET['artist']); } ?>">
 									</div>
-									<div class="input-field col s6 m3">
+									<div class="input-field col s3 m2">
 										<label for="min-votes">Min. Votes</label>
 										<input type="number" name="min_votes" id="min-votes" class="validate white-text" value="<?php if (isset($_GET['min_votes'])) { echo htmlentities($_GET['min_votes']); } ?>">
+									</div>
+									<div class="input-field col s6 m3">
+										<select name="sort_by" id="sort-by" class="white-text">
+											<option value="">Standard</option>
+											<option value="upvotes">Upvotes aufsteigend</option>
+											<option value="downvotes">Downvotes aufsteigend</option>
+											<option value="upvotes_desc">Upvotes absteigend</option>
+											<option value="downvotes_desc">Downvotes absteigend</option>
+										</select>
+										<label for="sort-by">Sortieren nach</label>
 									</div>
 									<div class="col s6 m3">
 										<input type="checkbox" name="include_hidden" id="include-hidden" class="filled-in" <?php if (isset($_GET['include_hidden'])) { echo 'checked'; } ?> />

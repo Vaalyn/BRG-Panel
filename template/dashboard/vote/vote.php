@@ -5,6 +5,42 @@
 				<div class="col s12">
 					<div class="card color-2">
 						<div class="card-content white-text">
+							<form action="dashboard/vote" method="get">
+								<div class="row">
+									<div class="input-field col s6 m3">
+										<label for="title">Titel</label>
+										<input type="text" name="title" id="title" class="validate white-text" value="<?php if (isset($_GET['title'])) { echo htmlentities($_GET['title']); } ?>">
+									</div>
+									<div class="input-field col s6 m3">
+										<label for="artist">Artist</label>
+										<input type="text" name="artist" id="artist" class="validate white-text" value="<?php if (isset($_GET['artist'])) { echo htmlentities($_GET['artist']); } ?>">
+									</div>
+									<div class="input-field col s6 m3">
+										<label for="min-votes">Min. Votes</label>
+										<input type="number" name="min_votes" id="min-votes" class="validate white-text" value="<?php if (isset($_GET['min_votes'])) { echo htmlentities($_GET['min_votes']); } ?>">
+									</div>
+									<div class="col s6 m3">
+										<input type="checkbox" name="include_hidden" id="include-hidden" class="filled-in" <?php if (isset($_GET['include_hidden'])) { echo 'checked'; } ?> />
+										<label for="include-hidden">Mit Versteckten</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12 center">
+										<button class="btn waves-effect waves-light color-1" type="submit">Filtern
+											<i class="material-icons right">filter_list</i>
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col s12">
+					<div class="card color-2">
+						<div class="card-content white-text">
 							<?php include(__DIR__ . '/../pagination.php'); ?>
 
 							<table class="bordered striped" id="votes">

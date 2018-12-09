@@ -47,7 +47,7 @@ class HistoryModelManager {
 		}
 
 		if ($artist) {
-			$historyQuery->where('title', 'LIKE', $artist);
+			$historyQuery->where('artist', 'LIKE', $artist);
 		}
 
 		return $historyQuery

@@ -9,11 +9,11 @@
 								<div class="row">
 									<div class="input-field col s6 m3">
 										<label for="date-played-start">Datum Anfang</label>
-										<input type="date" name="date_played_start" id="date-played-start" class="datepicker white-text" placeholder="dd.mm.yyyy" value="<?php if (isset($_GET['date_played_start'])) { echo $carbon->parse($_GET['date_played_start'])->format('d.m.Y'); } ?>">
+										<input type="date" name="date_played_start" id="date-played-start" class="datepicker white-text" value="<?php if (isset($_GET['date_played_start'])) { echo $carbon->parse($_GET['date_played_start'])->format('d.m.Y'); } ?>">
 									</div>
 									<div class="input-field col s6 m3">
 										<label for="date-played-end">Datum Ende</label>
-										<input type="date" name="date_played_end" id="date-played-end" class="datepicker white-text" placeholder="dd.mm.yyyy" value="<?php if (isset($_GET['date_played_end'])) { echo $carbon->parse($_GET['date_played_end'])->format('d.m.Y'); } ?>">
+										<input type="date" name="date_played_end" id="date-played-end" class="datepicker white-text" value="<?php if (isset($_GET['date_played_end'])) { echo $carbon->parse($_GET['date_played_end'])->format('d.m.Y'); } ?>">
 									</div>
 									<div class="input-field col s6 m3">
 										<label for="title">Titel</label>

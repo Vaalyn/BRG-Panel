@@ -118,8 +118,8 @@ class VoteController {
 
 			default:
 				return $tracksWithVotesQuery
-					->orderBy('downvotes', 'DESC')
-					->orderBy('upvotes');
+					->orderBy('upvotes')
+					->orderBy('downvotes', 'DESC');
 		}
 	}
 }

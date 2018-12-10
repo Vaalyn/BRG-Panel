@@ -78,8 +78,7 @@ class VoteController {
 		$tracksWithVotesQuery = Track::selectRaw(
 				'track.*,
 				SUM(upvote) AS upvotes,
-				SUM(downvote) AS downvotes,
-				SUM(upvote) + SUM(downvote) AS score'
+				SUM(downvote) AS downvotes'
 			)
 			->with('artist')
 			->leftJoin('vote', 'vote.track_id', '=', 'track.track_id');
@@ -118,7 +117,9 @@ class VoteController {
 				return $tracksWithVotesQuery->orderBy('downvotes', 'DESC');
 
 			default:
-				return $tracksWithVotesQuery->orderByRaw('score');
+				return $tracksWithVotesQuery
+					->orderBy('downvotes', 'DESC')
+					->orderBy('upvotes');
 		}
 	}
 }

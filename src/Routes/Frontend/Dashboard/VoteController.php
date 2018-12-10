@@ -117,9 +117,7 @@ class VoteController {
 				return $tracksWithVotesQuery->orderBy('downvotes', 'DESC');
 
 			default:
-				return $tracksWithVotesQuery
-					->orderBy('upvotes', 'DESC')
-					->orderBy('downvotes');
+				return $tracksWithVotesQuery->orderByRaw('SUM(upvote) + SUM(downvote)');
 		}
 	}
 }

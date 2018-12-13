@@ -80,11 +80,11 @@ class UserController {
 
 			$user = User::find($this->authentication->user()->getUserId());
 
-			if (!password_verify($passwordOld, $user->password_new)) {
+			if (!password_verify($passwordOld, $user->password)) {
 				throw new InfoException('Das alte Passwort ist nicht korrekt');
 			}
 
-			$user->password_new = password_hash($passwordNew, PASSWORD_DEFAULT);
+			$user->password = password_hash($passwordNew, PASSWORD_DEFAULT);
 			$user->save();
 
 			$apiResponse = (new JsonApiResponseDto())

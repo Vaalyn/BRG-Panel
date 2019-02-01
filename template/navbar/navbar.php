@@ -21,5 +21,5 @@
 				<?php endif; ?>
 			<?php endforeach; ?>
 		</div>
-	</div>
+	</nav>
 </div>

@@ -24,8 +24,6 @@ class StatusController {
 	 * @return Response
 	 */
 	public function changeRequestSystemStatusActiveAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$active = (bool) $args['active'];
 
 		$status = Status::find(1);
@@ -43,7 +41,7 @@ class StatusController {
 			->setStatus('success')
 			->setResult($statusDto);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**
@@ -54,8 +52,6 @@ class StatusController {
 	 * @return Response
 	 */
 	public function setRequestSystemStatusRequestLimitAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$limit = (int) $args['limit'];
 
 		$status = Status::find(1);
@@ -73,7 +69,7 @@ class StatusController {
 			->setStatus('success')
 			->setResult($statusDto);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**
@@ -84,8 +80,6 @@ class StatusController {
 	 * @return Response
 	 */
 	public function changeMessageSystemStatusActiveAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$active = (bool) $args['active'];
 
 		$status = Status::find(2);
@@ -103,7 +97,7 @@ class StatusController {
 			->setStatus('success')
 			->setResult($statusDto);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**
@@ -114,8 +108,6 @@ class StatusController {
 	 * @return Response
 	 */
 	public function changeAutoDjRequestSystemStatusActiveAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$active = (bool) $args['active'];
 
 		$status = Status::find(3);
@@ -133,7 +125,7 @@ class StatusController {
 			->setStatus('success')
 			->setResult($statusDto);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**
@@ -144,8 +136,6 @@ class StatusController {
 	 * @return Response
 	 */
 	public function setSystemStatusRulesAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$statusId = (int) $args['statusId'];
 		$rules    = $request->getParsedBody()['rules'] ?? '';
 
@@ -154,7 +144,7 @@ class StatusController {
 				->setStatus('error')
 				->setMessage('Die Regeln dürfen für dieses System nicht geändert werden');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 
 		$status = Status::find($statusId);
@@ -172,6 +162,6 @@ class StatusController {
 			->setStatus('success')
 			->setResult($statusDto);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 }

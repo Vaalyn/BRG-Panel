@@ -24,8 +24,6 @@ class HistoryController {
 	 * @return Response
 	 */
 	public function getHistoryAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$page           = 1;
 		$entriesPerPage = 20;
 
@@ -47,7 +45,7 @@ class HistoryController {
 			->setResult($history)
 			->setPages($historyPages);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**

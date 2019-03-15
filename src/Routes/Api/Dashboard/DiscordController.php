@@ -30,8 +30,6 @@ class DiscordController {
 	 * @return Response
 	 */
 	public function restartLucyLightAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$botServerConfig = $this->discordConfig['bot']['lucy_light']['server'];
 
 		$key = new RSA();
@@ -53,6 +51,6 @@ class DiscordController {
 		$apiResponse = (new JsonApiResponseDto())
 			->setStatus('success');
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 }

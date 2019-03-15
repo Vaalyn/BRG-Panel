@@ -30,8 +30,6 @@ class TrackController {
 	 * @return Response
 	 */
 	public function getTrackAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$id = (int) $args['id'];
 
 		$track = $this->trackModelManager->findTrackById($id);
@@ -41,7 +39,7 @@ class TrackController {
 				->setStatus('error')
 				->setMessage('Track not found');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 
 		$trackDto = new TrackDto(
@@ -54,7 +52,7 @@ class TrackController {
 			->setStatus('success')
 			->setResult($trackDto);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**
@@ -65,8 +63,6 @@ class TrackController {
 	 * @return Response
 	 */
 	public function getAutoDjTrackAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$id = $args['id'];
 
 		$track = $this->trackModelManager->findTrackById($id, true);
@@ -76,7 +72,7 @@ class TrackController {
 				->setStatus('error')
 				->setMessage('Track not found');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 
 		$trackDto = new TrackDto(
@@ -89,7 +85,7 @@ class TrackController {
 			->setStatus('success')
 			->setResult($trackDto);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**
@@ -100,8 +96,6 @@ class TrackController {
 	 * @return Response
 	 */
 	public function getTracksAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$title  = $request->getQueryParams()['title'] ?? null;
 		$artist = $request->getQueryParams()['artist'] ?? null;
 
@@ -121,7 +115,7 @@ class TrackController {
 			->setStatus('success')
 			->setResult($trackList);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**
@@ -132,8 +126,6 @@ class TrackController {
 	 * @return Response
 	 */
 	public function getAutoDjTracksAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$title  = $request->getQueryParams()['title'] ?? null;
 		$artist = $request->getQueryParams()['artist'] ?? null;
 
@@ -153,6 +145,6 @@ class TrackController {
 			->setStatus('success')
 			->setResult($trackList);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 }

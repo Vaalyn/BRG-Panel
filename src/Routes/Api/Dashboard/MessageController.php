@@ -23,8 +23,6 @@ class MessageController {
 	 * @return Response
 	 */
 	public function deleteMessageAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$id = $args['id'];
 
 		$message = Message::find($id);
@@ -34,7 +32,7 @@ class MessageController {
 				->setStatus('error')
 				->setMessage('Message not found');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 
 		$message->delete();
@@ -42,6 +40,6 @@ class MessageController {
 		$apiResponse = (new JsonApiResponseDto())
 			->setStatus('success');
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 }

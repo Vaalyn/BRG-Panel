@@ -33,8 +33,6 @@ class DonationController {
 	 * @return Response
 	 */
 	public function createDonationAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$name   = trim($request->getParsedBody()['name']) ?? null;
 		$amount = $request->getParsedBody()['amount'] ?? null;
 
@@ -63,14 +61,14 @@ class DonationController {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('success');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 		catch (InfoException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 	}
 
@@ -82,8 +80,6 @@ class DonationController {
 	 * @return Response
 	 */
 	public function updateCurrentlyNeededDonationAmountAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$amount = $request->getParsedBody()['amount'] ?? null;
 
 		if (!$this->validator->numeric()->min(0, true)->validate($amount)) {
@@ -91,7 +87,7 @@ class DonationController {
 				->setStatus('error')
 				->setMessage('Keine gültige Spendensumme');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 
 		$currentlyNeededAmountSetting = Setting::where('key', '=', 'currently_needed_donation_amount')->first();
@@ -101,7 +97,7 @@ class DonationController {
 		$apiResponse = (new JsonApiResponseDto())
 			->setStatus('success');
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**
@@ -112,8 +108,6 @@ class DonationController {
 	 * @return Response
 	 */
 	public function deleteDonationAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$id = $args['id'];
 
 		$donation = Donation::find($id);
@@ -123,7 +117,7 @@ class DonationController {
 				->setStatus('error')
 				->setMessage('Spende nicht gefunden');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 
 		$donation->delete();
@@ -131,6 +125,6 @@ class DonationController {
 		$apiResponse = (new JsonApiResponseDto())
 			->setStatus('success');
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 }

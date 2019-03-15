@@ -64,8 +64,6 @@ class RequestController {
 	 * @return Response
 	 */
 	public function createRequestAction(Request $httpRequest, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		try {
 			$requestSystemStatus = Status::find(1);
 
@@ -84,14 +82,14 @@ class RequestController {
 				->setStatus('success')
 				->setMessage('Request eingereicht');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 		catch (InfoException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 	}
 
@@ -103,8 +101,6 @@ class RequestController {
 	 * @return Response
 	 */
 	public function createAutoDjRequestAction(Request $httpRequest, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$id        = (int) $httpRequest->getParsedBody()['id'] ?? 0;
 		$nickname  = trim($httpRequest->getParsedBody()['nickname']) ?? '';
 		$ipAddress = $httpRequest->getAttribute('ip_address');
@@ -155,14 +151,14 @@ class RequestController {
 				->setStatus('success')
 				->setMessage('Request eingereicht');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 		catch (InfoException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 	}
 

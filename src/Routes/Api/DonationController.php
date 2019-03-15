@@ -25,8 +25,6 @@ class DonationController {
 	 * @return Response
 	 */
 	public function getDonationsAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$donations = Donation::with('donor')->get();
 
 		$donationDtos = [];
@@ -43,7 +41,7 @@ class DonationController {
 			->setStatus('success')
 			->setResult($donationDtos);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**
@@ -54,14 +52,12 @@ class DonationController {
 	 * @return Response
 	 */
 	public function getCurrentlyNeededAmountAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$currentlyNeededAmountSetting = Setting::where('key', '=', 'currently_needed_donation_amount')->first();
 
 		$apiResponse = (new JsonApiResponseDto())
 			->setStatus('success')
 			->setResult($currentlyNeededAmountSetting->value);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 }

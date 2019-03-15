@@ -33,14 +33,14 @@ class LoginController {
 		$rememberMe = true;
 
 		if (!$this->authentication->attempt($username, $password, $rememberMe)) {
-			return $response->write(json_encode(array(
+			return $response->withJson([
 				'status' => 'error',
 				'errors' => $exception->getMessage()
-			)));
+			]);
 		}
 
-		return $response->write(json_encode(array(
+		return $response->withJson([
 			'status' => 'success'
-		)));
+		]);
 	}
 }

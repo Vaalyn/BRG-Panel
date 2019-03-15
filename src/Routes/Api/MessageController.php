@@ -32,8 +32,6 @@ class MessageController {
 	 * @return Response
 	 */
 	public function createMessageAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$nickname    = trim($request->getParsedBody()['nickname']) ?? '';
 		$messageText = trim($request->getParsedBody()['message']) ?? '';
 
@@ -53,14 +51,14 @@ class MessageController {
 				->setStatus('success')
 				->setMessage('Nachricht eingereicht');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 		catch (InfoException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 	}
 

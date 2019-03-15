@@ -2,6 +2,7 @@
 
 namespace BRG\Panel\Routes\Api;
 
+use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
 use BRG\Panel\Exception\InfoException;
 use BRG\Panel\Exception\MailNotSendException;
 use BRG\Panel\Model\Manager\UserModelManager;
@@ -49,8 +50,6 @@ class UserController {
 	 * @return Response
 	 */
 	public function forgotPasswordAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$username = $request->getParsedBody()['username'] ?? '';
 		$email    = $request->getParsedBody()['email'] ?? '';
 
@@ -102,16 +101,17 @@ class UserController {
 				throw new InfoException('E-Mail konnte nicht gesendet werden');
 			}
 
-			return $response->write(json_encode(array(
-				'status' => 'success',
-				'message' => 'E-Mail zum Passwort zurücksetzen versendet'
-			)));
+			$apiResponse = (new JsonApiResponseDto())
+				->setStatus('success')
+				->setMessage('E-Mail zum Passwort zurücksetzen versendet');
+
+			return $response->withJson($apiResponse);
 		}
 		catch (InfoException $exception) {
-			return $response->write(json_encode(array(
+			return $response->withJson([
 				'status' => 'error',
 				'errors' => $exception->getMessage()
-			)));
+			]);
 		}
 	}
 
@@ -123,8 +123,6 @@ class UserController {
 	 * @return Response
 	 */
 	public function resetPasswordAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$code     = $request->getParsedBody()['code'] ?? '';
 		$password = $request->getParsedBody()['password'] ?? '';
 
@@ -156,16 +154,17 @@ class UserController {
 
 			$recoveryCode->delete();
 
-			return $response->write(json_encode(array(
-				'status' => 'success',
-				'message' => 'Passwort wurde geändert'
-			)));
+			$apiResponse = (new JsonApiResponseDto())
+				->setStatus('success')
+				->setMessage('Passwort wurde geändert');
+
+			return $response->withJson($apiResponse);
 		}
 		catch (InfoException $exception) {
-			return $response->write(json_encode(array(
+			return $response->withJson([
 				'status' => 'error',
 				'errors' => $exception->getMessage()
-			)));
+			]);
 		}
 	}
 }

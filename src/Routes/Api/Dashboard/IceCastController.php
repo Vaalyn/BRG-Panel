@@ -38,8 +38,6 @@ class IceCastController {
 	 * @return Response
 	 */
 	public function setMetadataToMountpointAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$mountpoint = $args['mountpoint'];
 		$song       = trim($request->getParsedBody()['song']) ?? null;
 
@@ -57,14 +55,14 @@ class IceCastController {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('success');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 		catch (InfoException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 	}
 }

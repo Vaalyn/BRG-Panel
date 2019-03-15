@@ -32,8 +32,6 @@ class StreaminfoController {
 	 * @return Response
 	 */
 	public function __invoke(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$stream = Stream::where('mountpoint', '=', $args['mountpoint'])->first();
 
 		if (!isset($stream)) {
@@ -41,7 +39,7 @@ class StreaminfoController {
 				->setStatus('error')
 				->setMessage('Invalid mountpoint');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 
 		$currentEventSetting = Setting::where('key', '=', 'current_event')->first();
@@ -70,6 +68,6 @@ class StreaminfoController {
 			->setStatus('success')
 			->setResult($streaminfoDto);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 }

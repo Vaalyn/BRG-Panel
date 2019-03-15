@@ -23,8 +23,6 @@ class RequestController {
 	 * @return Response
 	 */
 	public function setRequestPlayedAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$id = $args['id'];
 
 		$request = Model\Request::find($id);
@@ -34,7 +32,7 @@ class RequestController {
 				->setStatus('error')
 				->setMessage('Request not found');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 
 		$request->delete();
@@ -42,7 +40,7 @@ class RequestController {
 		$apiResponse = (new JsonApiResponseDto())
 			->setStatus('success');
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**
@@ -53,8 +51,6 @@ class RequestController {
 	 * @return Response
 	 */
 	public function setRequestSkippedAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$id = $args['id'];
 
 		$request = Model\Request::find($id);
@@ -64,7 +60,7 @@ class RequestController {
 				->setStatus('error')
 				->setMessage('Request not found');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 
 		$request->is_skipped = true;
@@ -74,6 +70,6 @@ class RequestController {
 		$apiResponse = (new JsonApiResponseDto())
 			->setStatus('success');
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 }

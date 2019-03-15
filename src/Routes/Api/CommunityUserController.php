@@ -26,8 +26,6 @@ class CommunityUserController {
 	 * @return Response
 	 */
 	public function getCoinsAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$discordUserId = $args['discordUserId'];
 
 		$communityUser = CommunityUser::where('discord_user_id', '=', $discordUserId)->first();
@@ -42,7 +40,7 @@ class CommunityUserController {
 			->setStatus('success')
 			->setResult($communityUserDto);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**
@@ -53,8 +51,6 @@ class CommunityUserController {
 	 * @return Response
 	 */
 	public function addCoinsAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$discordUsername = $request->getParsedBody()['discordUsername'] ?? '';
 		$discordUserId   = $request->getParsedBody()['discordUserId'] ?? '';
 		$coins           = (int) $request->getParsedBody()['coins'] ?? 0;
@@ -86,14 +82,14 @@ class CommunityUserController {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('success');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 		catch (InfoException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 	}
 
@@ -105,8 +101,6 @@ class CommunityUserController {
 	 * @return Response
 	 */
 	public function removeCoinsAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$discordUsername = $request->getParsedBody()['discordUsername'] ?? '';
 		$discordUserId   = $request->getParsedBody()['discordUserId'] ?? '';
 		$coins           = (int) $request->getParsedBody()['coins'] ?? 0;
@@ -132,14 +126,14 @@ class CommunityUserController {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('success');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 		catch (InfoException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 	}
 }

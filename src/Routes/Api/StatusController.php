@@ -24,8 +24,6 @@ class StatusController {
 	 * @return Response
 	 */
 	public function getStatusAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$id = $args['id'];
 
 		$status = Status::find($id);
@@ -35,7 +33,7 @@ class StatusController {
 				->setStatus('error')
 				->setMessage('Invalid status id');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 
 		$statusDto = new StatusDto(
@@ -49,6 +47,6 @@ class StatusController {
 			->setStatus('success')
 			->setResult($statusDto);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 }

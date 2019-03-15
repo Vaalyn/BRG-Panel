@@ -36,10 +36,9 @@ class VoteController {
 	 * @return Response
 	 */
 	public function getVotedForTrackOnMountpointAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$voterId    = $args['voterId'];
 		$mountpoint = $args['mountpoint'];
+		$ipAddress  = $request->getAttribute('ip_address');
 
 		$stream = Stream::where('mountpoint', '=', $args['mountpoint'])->first();
 
@@ -48,7 +47,7 @@ class VoteController {
 				->setStatus('error')
 				->setMessage('Invalid mountpoint');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 
 		$track = $this->trackModelManager->findTrackByTitleAndArtist(
@@ -58,7 +57,8 @@ class VoteController {
 
 		$vote = Vote::where([
 				['track_id', '=', $track->track_id],
-				['voter_id', '=', $voterId]
+				['voter_id', '=', $voterId],
+				['ip_address', '=', $ipAddress]
 			])
 			->first();
 
@@ -78,7 +78,7 @@ class VoteController {
 			->setStatus('success')
 			->setResult($votedDto);
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**
@@ -89,8 +89,6 @@ class VoteController {
 	 * @return Response
 	 */
 	public function createVoterAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$requestOrigin = $request->getAttribute('origin');
 
 		try {
@@ -110,14 +108,14 @@ class VoteController {
 				->setStatus('success')
 				->setResult($voterDto);
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 		catch(InfoException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 	}
 
@@ -129,8 +127,6 @@ class VoteController {
 	 * @return Response
 	 */
 	public function voteAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$mountpoint = $args['mountpoint'];
 		$voterId    = $request->getParsedBody()['voter_id'];
 		$direction  = $request->getParsedBody()['direction'];
@@ -166,7 +162,8 @@ class VoteController {
 
 			$vote = Vote::where([
 					['track_id', '=', $track->track_id],
-					['voter_id', '=', $voterId]
+					['voter_id', '=', $voterId],
+					['ip_address', '=', $ipAddress]
 				])
 				->first();
 
@@ -190,14 +187,14 @@ class VoteController {
 
 			$apiResponse = (new JsonApiResponseDto())->setStatus('success');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 		catch(InfoException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 	}
 }

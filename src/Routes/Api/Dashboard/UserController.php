@@ -38,8 +38,6 @@ class UserController {
 	 * @return Response
 	 */
 	public function updateEmailAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$email = $request->getParsedBody()['email'] ?? null;
 
 		if (!$this->validator->email()->validate($email)) {
@@ -47,7 +45,7 @@ class UserController {
 				->setStatus('error')
 				->setMessage('Keine gültige E-Mail Adresse');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 
 		$user        = User::find($this->authentication->user()->getUserId());
@@ -57,7 +55,7 @@ class UserController {
 		$apiResponse = (new JsonApiResponseDto())
 			->setStatus('success');
 
-		return $response->write(json_encode($apiResponse));
+		return $response->withJson($apiResponse);
 	}
 
 	/**
@@ -68,8 +66,6 @@ class UserController {
 	 * @return Response
 	 */
 	public function updatePasswordAction(Request $request, Response $response, array $args): Response {
-		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-
 		$passwordNew = $request->getParsedBody()['passwordNew'] ?? null;
 		$passwordOld = $request->getParsedBody()['passwordOld'] ?? null;
 
@@ -91,14 +87,14 @@ class UserController {
 				->setStatus('success')
 				->setMessage('Dein Passwort wurde geändert');
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 		catch (InfoException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());
 
-			return $response->write(json_encode($apiResponse));
+			return $response->withJson($apiResponse);
 		}
 	}
 }

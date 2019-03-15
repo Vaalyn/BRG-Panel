@@ -57,7 +57,10 @@ class VoteController {
 
 		$vote = Vote::where([
 				['track_id', '=', $track->track_id],
-				['voter_id', '=', $voterId],
+				['voter_id', '=', $voterId]
+			])
+			->orWhere([
+				['track_id', '=', $track->track_id],
 				['ip_address', '=', $ipAddress]
 			])
 			->first();
@@ -162,7 +165,10 @@ class VoteController {
 
 			$vote = Vote::where([
 					['track_id', '=', $track->track_id],
-					['voter_id', '=', $voterId],
+					['voter_id', '=', $voterId]
+				])
+				->orWhere([
+					['track_id', '=', $track->track_id],
 					['ip_address', '=', $ipAddress]
 				])
 				->first();

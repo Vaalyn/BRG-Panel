@@ -3650,12 +3650,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vaalyn/azuracast-api-client.git",
-                "reference": "025917f500603b02a3ba81a02233a2dfe5a7e881"
+                "reference": "8bfba0568c79ea4d6183006e932f29ce3e326233"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vaalyn/azuracast-api-client/zipball/025917f500603b02a3ba81a02233a2dfe5a7e881",
-                "reference": "025917f500603b02a3ba81a02233a2dfe5a7e881",
+                "url": "https://api.github.com/repos/Vaalyn/azuracast-api-client/zipball/8bfba0568c79ea4d6183006e932f29ce3e326233",
+                "reference": "8bfba0568c79ea4d6183006e932f29ce3e326233",
                 "shasum": ""
             },
             "require": {
@@ -3689,7 +3689,7 @@
                 "azuracast",
                 "client"
             ],
-            "time": "2019-02-28T23:03:23+00:00"
+            "time": "2019-05-15T14:13:31+00:00"
         },
         {
             "name": "vaalyn/config-loader-service",

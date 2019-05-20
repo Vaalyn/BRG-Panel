@@ -2,6 +2,7 @@
 
 require '../vendor/autoload.php';
 
+use AzuraCast\AzuraCastApiClient\AzuraCastApiClient;
 use BRG\Panel\Middleware\Cors\CorsMiddleware;
 use BRG\Panel\Middleware\PaginationLinkParameters\PaginationLinkParametersMiddleware;
 use BRG\Panel\Service\ErrorHandler\ErrorHandler;
@@ -17,7 +18,6 @@ use Vaalyn\AuthenticationService\Authentication;
 use Vaalyn\AuthenticationService\Middleware\AuthenticationMiddleware;
 use Vaalyn\AuthorizationService\Authorization;
 use Vaalyn\AuthorizationService\Middleware\AuthorizationMiddleware;
-use Vaalyn\AzuraCastApiClient\AzuraCastApiClient;
 use Vaalyn\MenuBuilderService\MenuBuilder;
 use Vaalyn\MenuBuilderService\Middleware\MenuMiddleware;
 use Vaalyn\PluginService\PluginLoader;

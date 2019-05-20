@@ -2,6 +2,9 @@
 
 namespace BRG\Panel\Routes\Api;
 
+use AzuraCast\AzuraCastApiClient\AzuraCastApiClient;
+use AzuraCast\AzuraCastApiClient\Exception\AzuraCastApiClientRequestException;
+use AzuraCast\AzuraCastApiClient\Exception\AzuraCastRequestsDisabledException;
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
 use BRG\Panel\Exception\InfoException;
 use BRG\Panel\Model;
@@ -13,10 +16,6 @@ use Psr\Container\ContainerInterface;
 use Respect\Validation\Validator;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Vaalyn\AzuraCastApiClient\AzuraCastApiClient;
-
-use Vaalyn\AzuraCastApiClient\Exception\AzuraCastApiClientRequestException;
-use Vaalyn\AzuraCastApiClient\Exception\AzuraCastRequestsDisabledException;
 
 class RequestController {
 	protected const STATION_ID = 1;

@@ -2,14 +2,14 @@
 
 namespace BRG\Panel\Routes\Cron;
 
+use AzuraCast\AzuraCastApiClient\AzuraCastApiClient;
+use AzuraCast\AzuraCastApiClient\Dto\SongHistoryDto;
+use AzuraCast\AzuraCastApiClient\Exception\AzuraCastApiClientRequestException;
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
 use BRG\Panel\Model\History;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Vaalyn\AzuraCastApiClient\AzuraCastApiClient;
-use Vaalyn\AzuraCastApiClient\Dto\SongHistoryDto;
-use Vaalyn\AzuraCastApiClient\Exception\AzuraCastApiClientRequestException;
 
 class HistoryController {
 	/**

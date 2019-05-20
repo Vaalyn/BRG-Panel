@@ -2,6 +2,7 @@
     "require": {
         "php": ">=7.2.0",
         "akrabat/ip-address-middleware": "^1.0",
+        "azuracast/php-api-client": "dev-master",
         "bjeavons/zxcvbn-php": "^0.3.0",
         "google/apiclient": "^2.2",
         "guzzlehttp/guzzle": "^6.3",
@@ -22,7 +23,6 @@
         "swiftmailer/swiftmailer": "^6.0",
         "vaalyn/authentication-service": "dev-master",
         "vaalyn/authorization-service": "dev-master",
-        "vaalyn/azuracast-api-client": "dev-master",
         "vaalyn/config-loader-service": "dev-master",
         "vaalyn/menu-builder-service": "dev-master",
         "vaalyn/plugin-service": "dev-master",

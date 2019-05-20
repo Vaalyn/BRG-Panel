@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0141d0fbe6223ecdfd474a2194a9c98c",
+    "content-hash": "19aa36166ecf184ec95572f6ff3127f9",
     "packages": [
         {
             "name": "akrabat/ip-address-middleware",
@@ -58,6 +58,53 @@
                 "psr7"
             ],
             "time": "2018-07-03T06:53:57+00:00"
+        },
+        {
+            "name": "azuracast/php-api-client",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AzuraCast/php-api-client.git",
+                "reference": "869c11557aa474aeac78729187d45fb4e846ec9a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AzuraCast/php-api-client/zipball/869c11557aa474aeac78729187d45fb4e846ec9a",
+                "reference": "869c11557aa474aeac78729187d45fb4e846ec9a",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5",
+                "vlucas/phpdotenv": "^3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AzuraCast\\AzuraCastApiClient\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Vaalyn",
+                    "email": "vaalyndev@gmail.com"
+                }
+            ],
+            "description": "An API client library for the AzuraCast API",
+            "homepage": "https://github.com/AzuraCast/php-api-client",
+            "keywords": [
+                "api",
+                "azuracast",
+                "client"
+            ],
+            "time": "2019-05-20T19:41:21+00:00"
         },
         {
             "name": "bjeavons/zxcvbn-php",
@@ -3645,53 +3692,6 @@
             "time": "2018-10-28T12:22:30+00:00"
         },
         {
-            "name": "vaalyn/azuracast-api-client",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Vaalyn/azuracast-api-client.git",
-                "reference": "8bfba0568c79ea4d6183006e932f29ce3e326233"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Vaalyn/azuracast-api-client/zipball/8bfba0568c79ea4d6183006e932f29ce3e326233",
-                "reference": "8bfba0568c79ea4d6183006e932f29ce3e326233",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^6.3",
-                "php": ">=7.2.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.5",
-                "vlucas/phpdotenv": "^3.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Vaalyn\\AzuraCastApiClient\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Vaalyn",
-                    "email": "vaalyndev@gmail.com"
-                }
-            ],
-            "description": "An API client library for the AzuraCast API",
-            "homepage": "https://github.com/Vaalyn/azuracast-api-client",
-            "keywords": [
-                "api",
-                "azuracast",
-                "client"
-            ],
-            "time": "2019-05-15T14:13:31+00:00"
-        },
-        {
             "name": "vaalyn/config-loader-service",
             "version": "dev-master",
             "source": {
@@ -3925,9 +3925,9 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "azuracast/php-api-client": 20,
         "vaalyn/authentication-service": 20,
         "vaalyn/authorization-service": 20,
-        "vaalyn/azuracast-api-client": 20,
         "vaalyn/config-loader-service": 20,
         "vaalyn/menu-builder-service": 20,
         "vaalyn/plugin-service": 20,

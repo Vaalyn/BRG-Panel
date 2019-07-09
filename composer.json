@@ -2,7 +2,7 @@
     "require": {
         "php": ">=7.2.0",
         "akrabat/ip-address-middleware": "^1.0",
-        "azuracast/php-api-client": "dev-master",
+        "azuracast/php-api-client": "1.0.x-dev",
         "bjeavons/zxcvbn-php": "^0.3.0",
         "google/apiclient": "^2.2",
         "guzzlehttp/guzzle": "^6.3",

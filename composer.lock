@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19aa36166ecf184ec95572f6ff3127f9",
+    "content-hash": "754a4553ba96619f71c1b4206088848e",
     "packages": [
         {
             "name": "akrabat/ip-address-middleware",
@@ -61,7 +61,7 @@
         },
         {
             "name": "azuracast/php-api-client",
-            "version": "dev-master",
+            "version": "1.0.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AzuraCast/php-api-client.git",

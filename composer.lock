@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "754a4553ba96619f71c1b4206088848e",
+    "content-hash": "19aa36166ecf184ec95572f6ff3127f9",
     "packages": [
         {
             "name": "akrabat/ip-address-middleware",
@@ -61,30 +61,37 @@
         },
         {
             "name": "azuracast/php-api-client",
-            "version": "1.0.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AzuraCast/php-api-client.git",
-                "reference": "7b53b34beac572c2eddffe5cede8efc89ff97ca4"
+                "reference": "d63d9bb289e171551fca0380c0c7f4dc42fe54b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AzuraCast/php-api-client/zipball/7b53b34beac572c2eddffe5cede8efc89ff97ca4",
-                "reference": "7b53b34beac572c2eddffe5cede8efc89ff97ca4",
+                "url": "https://api.github.com/repos/AzuraCast/php-api-client/zipball/d63d9bb289e171551fca0380c0c7f4dc42fe54b3",
+                "reference": "d63d9bb289e171551fca0380c0c7f4dc42fe54b3",
                 "shasum": ""
             },
             "require": {
+                "ext-gd": "*",
+                "ext-json": "*",
                 "guzzlehttp/guzzle": "^6.3",
                 "php": ">=7.2.0"
             },
             "require-dev": {
+                "fzaninotto/faker": "^1.8",
+                "overtrue/phplint": "^1.1",
+                "phpstan/phpstan": "^0.11.1",
+                "phpstan/phpstan-strict-rules": "^0.11.0",
                 "phpunit/phpunit": "^7.5",
-                "vlucas/phpdotenv": "^3.3"
+                "roave/security-advisories": "dev-master",
+                "vlucas/phpdotenv": "^3.4"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "AzuraCast\\AzuraCastApiClient\\": "src"
+                    "AzuraCast\\Api\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -95,6 +102,10 @@
                 {
                     "name": "Vaalyn",
                     "email": "vaalyndev@gmail.com"
+                },
+                {
+                    "name": "Buster 'Silver Eagle' Neece",
+                    "email": "buster@busterneece.com"
                 }
             ],
             "description": "An API client library for the AzuraCast API",
@@ -104,7 +115,7 @@
                 "azuracast",
                 "client"
             ],
-            "time": "2019-05-24T15:20:28+00:00"
+            "time": "2019-07-23T17:05:06+00:00"
         },
         {
             "name": "bjeavons/zxcvbn-php",

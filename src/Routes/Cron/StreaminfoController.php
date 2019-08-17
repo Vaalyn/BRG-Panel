@@ -2,8 +2,8 @@
 
 namespace BRG\Panel\Routes\Cron;
 
-use AzuraCast\AzuraCastApiClient\AzuraCastApiClient;
-use AzuraCast\AzuraCastApiClient\Exception\AzuraCastApiClientRequestException;
+use AzuraCast\Api\Client as AzuraCastApiClient;
+use AzuraCast\Api\Exception\ClientRequestException;
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
 use BRG\Panel\Model\Manager\TrackModelManager;
 use BRG\Panel\Model\Manager\ArtistModelManager;
@@ -50,7 +50,7 @@ class StreaminfoController {
 		$stationId = (int) $args['stationId'];
 
 		try {
-			$nowPlayingDto = $this->azuraCastApiClient->nowPlayingOnStation($stationId);
+			$nowPlayingDto = $this->azuraCastApiClient->station($stationId)->nowPlaying();
 
 			$artist = $nowPlayingDto->getCurrentSong()->getSong()->getArtist();
 			$title  = $nowPlayingDto->getCurrentSong()->getSong()->getTitle();
@@ -83,7 +83,7 @@ class StreaminfoController {
 
 			return $response->write(json_encode($apiResponse));
 		}
-		catch (AzuraCastApiClientRequestException $exception) {
+		catch (ClientRequestException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());

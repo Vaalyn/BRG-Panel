@@ -2,7 +2,7 @@
 
 require '../vendor/autoload.php';
 
-use AzuraCast\AzuraCastApiClient\AzuraCastApiClient;
+use AzuraCast\Api\Client as AzuraCastApiClient;
 use BRG\Panel\Middleware\Cors\CorsMiddleware;
 use BRG\Panel\Middleware\PaginationLinkParameters\PaginationLinkParametersMiddleware;
 use BRG\Panel\Service\ErrorHandler\ErrorHandler;
@@ -41,7 +41,7 @@ $container['session']                 = (new Session($container->config['session
 $container['database']                = EloquentFactory::createMultiple($container->config['database']);
 $container['authorization']           = new Authorization($container);
 $container['authentication']          = new Authentication($container, $container->database);
-$container['azuraCastApiClient']      = new AzuraCastApiClient($container->config['azura']['host'], $container->config['azura']['api_key']);
+$container['azuraCastApiClient']      = AzuraCastApiClient::create($container->config['azura']['host'], $container->config['azura']['api_key']);
 $container['errorHandler']            = new ErrorHandler();
 $container['files']                   = FlysystemFactory::create($container->config['flysystem']['files']);
 $container['flashMessages']           = new Messages();

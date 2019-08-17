@@ -2,9 +2,9 @@
 
 namespace BRG\Panel\Routes\Api;
 
-use AzuraCast\AzuraCastApiClient\AzuraCastApiClient;
-use AzuraCast\AzuraCastApiClient\Exception\AzuraCastApiClientRequestException;
-use AzuraCast\AzuraCastApiClient\Exception\AzuraCastRequestsDisabledException;
+use AzuraCast\Api\Client as AzuraCastApiClient;
+use AzuraCast\Api\Exception\ClientRequestException;
+use AzuraCast\Api\Exception\RequestsDisabledException;
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
 use BRG\Panel\Exception\InfoException;
 use BRG\Panel\Model;
@@ -122,15 +122,14 @@ class RequestController {
 			$this->checkIfTrackCanBeRequested($track->title, $track->artist->name);
 
 			try {
-				$this->azuraCastApiClient->requestSong(
-					self::STATION_ID,
+				$this->azuraCastApiClient->station(self::STATION_ID)->requests()->submit(
 					$track->requestable_song_id
 				);
 			}
-			catch (AzuraCastRequestsDisabledException $exception) {
+			catch (RequestsDisabledException $exception) {
 				throw new InfoException('Das AutoDj Request System ist nicht aktiv');
 			}
-			catch (AzuraCastApiClientRequestException $exception) {
+			catch (ClientRequestException $exception) {
 				throw new InfoException('Beim einreichen des Requests ist ein Fehler aufgetreten');
 			}
 

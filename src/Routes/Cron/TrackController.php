@@ -2,8 +2,8 @@
 
 namespace BRG\Panel\Routes\Cron;
 
-use AzuraCast\AzuraCastApiClient\AzuraCastApiClient;
-use AzuraCast\AzuraCastApiClient\Dto\RequestableSongDto;
+use AzuraCast\Api\Client as AzuraCastApiClient;
+use AzuraCast\Api\Dto\RequestableSongDto;
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
 use BRG\Panel\Model\Manager\TrackModelManager;
 use BRG\Panel\Model\Manager\ArtistModelManager;
@@ -13,6 +13,8 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 class TrackController {
+	protected const STATION_ID = 1;
+
 	/**
 	 * @var ArtistModelManager
 	 */
@@ -47,16 +49,11 @@ class TrackController {
 	public function __invoke(Request $request, Response $response, array $args): Response {
 		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
 
-		$requestableSongsDtoArray = $this->azuraCastApiClient->allRequestableSongs(1);
+		$requestableSongsDto = $this->azuraCastApiClient->station(self::STATION_ID)
+			->requests()
+			->list();
 
-		$requestableSongs = [];
-
-		foreach ($requestableSongsDtoArray as $requestableSongsDto) {
-			$requestableSongs = array_merge(
-				$requestableSongs,
-				$requestableSongsDto->getRequestableSongs()
-			);
-		}
+		$requestableSongs = $requestableSongsDto->getRequestableSongs();
 
 		$panelAutoDjTracks = Track::with('artist')
 			->where('autodj', '=', true)

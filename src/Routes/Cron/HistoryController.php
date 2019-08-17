@@ -2,9 +2,9 @@
 
 namespace BRG\Panel\Routes\Cron;
 
-use AzuraCast\AzuraCastApiClient\AzuraCastApiClient;
-use AzuraCast\AzuraCastApiClient\Dto\SongHistoryDto;
-use AzuraCast\AzuraCastApiClient\Exception\AzuraCastApiClientRequestException;
+use AzuraCast\Api\Client as AzuraCastApiClient;
+use AzuraCast\Api\Dto\SongHistoryDto;
+use AzuraCast\Api\Exception\ClientRequestException;
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
 use BRG\Panel\Model\History;
 use Psr\Container\ContainerInterface;
@@ -12,6 +12,8 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 class HistoryController {
+	protected const STATION_ID = 1;
+
 	/**
 	 * @var AzuraCastApiClient
 	 */
@@ -35,7 +37,7 @@ class HistoryController {
 		$response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
 
 		try {
-			$nowPlayingDto = $this->azuraCastApiClient->nowPlayingOnStation(1);
+			$nowPlayingDto = $this->azuraCastApiClient->station(self::STATION_ID)->nowPlaying();
 			$songHistoryDtos = $nowPlayingDto->getSongHistory();
 
 			usort($songHistoryDtos, function($firstSongHistoryDto, $secondSongHistoryDto) {
@@ -78,7 +80,7 @@ class HistoryController {
 
 			return $response->write(json_encode($apiResponse));
 		}
-		catch (AzuraCastApiClientRequestException $exception) {
+		catch (ClientRequestException $exception) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage($exception->getMessage());

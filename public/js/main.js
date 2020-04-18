@@ -825,7 +825,7 @@ $(document).ready(function() {
 	/********************/
 
 	/********************/
-	// Donations END
+	// Donations START
 	/********************/
 
 	$('#donation #save-currently-needed-donation-amount').click(function(event) {
@@ -979,4 +979,101 @@ $(document).ready(function() {
 	/********************/
 	// Donations END
 	/********************/
+
+	/***********************/
+	// Best of Voting START
+	/***********************/
+
+	$('#best-of-voting #update-voting-start-date-button').on('click', function() {
+		let votingStartDate = $(this).data('value');
+
+		$('#start-date').pickadate('picker').set('select', votingStartDate, { format: 'yyyy-mm-dd' });
+	});
+
+	$('#best-of-voting #update-voting-end-date-button').on('click', function() {
+		let votingEndDate = $(this).data('value');
+
+		$('#end-date').pickadate('picker').set('select', votingEndDate, { format: 'yyyy-mm-dd' });
+	});
+
+	$('#best-of-voting #save-best-of-voting-config').on('click', function() {
+		let votingStartDate = $('#start-date').pickadate('picker').get('select', 'yyyy-mm-dd');
+		let votingEndDate = $('#end-date').pickadate('picker').get('select', 'yyyy-mm-dd');
+		let votingPlaylistCode = $('#playlist-code').val();
+
+		let votingConfigParameters = {
+			start_date: votingStartDate,
+			end_date: votingEndDate,
+			playlist_code: votingPlaylistCode
+		};
+
+		$.post('api/dashboard/best-of-voting/config', votingConfigParameters)
+			.done(function(response) {
+				if (response.status === 'success') {
+					Materialize.toast('<i class="material-icons green-text">done</i> ' + response.message, 2000, '', function() {
+						window.location.reload();
+					});
+				} else {
+					Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
+				}
+			})
+			.fail(function() {
+				Materialize.toast('<i class="material-icons red-text">clear</i> Fehler beim speichern', 3000);
+			});
+	});
+
+	// TODO: Delete Best-of Vote => (Button Class) .delete-best-of-vote
+	$('#best-of-voting-votes .delete-best-of-vote').on('click', function(event) {
+		event.preventDefault();
+
+		let uid = $(this).data('uid');
+		let row = $(this).closest('tr');
+
+		$.confirm({
+			theme: 'supervan',
+			title: 'Best-of Vote entfernen?',
+			content: 'Den Vote mit der ID "' + uid + '" wirklich entfernen?',
+			buttons: {
+				confirm: {
+					text: 'Ja',
+					btnClass: 'btn green',
+					action: function() {
+						$.ajax({
+							type: 'DELETE',
+							url: document.baseURI + 'api/dashboard/best-of-voting/vote/' + uid,
+							data: null,
+							success: function(response) {
+								if (response.status === 'success') {
+									$(row).fadeOut(300, function() {
+										$(row).remove();
+
+										let rowCount = $('#best-of-voting-votes table#votes tbody tr').length;
+										$('#best-of-voting-votes .card-title span.count').text(rowCount);
+									});
+									Materialize.toast('<i class="material-icons green-text">done</i> Best-of Vote wurde entfernt', 3000);
+								} else {
+									Materialize.toast('<i class="material-icons red-text">clear</i> ' + response.message, 3000);
+								}
+							},
+							fail: function(error) {
+								console.log(error);
+								Materialize.toast('<i class="material-icons red-text">clear</i> Best-of Vote konnte nicht entfernt werden', 3000);
+							}
+						});
+					}
+				},
+				cancel: {
+					text: 'Nein',
+					btnClass: 'btn red',
+					action: function() {
+						return true;
+					}
+				}
+			}
+		});
+	});
+
+	/***********************/
+	// Best of Voting END
+	/***********************/
 });

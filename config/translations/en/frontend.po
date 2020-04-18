@@ -1,0 +1,197 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Domain: frontend\n"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/navbar.php:11
+msgid "Englisch"
+msgstr "English"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/navbar.php:16
+msgid "Deutsch"
+msgstr "German"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/best-of-voting-button.php:20
+msgctxt "best-of-voting"
+msgid "Infos"
+msgstr "Info"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/footer.php:9
+msgid "Kontakt"
+msgstr "Contact"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/footer.php:10
+msgid "Impressum"
+msgstr "Imprint"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/footer.php:11
+msgid "Datenschutz"
+msgstr "Privacy Policy"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/inactive.php:9
+msgctxt "best-of-voting"
+msgid "Das Voting derzeit nicht aktiv. Das Best of-Voting findet immer vom 1. eines Monats bis zum zweiten Freitag eines Monats, jeweils um punkt 00:00 Uhr, statt."
+msgstr "Voting is currently not active. The best of voting always takes place from the 1st of a month to the second Friday of a month, each at 00:00 a.m."
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/inactive.php:18
+msgctxt "best-of-voting"
+msgid "Das nächste Voting beginnt am %s um 00:00 Uhr. Versuche es dann bitte erneut."
+msgstr "The next voting starts on %s at 00:00 o'clock. Please try again then."
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/inactive.php:29
+msgctxt "best-of-voting"
+msgid "In der Zwischenzeit kannst Du aber %sdie von uns erstellten Playlisten%s mit in vergangenen Monaten erschienenen Songs anhören."
+msgstr "In the meantime you can listen to %the playlists%s we have created with songs released in the past months."
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/inactive.php:39
+msgctxt "best-of-voting"
+msgid "Die Playliste von %s:"
+msgstr "The playlist from %s:"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:9
+msgctxt "best-of-voting"
+msgid "Hier könnt Ihr für Eure Top Fünf Bronysongs des vergangenen Monats voten. Ich werde alle eingegangen Stimmen auswerten und die Songs mit den meisten Votes in die nächste Best-of Sendung aufnehmen. Ich hoffe auf eine hohe Beteiligung, damit das Voting Eure Meinungen so gut wie möglich widerspiegelt."
+msgstr "Here you can vote for your Top Five Bronysongs of the past month. I will evaluate all the votes received and include the songs with the most votes in the next best-of show. I hope for a high participation so that the voting reflects your opinions as good as possible."
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:16
+msgctxt "best-of-voting"
+msgid "Ihr müsst einen Link (bestenfalls zu YouTube) angegeben"
+msgstr "You must provide a link (at best to YouTube)"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:17
+msgctxt "best-of-voting"
+msgid "Die Angabe von Interpret und Titel des Songs ist optional"
+msgstr "The specification of artist and title of the song is optional"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:18
+msgctxt "best-of-voting"
+msgid "Das Voting läuft vom 1. des Monats, bis einen Tag vor der Best-of Sendung"
+msgstr "Voting runs from the 1st of the month and ends one day before the start of the best-of show"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:19
+msgctxt "best-of-voting"
+msgid "Es müssen nicht alle fünf Plätze vergeben werden, es reicht der erste Platz"
+msgstr "Not all five places have to be given, the first place is sufficient"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:20
+msgctxt "best-of-voting"
+msgid "Angegebene Nicknamen werden nicht veröffentlicht"
+msgstr "Specified nicknames will not be published"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:27
+msgctxt "best-of-voting"
+msgid "Zur Orientierung gibt es eine von mir erstellte Playlist mit im letzten Monat erschienen Songs:"
+msgstr "For orientation there is a playlist created by me with songs released in the last month:"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:42
+msgctxt "best-of-voting"
+msgid "Diese Playlist beinhaltet Bronysongs, welche im %s %s erschienen sind. Einige Künstler veröffentlichen ihre Songs auch auf anderen Plattformen als YouTube, zum Beispiel auf Bandcamp oder Soundcloud. Daher besteht die Möglichkeit, dass das Uploaddatum auf den verschieden Plattformen unterschiedlich ist. Aus diesem Grund kann es passieren, dass Songs, welche nicht im %s %s auf YouTube hochgeladen wurden, in dieser Playlist sind."
+msgstr "This playlist contains Bronysongs which were released in %s %s. Some artists also publish their songs on platforms other than YouTube, for example on Bandcamp or Soundcloud. Therefore it is possible that the upload date is different on the different platforms. For this reason it can happen that songs which were not uploaded in %s %s on YouTube are in this playlist."
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:55
+msgctxt "best-of-voting"
+msgid "Abschließend wünsche ich Euch viel Spaß beim Voten und hoffentlich hören wir uns bei der nächsten Best-of Sendung."
+msgstr "Finally, I wish you a lot of fun with the voting and hopefully we will hear from you at the next Best-of show."
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:61
+msgctxt "best-of-voting"
+msgid "− Euer Rainbow Rocks"
+msgstr "- Your DJRainbowRocks"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:74
+msgctxt "best-of-voting"
+msgid "Du hast für diesen Monat abgestimmt."
+msgstr "You've already voted for this month."
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:86
+msgctxt "best-of-voting"
+msgid "Vielen Dank für deine Stimme!"
+msgstr "Thank you for your vote!"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:99
+msgctxt "best-of-voting"
+msgid "Bitte gib deine Favoriten des Monats %s %s ein. Gib bitte nur Songs an, die im %s %s veröffentlicht wurden. Einsendeschluss ist der %s um 23:59 Uhr"
+msgstr "Please enter your favorites of the month %s %s. Please only enter songs that have been published in %s %s. Deadline is the %s at 23:59"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:114
+msgctxt "best-of-voting"
+msgid "Dein Nickname"
+msgstr "Your nickname"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:115
+msgctxt "best-of-voting"
+msgid "Nickname"
+msgstr "Nickname"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:121
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:132
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:143
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:154
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:165
+msgctxt "best-of-voting"
+msgid "https://youtube.com"
+msgstr "https://youtube.com"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:122
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:133
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:144
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:155
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:166
+msgctxt "best-of-voting"
+msgid "Link zum Song"
+msgstr "Link to the song"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:125
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:126
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:136
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:137
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:147
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:148
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:158
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:159
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:169
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:170
+msgctxt "best-of-voting"
+msgid "Titel - Interpret"
+msgstr "Title - Interpret"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:177
+msgctxt "best-of-voting"
+msgid "Die mit einem %s*%s markierten Felder sind Pflichtfelder"
+msgstr "The fields marked with a %s*%s are mandatory"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:187
+msgctxt "best-of-voting"
+msgid "abstimmen"
+msgstr "vote"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../src/Routes/Frontend/BestOfVotingController.php:127
+msgctxt "best-of-voting"
+msgid "Du hast bereits abgestimmt!"
+msgstr "You have already voted!"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../src/Routes/Frontend/BestOfVotingController.php:150
+msgctxt "best-of-voting"
+msgid "Ungültige Anzahl Vote Felder übergeben"
+msgstr "Invalid number of vote fields transferred"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../src/Routes/Frontend/BestOfVotingController.php:162
+msgctxt "best-of-voting"
+msgid "Der Link für den 1. Platz muss angegeben werden"
+msgstr "The link for the 1st place must be given"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../src/Routes/Frontend/BestOfVotingController.php:219
+msgctxt "best-of-voting"
+msgid "Fehler beim speichern"
+msgstr "Error while saving"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../src/Routes/Frontend/BestOfVotingController.php:225
+msgctxt "best-of-voting"
+msgid "Erfolgreich abgestimmt"
+msgstr "Successfully voted"
+
+#: /Applications/MAMP/htdocs/brg-panel/config/../src/Routes/Frontend/BestOfVotingController.php:226
+msgctxt "best-of-voting"
+msgid "Vielen Dank für deine Teilnahme! Wir wünschen dir viel Spaß bei der kommenden Best-of Sendung."
+msgstr "Thank you very much for your participation! We wish you a lot of fun with the upcoming Best-of show."

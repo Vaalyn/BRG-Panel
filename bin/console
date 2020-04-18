@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Symfony\Component\Console;
+use Vaalyn\PluginService\PluginLoader;
+
+error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
+ini_set('display_errors', '1');
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$app          = new \Slim\App(require_once __DIR__ . '/../config/config.php');
+$container    = $app->getContainer();
+$pluginLoader = new PluginLoader();
+
+if (file_exists(__DIR__ . '/../config/plugins.php')) {
+	$plugins = require_once __DIR__ . '/../config/plugins.php';
+
+	foreach ($plugins as $plugin) {
+		$pluginLoader->registerPlugin(new $plugin);
+	}
+}
+
+$pluginLoader->loadPlugins($container);
+
+$services = require_once __DIR__ . '/../config/services.php';
+foreach ($services as $serviceName => $service) {
+	$container[$serviceName] = $service;
+}
+
+$pluginLoader->registerPluginServices($container);
+
+$cli = new Console\Application();
+
+$commands = require_once __DIR__ . '/../config/commands.php';
+$cli->addCommands($commands);
+
+$cli->run();

@@ -1,9 +1,12 @@
 {
     "require": {
-        "php": ">=7.2.0",
+        "php": ">=7.3.0",
         "akrabat/ip-address-middleware": "^1.0",
         "azuracast/php-api-client": "dev-master",
         "bjeavons/zxcvbn-php": "^0.3.0",
+        "gettext/gettext": "^5.4",
+        "gettext/php-scanner": "^1.1",
+        "gettext/translator": "^1.0",
         "google/apiclient": "^2.2",
         "guzzlehttp/guzzle": "^6.3",
         "hellogerard/jobby": "^3.4",
@@ -13,6 +16,7 @@
         "league/flysystem": "^1.0",
         "league/flysystem-sftp": "^1.0",
         "moontoast/math": "^1.1",
+        "nesbot/carbon": "^2.32",
         "phpseclib/phpseclib": "^2.0",
         "ramsey/uuid": "^3.7",
         "respect/validation": "^1.1",

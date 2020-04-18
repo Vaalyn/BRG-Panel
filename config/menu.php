@@ -96,6 +96,13 @@ return [
 					]
 				]
 			],
+			'best_of_voting' => [
+				'display_name' => 'Best of Voting',
+				'icon' => null,
+				'url' => null,
+				'route_name' => 'dashboard.best-of-voting',
+				'classes' => []
+			],
 			'cloud' => [
 				'display_name' => '',
 				'icon' => 'cloud_circle',

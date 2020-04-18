@@ -1,6 +1,8 @@
 <?php
 
 return [
+	'api.dashboard.best-of-voting.set.config',
+	'api.dashboard.best-of-voting.vote.delete',
 	'api.dashboard.donation.add',
 	'api.dashboard.donation.delete',
 	'api.dashboard.history.export.csv',
@@ -20,6 +22,7 @@ return [
 	'api.dashboard.user.password',
 	'dashboard',
 	'dashboard.account',
+	'dashboard.best-of-voting',
 	'dashboard.donation',
 	'dashboard.history',
 	'dashboard.message',

@@ -35,6 +35,15 @@ return [
 				]
 			]
 		],
+		'best_of_voting' => [
+			'cookie' => [
+				'expire'   => 2592000,
+				'domain'   => '',
+				'httponly' => true,
+				'name'     => 'best-of-voting-voted',
+				'secure'   => false
+			],
+		],
 		'cors' => require_once __DIR__ . '/routes/cors.php',
 		'database' => [
 			'centova' => [

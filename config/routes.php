@@ -38,6 +38,9 @@ $app->group('/api', function() {
 });
 
 $app->group('/api/dashboard', function() {
+	$this->post('/best-of-voting/config', Api\Dashboard\BestOfVotingController::class . ':setBestOfVotingConfigAction')->setName('api.dashboard.best-of-voting.set.config');
+	$this->delete('/best-of-voting/vote/{id}', Api\Dashboard\BestOfVotingController::class . ':deleteBestOfVoteAction')->setName('api.dashboard.best-of-voting.vote.delete');
+
 	$this->post('/user/email', Api\Dashboard\UserController::class . ':updateEmailAction')->setName('api.dashboard.user.email');
 	$this->post('/user/password', Api\Dashboard\UserController::class . ':updatePasswordAction')->setName('api.dashboard.user.password');
 
@@ -80,6 +83,7 @@ $app->group('/cron', function() {
 $app->group('/dashboard', function() {
 	$this->get('', Frontend\Dashboard\DashboardController::class)->setName('dashboard');
 	$this->get('/account', Frontend\Dashboard\AccountController::class)->setName('dashboard.account');
+	$this->get('/best-of-voting', Frontend\Dashboard\BestOfVotingController::class)->setName('dashboard.best-of-voting');
 	$this->get('/donation', Frontend\Dashboard\DonationController::class)->setName('dashboard.donation');
 	$this->get('/history[/page/{page}]', Frontend\Dashboard\HistoryController::class)->setName('dashboard.history');
 	$this->get('/message[/page/{page}]', Frontend\Dashboard\MessageController::class)->setName('dashboard.message');
@@ -90,6 +94,10 @@ $app->group('/dashboard', function() {
 	$this->get('/statistic/request/user[/page/{page}]', Frontend\Dashboard\StatisticController::class . ':getRequestStatisticUserAction')->setName('dashboard.statistic.request.user');
 	$this->get('/vote[/page/{page}]', Frontend\Dashboard\VoteController::class)->setName('dashboard.votes');
 });
+
+$app->get('/best-of-voting[/{language:(?i)en|(?i)de}]', Frontend\BestOfVotingController::class)->setName('best-of-voting');
+$app->get('/best-of-voting-button[/{language:(?i)en|(?i)de}]', Frontend\BestOfVotingController::class . ':getBestOfVotingButtonAction')->setName('best-of-voting-button');
+$app->post('/best-of-voting/vote', Frontend\BestOfVotingController::class . ':saveBestOfVoteAction')->setName('best-of-voting.vote');
 
 $app->get('/documentation', Frontend\DocumentationController::class)->setName('documentation');
 

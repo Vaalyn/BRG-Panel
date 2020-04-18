@@ -14,17 +14,8 @@ class ErrorHandler {
 	 */
 	protected $settings;
 
-	/**
-	 * @param ContainerInterface $container
-	 *
-	 * @return Closure
-	 */
-	public function __invoke(ContainerInterface $container): Closure {
+	public function __construct($container) {
 		$this->settings = $container->settings;
-
-		return function(Request $request, Response $response, \Throwable $error) {
-			return $this->createErrorResponse($response, $error);
-		};
 	}
 
 	/**
@@ -33,11 +24,11 @@ class ErrorHandler {
 	 *
 	 * @return Response
 	 */
-	private function createErrorResponse(Response $response, Throwable $error): Response {
+	public function createErrorResponse(Response $response, \Throwable $exception): Response {
 		$message = 'Beim Verarbeiten der Anfrage ist ein Fehler aufgetreten.';
 
 		if ($this->settings['displayErrorDetails']) {
-			$message .= '<pre>' . $error . '</pre>';
+			$message .= '<pre>' . $exception . '</pre>';
 		}
 
 		return $response

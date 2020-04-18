@@ -7,6 +7,14 @@ return [
 	'api.community.user.coin.remove' => [
 		'authorizationToken'
 	],
+	'api.dashboard.best-of-voting.set.config' => [
+		'admin',
+		'bestOfVoting'
+	],
+	'api.dashboard.best-of-voting.vote.delete' => [
+		'admin',
+		'bestOfVoting'
+	],
 	'api.dashboard.donation.add' => [
 		'admin'
 	],
@@ -18,6 +26,10 @@ return [
 	],
 	'api.dashboard.track.votes.ignore' => [
 		'admin'
+	],
+	'dashboard.best-of-voting' => [
+		'admin',
+		'bestOfVoting'
 	],
 	'dashboard.donation' => [
 		'admin'

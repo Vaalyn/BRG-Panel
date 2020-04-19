@@ -46,7 +46,7 @@ msgstr ""
 
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/inactive.php:39
 msgctxt "best-of-voting"
-msgid "Die Playliste von %s:"
+msgid "Die <a href="https://www.youtube.com/playlist?list=%s" target="_blank">Playliste von %s</a>:"
 msgstr ""
 
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:9
@@ -79,9 +79,9 @@ msgctxt "best-of-voting"
 msgid "Angegebene Nicknamen werden nicht veröffentlicht"
 msgstr ""
 
-#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:27
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:28
 msgctxt "best-of-voting"
-msgid "Zur Orientierung gibt es eine von mir erstellte Playlist mit im letzten Monat erschienen Songs:"
+msgid "Zur Orientierung gibt es eine von mir erstellte <a href="https://www.youtube.com/playlist?list=%s" target="_blank">Playlist</a> mit im letzten Monat erschienen Songs:"
 msgstr ""
 
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:42

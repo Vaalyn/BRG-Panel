@@ -24,7 +24,10 @@
 
 			<div class="row">
 				<div class="col s12">
-					<?php echo p__('best-of-voting', 'Zur Orientierung gibt es eine von mir erstellte Playlist mit im letzten Monat erschienen Songs:'); ?>
+					<?php echo sprintf(
+						p__('best-of-voting', 'Zur Orientierung gibt es eine von mir erstellte <a href="https://www.youtube.com/playlist?list=%s" target="_blank">Playlist</a> mit im letzten Monat erschienen Songs:'),
+						$votingPlaylistCode
+					); ?>
 				</div>
 			</div>
 

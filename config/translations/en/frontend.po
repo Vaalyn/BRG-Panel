@@ -46,8 +46,8 @@ msgstr "In the meantime you can listen to %the playlists%s we have created with 
 
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/inactive.php:39
 msgctxt "best-of-voting"
-msgid "Die Playliste von %s:"
-msgstr "The playlist from %s:"
+msgid "Die <a href="https://www.youtube.com/playlist?list=%s" target="_blank">Playliste von %s</a>:"
+msgstr "The <a href="https://www.youtube.com/playlist?list=%s" target="_blank">playlist from %s</a>:"
 
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:9
 msgctxt "best-of-voting"
@@ -79,10 +79,10 @@ msgctxt "best-of-voting"
 msgid "Angegebene Nicknamen werden nicht veröffentlicht"
 msgstr "Specified nicknames will not be published"
 
-#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:27
+#: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:28
 msgctxt "best-of-voting"
-msgid "Zur Orientierung gibt es eine von mir erstellte Playlist mit im letzten Monat erschienen Songs:"
-msgstr "For orientation there is a playlist created by me with songs released in the last month:"
+msgid "Zur Orientierung gibt es eine von mir erstellte <a href="https://www.youtube.com/playlist?list=%s" target="_blank">Playlist</a> mit im letzten Monat erschienen Songs:"
+msgstr "For orientation there is a <a href="https://www.youtube.com/playlist?list=%s" target="_blank">playlist</a> created by me with songs released in the last month:"
 
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:42
 msgctxt "best-of-voting"

@@ -36,7 +36,8 @@
 			<div class="row">
 				<div class="col s12">
 				<?php echo sprintf(
-					p__('best-of-voting', 'Die Playliste von %s:'),
+					p__('best-of-voting', 'Die <a href="https://www.youtube.com/playlist?list=%s" target="_blank">Playliste von %s</a>:'),
+					$votingPlaylistCode,
 					$votingStartDate->locale($language)->isoFormat('MMMM')
 				); ?>
 				</div>

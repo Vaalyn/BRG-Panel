@@ -88,6 +88,8 @@ class BestOfVotingController {
 			$isVotingActive = false;
 		}
 
+		$inactivePlaylistMonthDate = $votingStartDate->copy()->subMonthNoOverflow(1);
+
 		$hasAlreadyVoted = BestOfVote::where('ip_address', '=', $ipAddress)->exists();
 
 		if ($this->checkVotedCookie()) {
@@ -97,6 +99,7 @@ class BestOfVotingController {
 		return $this->renderer->render($response, '/best-of-voting/best-of-voting.php', [
 			'flashMessages' => $this->flashMessages->getMessages(),
 			'hasAlreadyVoted' => $hasAlreadyVoted,
+			'inactivePlaylistMonthDate' => $inactivePlaylistMonthDate,
 			'isVotingActive' => $isVotingActive,
 			'language' => $language,
 			'request' => $request,

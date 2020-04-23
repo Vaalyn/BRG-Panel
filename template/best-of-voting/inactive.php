@@ -38,7 +38,7 @@
 				<?php echo sprintf(
 					p__('best-of-voting', 'Die <a href="https://www.youtube.com/playlist?list=%s" target="_blank">Playliste von %s</a>:'),
 					$votingPlaylistCode,
-					$votingStartDate->locale($language)->isoFormat('MMMM')
+					$inactivePlaylistMonthDate->locale($language)->isoFormat('MMMM')
 				); ?>
 				</div>
 			</div>

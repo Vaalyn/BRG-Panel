@@ -42,7 +42,7 @@ msgstr "The next voting starts on %s at 00:00 o'clock. Please try again then."
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/inactive.php:29
 msgctxt "best-of-voting"
 msgid "In der Zwischenzeit kannst Du aber %sdie von uns erstellten Playlisten%s mit in vergangenen Monaten erschienenen Songs anhören."
-msgstr "In the meantime you can listen to %the playlists%s we have created with songs released in the past months."
+msgstr "In the meantime you can listen to %sthe playlists%s we have created with songs released in the past months."
 
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/inactive.php:39
 msgctxt "best-of-voting"

@@ -15,7 +15,7 @@
 		<a href="<?php echo $router->pathFor('best-of-voting'); ?>" class="btn" target="_blank">
 			<img src="image/brg_logo.png" aria-hidden="true"/>
 			<?php if ($isVotingActive): ?>
-				Best-of Voting <?php echo $votingEndDate->locale($language)->isoFormat('MMMM'); ?>
+				Best-of Voting <?php echo $votingEndDate->copy()->locale($language)->subMonthNoOverflow(1)->isoFormat('MMMM'); ?>
 			<?php else : ?>
 				Best-of Voting <?php echo p__('best-of-voting', 'Infos'); ?>
 			<?php endif; ?>

@@ -1,7 +1,7 @@
 <div class="col s12 l6">
 	<div class="card color-2">
 		<div class="card-content white-text">
-			<h3 class="card-title center">Best-of Voting <?php echo $votingEndDate->locale($language)->isoFormat('MMMM'); ?></h3>
+			<h3 class="card-title center">Best-of Voting <?php echo $votingEndDate->copy()->locale($language)->subMonthNoOverflow(1)->isoFormat('MMMM'); ?></h3>
 			<div class="divider"></div>
 
 			<div class="row">
@@ -43,9 +43,9 @@
 						<div class="card-content white-text">
 							<?php echo sprintf(
 								p__('best-of-voting', 'Diese Playlist beinhaltet Bronysongs, welche im %s %s erschienen sind. Einige Künstler veröffentlichen ihre Songs auch auf anderen Plattformen als YouTube, zum Beispiel auf Bandcamp oder Soundcloud. Daher besteht die Möglichkeit, dass das Uploaddatum auf den verschieden Plattformen unterschiedlich ist. Aus diesem Grund kann es passieren, dass Songs, welche nicht im %s %s auf YouTube hochgeladen wurden, in dieser Playlist sind.'),
-								$votingStartDate->locale($language)->isoFormat('MMMM'),
+								$votingStartDate->copy()->locale($language)->subMonthNoOverflow(1)->isoFormat('MMMM'),
 								$votingStartDate->format('Y'),
-								$votingStartDate->locale($language)->isoFormat('MMMM'),
+								$votingStartDate->copy()->locale($language)->subMonthNoOverflow(1)->isoFormat('MMMM'),
 								$votingStartDate->format('Y')
 							); ?>
 						</div>
@@ -100,9 +100,9 @@
 					<div class="col s12">
 						<?php echo sprintf(
 							p__('best-of-voting', 'Bitte gib deine Favoriten des Monats %s %s ein. Gib bitte nur Songs an, die im %s %s veröffentlicht wurden. Einsendeschluss ist der %s um 23:59 Uhr'),
-							$votingEndDate->locale($language)->isoFormat('MMMM'),
+							$votingEndDate->copy()->locale($language)->subMonthNoOverflow(1)->isoFormat('MMMM'),
 							$votingEndDate->format('Y'),
-							$votingEndDate->locale($language)->isoFormat('MMMM'),
+							$votingEndDate->copy()->locale($language)->subMonthNoOverflow(1)->isoFormat('MMMM'),
 							$votingEndDate->format('Y'),
 							$votingEndDate->format('d.m.Y')
 						); ?>

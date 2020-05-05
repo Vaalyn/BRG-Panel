@@ -125,8 +125,8 @@
 									<label for="link-1">1. <?php echo p__('best-of-voting', 'Link zum Song'); ?> <span class="red-text">*</span></label>
 								</div>
 								<div class="input-field col s6">
-									<input type="text" name="votes[0][songname]" id="songname-1" class="validate" placeholder="<?php echo p__('best-of-voting', 'Titel - Interpret'); ?>">
-									<label for="songname-1">1. <?php echo p__('best-of-voting', 'Titel - Interpret'); ?></label>
+									<input type="text" name="votes[0][songname]" id="songname-1" class="validate" placeholder="<?php echo p__('best-of-voting', 'Interpret - Titel'); ?>">
+									<label for="songname-1">1. <?php echo p__('best-of-voting', 'Interpret - Titel'); ?></label>
 								</div>
 							</div>
 
@@ -136,8 +136,8 @@
 									<label for="link-2">2. <?php echo p__('best-of-voting', 'Link zum Song'); ?></label>
 								</div>
 								<div class="input-field col s6">
-									<input type="text" name="votes[1][songname]" id="songname-2" placeholder="<?php echo p__('best-of-voting', 'Titel - Interpret'); ?>">
-									<label for="songname-2">2. <?php echo p__('best-of-voting', 'Titel - Interpret'); ?></label>
+									<input type="text" name="votes[1][songname]" id="songname-2" placeholder="<?php echo p__('best-of-voting', 'Interpret - Titel'); ?>">
+									<label for="songname-2">2. <?php echo p__('best-of-voting', 'Interpret - Titel'); ?></label>
 								</div>
 							</div>
 
@@ -147,8 +147,8 @@
 									<label for="link-3">3. <?php echo p__('best-of-voting', 'Link zum Song'); ?></label>
 								</div>
 								<div class="input-field col s6">
-									<input type="text" name="votes[2][songname]" id="songname-3" placeholder="<?php echo p__('best-of-voting', 'Titel - Interpret'); ?>">
-									<label for="songname-3">3. <?php echo p__('best-of-voting', 'Titel - Interpret'); ?></label>
+									<input type="text" name="votes[2][songname]" id="songname-3" placeholder="<?php echo p__('best-of-voting', 'Interpret - Titel'); ?>">
+									<label for="songname-3">3. <?php echo p__('best-of-voting', 'Interpret - Titel'); ?></label>
 								</div>
 							</div>
 
@@ -158,8 +158,8 @@
 									<label for="link-4">4. <?php echo p__('best-of-voting', 'Link zum Song'); ?></label>
 								</div>
 								<div class="input-field col s6">
-									<input type="text" name="votes[3][songname]" id="songname-4" placeholder="<?php echo p__('best-of-voting', 'Titel - Interpret'); ?>">
-									<label for="songname-4">4. <?php echo p__('best-of-voting', 'Titel - Interpret'); ?></label>
+									<input type="text" name="votes[3][songname]" id="songname-4" placeholder="<?php echo p__('best-of-voting', 'Interpret - Titel'); ?>">
+									<label for="songname-4">4. <?php echo p__('best-of-voting', 'Interpret - Titel'); ?></label>
 								</div>
 							</div>
 
@@ -169,8 +169,8 @@
 									<label for="link-5">5. <?php echo p__('best-of-voting', 'Link zum Song'); ?></label>
 								</div>
 								<div class="input-field col s6">
-									<input type="text" name="votes[4][songname]" id="songname-5" placeholder="<?php echo p__('best-of-voting', 'Titel - Interpret'); ?>">
-									<label for="songname-5">5. <?php echo p__('best-of-voting', 'Titel - Interpret'); ?></label>
+									<input type="text" name="votes[4][songname]" id="songname-5" placeholder="<?php echo p__('best-of-voting', 'Interpret - Titel'); ?>">
+									<label for="songname-5">5. <?php echo p__('best-of-voting', 'Interpret - Titel'); ?></label>
 								</div>
 							</div>
 

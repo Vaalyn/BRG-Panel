@@ -153,8 +153,8 @@ msgstr "Link to the song"
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:169
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:170
 msgctxt "best-of-voting"
-msgid "Titel - Interpret"
-msgstr "Title - Interpret"
+msgid "Interpret - Titel"
+msgstr "Artist - Title"
 
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:177
 msgctxt "best-of-voting"

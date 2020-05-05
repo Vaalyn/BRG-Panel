@@ -153,7 +153,7 @@ msgstr ""
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:169
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:170
 msgctxt "best-of-voting"
-msgid "Titel - Interpret"
+msgid "Interpret - Titel"
 msgstr ""
 
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:177

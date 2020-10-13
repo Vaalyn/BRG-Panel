@@ -53,7 +53,7 @@ class BestOfVotingController {
 		$votingStartDate = Carbon::createFromFormat('Y-m-d', $votingStartDateSetting->value);
 		$votingEndDate = Carbon::createFromFormat('Y-m-d', $votingEndDateSetting->value);
 
-		$bestOfVotes = BestOfVote::all();
+		$bestOfVotes = BestOfVote::orderBy('created_at')->get();
 
 		return $this->renderer->render($response, '/dashboard/best-of-voting/best-of-voting.php', [
 			'authentication' => $this->authentication,

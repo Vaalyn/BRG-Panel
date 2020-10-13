@@ -104,7 +104,7 @@
 							$votingEndDate->format('Y'),
 							$votingEndDate->copy()->locale($language)->subMonthNoOverflow(1)->isoFormat('MMMM'),
 							$votingEndDate->format('Y'),
-							$votingEndDate->format('d.m.Y')
+							$votingEndDate->copy()->subDay()->format('d.m.Y')
 						); ?>
 					</div>
 				</div>

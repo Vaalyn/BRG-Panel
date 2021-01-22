@@ -616,6 +616,52 @@ $(document).ready(function() {
 	// Messages START
 	/********************/
 
+	$('#messages .delete-selected-messages').click(function(event) {
+		$.confirm({
+			theme: 'supervan',
+			title: 'Ausgewählte Nachrichten entfernen?',
+			content: 'Die Nachrichten wirklich entfernen?',
+			buttons: {
+				confirm: {
+					text: 'Ja',
+					btnClass: 'btn green',
+					action: function() {
+						$('#messages tbody').find('tr').each((index, row) => {
+							if ($(row).find('.delete-message-checkbox').prop('checked')) {
+								var uid = $(row).find('.delete-message').data('uid');
+
+								$.ajax({
+									type: 'DELETE',
+									url: document.baseURI + 'api/dashboard/message/' + uid,
+									data: null,
+									success: function(response) {
+										if (response.status === 'success') {
+											$(row).fadeOut(300, function(row) {
+												$(row).remove();
+											});
+											Materialize.toast('<i class="material-icons green-text">done</i> Nachricht wurde entfernt', 3000);
+										}
+									},
+									fail: function(error) {
+										console.log(error);
+										Materialize.toast('<i class="material-icons red-text">clear</i> Nachricht konnte nicht entfernt werden', 3000);
+									}
+								});
+							}
+						});
+					}
+				},
+				cancel: {
+					text: 'Nein',
+					btnClass: 'btn red',
+					action: function() {
+						return true;
+					}
+				}
+			}
+		});
+	});
+
 	$('#messages .delete-message').click(function(event) {
 		event.preventDefault();
 

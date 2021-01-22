@@ -10,6 +10,7 @@
 							<table class="bordered striped" id="messages">
 								<thead class="color-1">
 									<tr>
+										<th></th>
 										<th>Id</th>
 										<th>Nickname</th>
 										<th>Zeitpunkt</th>
@@ -20,6 +21,10 @@
 								<tbody>
 									<?php foreach ($messages as $message) : ?>
 										<tr>
+											<td class="center-align">
+												<input type="checkbox" id="delete_message_checkbox_<?php echo $message->message_id; ?>" class="delete-message-checkbox filled-in" />
+												<label for="delete_message_checkbox_<?php echo $message->message_id; ?>"></label>
+											</td>
 											<td><?php echo $message->message_id; ?></td>
 											<td><?php echo htmlentities($message->nickname); ?></td>
 											<td><?php echo $message->created_at->format('H:i:s - d.m.Y'); ?></td>
@@ -31,7 +36,7 @@
 											</td>
 										</tr>
 									<?php endforeach; ?>
-									
+
 									<?php if (!count($messages)) : ?>
 										<tr>
 											<td colspan="7">
@@ -40,6 +45,15 @@
 										</tr>
 									<?php endif; ?>
 								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="6">
+											<button class="btn delete-selected-messages waves-effect waves-light color-1" type="submit">Ausgewählte löschen
+												<i class="material-icons right">delete</i>
+											</button>
+										</td>
+									</tr>
+								</tfoot>
 							</table>
 
 							<?php include(__DIR__ . '/../pagination.php'); ?>

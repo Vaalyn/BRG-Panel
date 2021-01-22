@@ -313,7 +313,7 @@ function deregisterRequestTrackClick() {
 }
 
 function deregisterSendMessageClick() {
-	$(document).off('click', 'brg-player-system-modal #send-message');
+	$(document).off('click', '#brg-player-system-modal #send-message');
 }
 
 /* ############### */

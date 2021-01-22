@@ -192,18 +192,25 @@ function registerRequestSongClick() {
 			message: $('#brg-player-system-modal #message').val()
 		};
 
+		let buttonReference = $(this);
+
+		$(buttonReference).hide();
+
 		$.post(brgPlayerBaseUrl + '/api/request', queryParams)
 			.done(function(response) {
 				if (response.status === 'success') {
 					Materialize.toast('<i class="material-icons green-text text-darken-1">done</i> ' + response.message, 2000, '', function() {
 						$('#brg-player-system-modal').modal('close');
+						$(buttonReference).show();
 					});
 				} else {
 					Materialize.toast('<i class="material-icons red-text text-darken-1">error_outline</i> ' + response.message, 3000);
+					$(buttonReference).show();
 				}
 			})
 			.fail(function() {
 				Materialize.toast('<i class="material-icons red-text text-darken-1">error_outline</i> Es ist ein Fehler aufgetreten', 3000);
+				$(buttonReference).show();
 			});
 	});
 }
@@ -223,18 +230,25 @@ function registerRequestTrackClick(registerForAutoDj) {
 			queryParams.message = $('#brg-player-system-modal #message').val();
 		}
 
+		let buttonReference = $(this);
+
+		$(buttonReference).hide();
+
 		$.post(requestApiUrl, queryParams)
 			.done(function(response) {
 				if (response.status === 'success') {
 					Materialize.toast('<i class="material-icons green-text text-darken-1">done</i> ' + response.message, 2000, '', function() {
 						$('#brg-player-system-modal').modal('close');
+						$(buttonReference).show();
 					});
 				} else {
 					Materialize.toast('<i class="material-icons red-text text-darken-1">error_outline</i> ' + response.message, 3000);
+					$(buttonReference).show();
 				}
 			})
 			.fail(function() {
 				Materialize.toast('<i class="material-icons red-text text-darken-1">error_outline</i> Es ist ein Fehler aufgetreten', 3000);
+				$(buttonReference).show();
 			});
 	});
 }
@@ -246,18 +260,25 @@ function registerSendMessageClick() {
 			message: $('#brg-player-system-modal #message').val()
 		};
 
+		let buttonReference = $(this);
+
+		$(buttonReference).hide();
+
 		$.post(brgPlayerBaseUrl + '/api/message', queryParams)
 			.done(function(response) {
 				if (response.status === 'success') {
 					Materialize.toast('<i class="material-icons green-text text-darken-1">done</i> ' + response.message, 2000, '', function() {
 						$('#brg-player-system-modal').modal('close');
+						$(buttonReference).show();
 					});
 				} else {
 					Materialize.toast('<i class="material-icons red-text text-darken-1">error_outline</i> ' + response.message, 3000);
+					$(buttonReference).show();
 				}
 			})
 			.fail(function() {
 				Materialize.toast('<i class="material-icons red-text text-darken-1">error_outline</i> Es ist ein Fehler aufgetreten', 3000);
+				$(buttonReference).show();
 			});
 	});
 }

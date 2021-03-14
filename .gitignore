@@ -1,5 +1,9 @@
+panel.env
+docker-compose.yml
+
 /config/config.php
 /config/plugins.php
+/docker/mariadb/data/*
 /files/*
 !/files/.gitkeep
 /plugin/*

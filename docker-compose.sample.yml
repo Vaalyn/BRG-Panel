@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+    web:
+        image: nginx:latest
+        container_name: web
+        ports:
+            - "80:80"
+        depends_on:
+            - php
+        volumes:
+            - .:/brg_panel
+            - ./docker/nginx/site.conf:/etc/nginx/conf.d/default.conf
+        links:
+            - php
+        restart: always
+
+    php:
+        container_name: php
+        build:
+            context: ./docker/php
+        depends_on:
+            - composer
+            - mariadb
+        volumes:
+            - .:/brg_panel
+        env_file: panel.env
+        restart: always
+
+    mariadb:
+        container_name: mariadb
+        build:
+            context: ./docker/mariadb
+        volumes:
+            - ./docker/mariadb/data:/var/lib/mysql
+        env_file: panel.env
+        restart: always
+
+    db_migration:
+        container_name: db_migration
+        build:
+            context: ./docker/db_migration
+        depends_on:
+            - mariadb
+        volumes:
+            - .:/brg_panel
+        restart: 'no'
+
+    composer:
+        container_name: composer
+        build:
+            context: ./docker/composer
+        command: install --ignore-platform-reqs
+        volumes:
+            - .:/app
+        restart: 'no'

@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'cron',
+	/*'cron',*/
 	'cron.current.event.update',
 	'cron.history.update',
 	'cron.streaminfo.update',

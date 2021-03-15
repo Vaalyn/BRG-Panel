@@ -4,6 +4,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use BRG\Panel\Middleware\Cors\CorsMiddleware;
 use BRG\Panel\Middleware\PaginationLinkParameters\PaginationLinkParametersMiddleware;
+use Slim\Http\Request;
+use Slim\Http\Response;
 use Vaalyn\AuthenticationService\Middleware\AuthenticationMiddleware;
 use Vaalyn\AuthorizationService\Middleware\AuthorizationMiddleware;
 use Vaalyn\MenuBuilderService\Middleware\MenuMiddleware;
@@ -38,6 +40,30 @@ $app->add(new AuthorizationMiddleware($container));
 $app->add(new AuthenticationMiddleware($container));
 $app->add(new CorsMiddleware($container));
 $app->add(new RKA\Middleware\IpAddress(false, []));
+
+$app->add(function (Request $request, Response $response, callable $next) {
+    $uri = $request->getUri();
+    $path = $uri->getPath();
+    if ($path != '/' && substr($path, -1) == '/') {
+        // recursively remove slashes when its more than 1 slash
+        while(substr($path, -1) == '/') {
+            $path = substr($path, 0, -1);
+        }
+
+        // permanently redirect paths with a trailing slash
+        // to their non-trailing counterpart
+        $uri = $uri->withPath($path);
+
+        if($request->getMethod() == 'GET') {
+            return $response->withRedirect((string)$uri, 301);
+        }
+        else {
+            return $next($request->withUri($uri), $response);
+        }
+    }
+
+    return $next($request, $response);
+});
 
 require_once __DIR__ . '/../config/routes.php';
 

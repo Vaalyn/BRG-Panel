@@ -39,7 +39,7 @@ $app->add(new PaginationLinkParametersMiddleware($container));
 $app->add(new AuthorizationMiddleware($container));
 $app->add(new AuthenticationMiddleware($container));
 $app->add(new CorsMiddleware($container));
-$app->add(new RKA\Middleware\IpAddress(false, []));
+$app->add(new RKA\Middleware\IpAddress(true, []));
 
 $app->add(function (Request $request, Response $response, callable $next) {
     $uri = $request->getUri();

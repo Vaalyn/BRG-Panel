@@ -40,7 +40,7 @@ class VoteController {
 		$mountpoint = $args['mountpoint'];
 		$ipAddress  = $request->getAttribute('ip_address');
 
-		$stream = Stream::where('mountpoint', '=', $args['mountpoint'])->first();
+		$stream = Stream::where('mountpoint', '=', $mountpoint)->first();
 
 		if (!isset($stream)) {
 			$apiResponse = (new JsonApiResponseDto())
@@ -93,11 +93,13 @@ class VoteController {
 	 */
 	public function createVoterAction(Request $request, Response $response, array $args): Response {
 		$requestOrigin = $request->getAttribute('origin');
+		$ipAddress = $request->getAttribute('ip_address');
 
 		try {
-			$voter           = new Voter();
-			$voter->voter_id = Uuid::uuid4()->toString();
-			$voter->origin   = $requestOrigin;
+			$voter             = new Voter();
+			$voter->voter_id   = Uuid::uuid4()->toString();
+			$voter->origin     = $requestOrigin;
+			$voter->ip_address = $ipAddress;
 
 			if (!$voter->save()) {
 				throw new InfoException('Fehler beim registrieren als Voter');

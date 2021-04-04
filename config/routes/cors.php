@@ -15,12 +15,14 @@ return [
 	'api.track.list' => '*',
 	'api.track.list.autodj' => '*',
 	'api.track.autodj' => '*',
-	'api.vote.check' => '*',
+	'api.vote.check' => [
+		'https://www.bronyradiogermany.com',
+	],
 	'api.vote.vote' => [
-		'https://www.bronyradiogermany.com'
+		'https://www.bronyradiogermany.com',
 	],
 	'api.voter.add' => [
-		'https://www.bronyradiogermany.com'
+		'https://www.bronyradiogermany.com',
 	],
 	'player' => '*',
 	'player.embed' => '*',

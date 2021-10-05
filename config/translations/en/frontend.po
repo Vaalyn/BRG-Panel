@@ -114,6 +114,16 @@ msgctxt "best-of-voting"
 msgid "Bitte gib deine Favoriten des Monats %s %s ein. Gib bitte nur Songs an, die im %s %s veröffentlicht wurden. Einsendeschluss ist der %s um 23:59 Uhr"
 msgstr "Please enter your favorites of the month %s %s. Please only enter songs that have been published in %s %s. Deadline is the %s at 23:59"
 
+#: /brg_panel/config/../template/best-of-voting/active.php:115
+msgctxt "best-of-voting-new-generation-1"
+msgid "Attention, the songs from the movie, \"My Little Pony: New Generation\" could not all be included in the YouTube playlist, but these may of course still be voted."
+msgstr ""
+
+#: /brg_panel/config/../template/best-of-voting/active.php:123
+msgctxt "best-of-voting-new-generation-2"
+msgid "Therefore, for these songs, write as a link: google.com and then add the title of the desired movie song."
+msgstr ""
+
 #: /Applications/MAMP/htdocs/brg-panel/config/../template/best-of-voting/active.php:114
 msgctxt "best-of-voting"
 msgid "Dein Nickname"

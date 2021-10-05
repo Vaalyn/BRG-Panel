@@ -110,6 +110,22 @@
 				</div>
 
 				<div class="row">
+					<div class="col s12 red-text">
+						<?php echo sprintf(
+							p__('best-of-voting-new-generation-1', 'Achtung, die Songs aus dem Film, "My Little Pony: New Generation" konnten nicht alle in die YouTube-Playlist aufgenommen werden, diese dürfen aber natürlich gevotet werden.')
+						); ?>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12 red-text">
+						<?php echo sprintf(
+							p__('best-of-voting-new-generation-2', 'Schreibt daher bei diesen Songs als link: google.com und ergänzt dann den Titel des gewünschten Film-Songs.')
+						); ?>
+					</div>
+				</div>
+
+				<div class="row">
 					<div class="col s12">
 						<form action="<?php echo $router->pathFor('best-of-voting.vote'); ?>" method="POST">
 							<div class="row">

@@ -65,12 +65,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AzuraCast/php-api-client.git",
-                "reference": "d51808f2e6794e1ae80b55ab353c67f153bd05da"
+                "reference": "16f7808af24ddd6d13e05e580b0a7f7f65f6d4e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AzuraCast/php-api-client/zipball/d51808f2e6794e1ae80b55ab353c67f153bd05da",
-                "reference": "d51808f2e6794e1ae80b55ab353c67f153bd05da",
+                "url": "https://api.github.com/repos/AzuraCast/php-api-client/zipball/16f7808af24ddd6d13e05e580b0a7f7f65f6d4e4",
+                "reference": "16f7808af24ddd6d13e05e580b0a7f7f65f6d4e4",
                 "shasum": ""
             },
             "require": {
@@ -118,7 +118,7 @@
             ],
             "support": {
                 "issues": "https://github.com/AzuraCast/php-api-client/issues",
-                "source": "https://github.com/AzuraCast/php-api-client/tree/main"
+                "source": "https://github.com/AzuraCast/php-api-client/tree/2.0.1"
             },
             "funding": [
                 {
@@ -134,7 +134,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-04-06T22:55:42+00:00"
+            "time": "2022-01-24T19:58:41+00:00"
         },
         {
             "name": "bjeavons/zxcvbn-php",
@@ -4476,5 +4476,5 @@
         "php": ">=7.3.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

@@ -21,6 +21,10 @@ return [
 	'api.dashboard.donation.delete' => [
 		'admin'
 	],
+	'api.dashboard.history.export.csv' => [
+		'admin',
+		'history'
+	],
 	'api.dashboard.setting.currently-needed-donation-amount' => [
 		'admin'
 	],
@@ -33,6 +37,26 @@ return [
 	],
 	'dashboard.donation' => [
 		'admin'
+	],
+	'dashboard.history' => [
+		'admin',
+		'history'
+	],
+	'dashboard.statistic.request' => [
+		'admin',
+		'statistic'
+	],
+	'dashboard.statistic.request.artist' => [
+		'admin',
+		'statistic'
+	],
+	'dashboard.statistic.request.title' => [
+		'admin',
+		'statistic'
+	],
+	'dashboard.statistic.request.user' => [
+		'admin',
+		'statistic'
 	],
 	'dashboard.votes' => [
 		'admin'

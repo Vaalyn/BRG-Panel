@@ -51,5 +51,10 @@
 			"merge-extra-deep": false,
 			"merge-scripts": true
 		}
-	}
+	},
+    "config": {
+        "allow-plugins": {
+            "wikimedia/composer-merge-plugin": true
+        }
+    }
 }

@@ -16,7 +16,6 @@ class User extends Model {
 	protected $connection = 'panel';
 	protected $table      = self::TABLE_NAME;
 	protected $primaryKey = self::PRIMARY_KEY;
-	protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
 
 	/**
 	 * @return HasMany

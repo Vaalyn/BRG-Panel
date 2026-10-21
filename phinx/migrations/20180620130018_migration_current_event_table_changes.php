@@ -27,13 +27,15 @@ class MigrationCurrentEventTableChanges extends AbstractMigration
      */
     public function change()
     {
-		$this->table('current_event')->drop();
+		$this->table('current_event')->drop()->save();
 
 		$this->table('setting')
 			->insert([
 				[
 					'key' => 'current_event',
-					'value' => 'DJ-Pony Lucy'
+					'value' => 'DJ-Pony Lucy',
+					'created_at' => (new DateTime())->format('Y-m-d H:i:s'),
+					'updated_at' => (new DateTime())->format('Y-m-d H:i:s'),
 				]
 			])
 			->saveData();

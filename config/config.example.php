@@ -87,7 +87,7 @@ return [
 		],
 		'flysystem' => [
 			'files' => [
-				'adapter' => 'League\Flysystem\Adapter\Local',
+				'adapter' => 'League\Flysystem\Local\LocalFilesystemAdapter',
 				'arguments' => [
 					'path' => __DIR__ . '/../files'
 				],

@@ -31,15 +31,21 @@ class MigrationAddBestOfVoting extends AbstractMigration
             ->insert([
                 [
                     'key' => 'best_of_voting_start_date',
-                    'value' => '1970-01-01'
+                    'value' => '1970-01-01',
+                    'created_at' => (new DateTime())->format('Y-m-d H:i:s'),
+                    'updated_at' => (new DateTime())->format('Y-m-d H:i:s'),
                 ],
                 [
                     'key' => 'best_of_voting_end_date',
-                    'value' => '1970-01-01'
+                    'value' => '1970-01-01',
+                    'created_at' => (new DateTime())->format('Y-m-d H:i:s'),
+                    'updated_at' => (new DateTime())->format('Y-m-d H:i:s'),
                 ],
                 [
                     'key' => 'best_of_voting_playlist_code',
-                    'value' => ''
+                    'value' => '',
+                    'created_at' => (new DateTime())->format('Y-m-d H:i:s'),
+                    'updated_at' => (new DateTime())->format('Y-m-d H:i:s'),
                 ],
             ])
             ->saveData();

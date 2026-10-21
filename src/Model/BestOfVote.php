@@ -9,7 +9,6 @@ class BestOfVote extends Model {
 	protected $connection = 'panel';
 	protected $table      = 'best_of_vote';
 	protected $primaryKey = 'best_of_vote_id';
-	protected $dates      = ['created_at', 'updated_at'];
 
 	public $incrementing = false;
 }

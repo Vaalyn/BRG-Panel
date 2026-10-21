@@ -30,6 +30,9 @@ class MigrationCoinEventTableChanges extends AbstractMigration
 		$this->table('coin_event')
 			->addColumn('updated_at', 'datetime', ['after' => 'created_at', 'null' => false])
 			->changeColumn('id_community_user', 'integer',  ['after' => 'coins', 'null' => false])
+			->update();
+
+		$this->table('coin_event')
 			->renameColumn('id', 'coin_event_id')
 			->renameColumn('id_community_user', 'community_user_id')
 			->update();

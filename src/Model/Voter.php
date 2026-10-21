@@ -9,7 +9,6 @@ class Voter extends Model {
 	protected $connection = 'panel';
 	protected $table      = 'voter';
 	protected $primaryKey = 'voter_id';
-	protected $dates      = ['created_at', 'updated_at'];
 
 	public $incrementing = false;
 

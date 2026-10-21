@@ -11,5 +11,4 @@ class Request extends Model {
 	protected $connection = 'panel';
 	protected $table      = 'request';
 	protected $primaryKey = 'request_id';
-	protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
 }

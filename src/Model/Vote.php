@@ -9,7 +9,6 @@ class Vote extends Model {
 	protected $connection = 'panel';
 	protected $table      = 'vote';
 	protected $primaryKey = 'vote_id';
-	protected $dates      = ['created_at', 'updated_at'];
 
 	/**
 	 * @return BelongsTo

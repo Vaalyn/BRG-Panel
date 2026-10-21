@@ -1,5 +1,6 @@
 <?php
 
+use Phinx\Db\Adapter\MysqlAdapter;
 use Phinx\Migration\AbstractMigration;
 
 class Migration extends AbstractMigration {
@@ -73,7 +74,7 @@ class Migration extends AbstractMigration {
 
 		$this->table('message', ['id' => false, 'primary_key' => ['id_message']])
 			->addColumn('id_message',   'integer',  ['identity' => true])
-			->addColumn('message_text', 'text',     ['limit' => 'TEXT_MEDIUM', 'null' => false])
+			->addColumn('message_text', 'text',     ['limit' => MysqlAdapter::TEXT_MEDIUM, 'null' => false])
 			->addColumn('nickname',     'string',   ['limit' => 255, 'null' => false])
 			->addColumn('message_time', 'datetime', ['null' => false])
 			->addColumn('active',       'boolean',  ['default' => false, 'null' => false])
@@ -145,7 +146,7 @@ class Migration extends AbstractMigration {
 
 		$this->table('tracks', ['id' => false, 'primary_key' => ['id']])
 			->addColumn('id',           'integer', ['identity' => true])
-			->addColumn('pathname',     'text',    ['limit' => 'TEXT_MEDIUM', 'null' => false])
+			->addColumn('pathname',     'text',    ['limit' => MysqlAdapter::TEXT_MEDIUM, 'null' => false])
 			->addColumn('title',        'string',  ['limit' => 255, 'null' => false])
 			->addColumn('length',       'integer', ['null' => false])
 			->addColumn('url',          'text',    ['null' => false])

@@ -27,7 +27,11 @@ class MigrationRemoveVoteUniqueIndex extends AbstractMigration
      */
     public function change()
     {
-		$this->table('vote')
-			->removeIndex(['track_id', 'ip_address']);
+		$table = $this->table('vote');
+
+		if ($table->hasIndex(['track_id', 'ip_address'])) {
+			$table->removeIndex(['track_id', 'ip_address'])
+				->save();
+		}
     }
 }

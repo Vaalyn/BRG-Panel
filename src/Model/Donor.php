@@ -9,7 +9,6 @@ class Donor extends Model {
 	protected $connection = 'panel';
 	protected $table      = 'donor';
 	protected $primaryKey = 'donor_id';
-	protected $dates      = ['created_at', 'updated_at'];
 
 	/**
 	 * @return HasMany

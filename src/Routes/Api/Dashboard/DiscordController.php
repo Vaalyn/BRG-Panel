@@ -3,8 +3,9 @@
 namespace BRG\Panel\Routes\Api\Dashboard;
 
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
-use phpseclib\Crypt\RSA;
-use phpseclib\Net\SSH2;
+use phpseclib3\Crypt\PublicKeyLoader;
+use phpseclib3\Exception\UnableToConnectException;
+use phpseclib3\Net\SSH2;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -32,12 +33,18 @@ class DiscordController {
 	public function restartLucyLightAction(Request $request, Response $response, array $args): Response {
 		$botServerConfig = $this->discordConfig['bot']['lucy_light']['server'];
 
-		$key = new RSA();
-		$key->loadKey(file_get_contents($botServerConfig['ssh_key_path']));
+		$key = PublicKeyLoader::load(file_get_contents($botServerConfig['ssh_key_path']));
 
 		$ssh = new SSH2($botServerConfig['host']);
 
-		if (!$ssh->login($botServerConfig['user'], $key)) {
+		try {
+			$isLoggedIn = $ssh->login($botServerConfig['user'], $key);
+		}
+		catch (UnableToConnectException $exception) {
+			$isLoggedIn = false;
+		}
+
+		if (!$isLoggedIn) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage('Konnte Bot Server nicht erreichen');

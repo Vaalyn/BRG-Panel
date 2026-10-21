@@ -13,7 +13,6 @@ class RoleUser extends Pivot {
 
 	protected $table      = self::TABLE_NAME;
 	protected $primaryKey = self::PRIMARY_KEY;
-	protected $dates      = ['created_at', 'updated_at'];
 
 	/**
 	 * @return BelongsTo

@@ -41,7 +41,7 @@ class DonationController {
 				throw new InfoException('Der Name muss mindestens 1 Zeichen lang sein');
 			}
 
-			if (!$this->validator->numeric()->min(0, true)->validate($amount)) {
+			if (!$this->validator->numericVal()->min(0)->validate($amount)) {
 				throw new InfoException('Keine gültige Spendensumme');
 			}
 
@@ -82,7 +82,7 @@ class DonationController {
 	public function updateCurrentlyNeededDonationAmountAction(Request $request, Response $response, array $args): Response {
 		$amount = $request->getParsedBody()['amount'] ?? null;
 
-		if (!$this->validator->numeric()->min(0, true)->validate($amount)) {
+		if (!$this->validator->numericVal()->min(0)->validate($amount)) {
 			$apiResponse = (new JsonApiResponseDto())
 				->setStatus('error')
 				->setMessage('Keine gültige Spendensumme');

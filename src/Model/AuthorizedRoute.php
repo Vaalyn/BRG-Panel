@@ -9,7 +9,6 @@ class AuthorizedRoute extends Model {
 	protected $connection = 'panel';
 	protected $table      = 'authorized_route';
 	protected $primaryKey = 'authorized_route_id';
-	protected $dates      = ['created_at', 'updated_at'];
 
 	public $incrementing = false;
 

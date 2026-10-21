@@ -3,7 +3,7 @@
 namespace BRG\Panel\Routes\Cron;
 
 use BRG\Panel\Dto\ApiResponse\JsonApiResponseDto;
-use Jobby\Jobby;
+use BRG\Panel\Service\Cron\CronScheduler;
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -15,7 +15,7 @@ class CronController {
 	protected $config;
 
 	/**
-	 * @var Jobby
+	 * @var CronScheduler
 	 */
 	protected $cronManager;
 
@@ -24,7 +24,7 @@ class CronController {
 	 */
 	public function __construct(ContainerInterface $container) {
 		$this->config = $container->config;
-		$this->cronManager = new Jobby();
+		$this->cronManager = new CronScheduler();
 	}
 
 	/**
@@ -70,12 +70,7 @@ class CronController {
 
 			$cronName = sprintf('CurrentEventUpdate-%s', $executions + 1);
 
-			$this->cronManager->add($cronName, [
-				'command' => $cronCommand,
-				'schedule' => function() {
-					return true;
-				}
-			]);
+			$this->cronManager->add($cronName, $cronCommand, '* * * * *');
 		}
 	}
 
@@ -88,10 +83,7 @@ class CronController {
 			$this->config['host']['url']
 		);
 
-		$this->cronManager->add('HistoryUpdate', [
-			'command' => $cronCommand,
-			'schedule' => '* * * * *'
-		]);
+		$this->cronManager->add('HistoryUpdate', $cronCommand, '* * * * *');
 	}
 
 	/**
@@ -116,12 +108,7 @@ class CronController {
 					$executions + 1
 				);
 
-				$this->cronManager->add($cronName, [
-					'command' => $cronCommand,
-					'schedule' => function() {
-						return true;
-					}
-				]);
+				$this->cronManager->add($cronName, $cronCommand, '* * * * *');
 			}
 		}
 	}
@@ -135,9 +122,6 @@ class CronController {
 			$this->config['host']['url']
 		);
 
-		$this->cronManager->add('TrackUpdate', [
-			'command' => $cronCommand,
-			'schedule' => '*/10 * * * *'
-		]);
+		$this->cronManager->add('TrackUpdate', $cronCommand, '*/10 * * * *');
 	}
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Phinx\Db\Adapter\MysqlAdapter;
 use Phinx\Migration\AbstractMigration;
 
 class MigrationMessageTableChanges extends AbstractMigration
@@ -30,7 +31,10 @@ class MigrationMessageTableChanges extends AbstractMigration
 		$this->table('message')
 			->addColumn('updated_at', 'datetime', ['null' => false])
 			->addColumn('deleted_at', 'datetime', ['default' => null, 'null' => true])
-			->changeColumn('message_text', 'text', ['after' => 'nickname', 'limit' => 'TEXT_MEDIUM', 'null' => false])
+			->changeColumn('message_text', 'text', ['after' => 'nickname', 'limit' => MysqlAdapter::TEXT_MEDIUM, 'null' => false])
+			->update();
+
+		$this->table('message')
 			->renameColumn('id_message', 'message_id')
 			->renameColumn('message_text', 'message')
 			->renameColumn('message_time', 'created_at')

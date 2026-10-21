@@ -6,7 +6,7 @@ declare(strict_types=1);
 use Symfony\Component\Console;
 use Vaalyn\PluginService\PluginLoader;
 
-error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
+error_reporting(E_ALL & ~E_NOTICE);
 ini_set('display_errors', '1');
 
 require_once __DIR__ . '/../vendor/autoload.php';

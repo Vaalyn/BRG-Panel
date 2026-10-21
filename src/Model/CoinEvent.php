@@ -9,7 +9,6 @@ class CoinEvent extends Model {
 	protected $connection = 'panel';
 	protected $table      = 'coin_event';
 	protected $primaryKey = 'coin_id';
-	protected $dates      = ['created_at', 'updated_at'];
 
 	/**
 	 * @return BelongsTo

@@ -4,10 +4,11 @@ namespace BRG\Panel\Service\Factory\Flysystem;
 
 use BRG\Panel\Exception\MissingAdapterArgumentException;
 use BRG\Panel\Exception\UnknownFlysystemAdapterClassNameException;
-use League\Flysystem\AdapterInterface;
-use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
-use League\Flysystem\Sftp\SftpAdapter;
+use League\Flysystem\FilesystemAdapter;
+use League\Flysystem\Local\LocalFilesystemAdapter;
+use League\Flysystem\PhpseclibV3\SftpAdapter;
+use League\Flysystem\PhpseclibV3\SftpConnectionProvider;
 
 class FlysystemFactory {
 	/**
@@ -27,14 +28,14 @@ class FlysystemFactory {
 	 * @param string $adapterClassName
 	 * @param array $arguments
 	 *
-	 * @return AdapterInterface
+	 * @return FilesystemAdapter
 	 */
-	private function createAdapter(string $adapterClassName, array $arguments): AdapterInterface {
+	private function createAdapter(string $adapterClassName, array $arguments): FilesystemAdapter {
 		switch ($adapterClassName) {
-			case 'League\Flysystem\Adapter\Local':
+			case LocalFilesystemAdapter::class:
 				return $this->instantiateLocalAdapter($arguments);
 
-			case 'League\Flysystem\Sftp\SftpAdapter':
+			case SftpAdapter::class:
 				return $this->instantiateSftpAdapter($arguments);
 
 			default:
@@ -50,14 +51,14 @@ class FlysystemFactory {
 	/**
 	 * @param array $arguments
 	 *
-	 * @return Local
+	 * @return LocalFilesystemAdapter
 	 */
-	private function instantiateLocalAdapter(array $arguments): Local {
+	private function instantiateLocalAdapter(array $arguments): LocalFilesystemAdapter {
 		if (!isset($arguments['path'])) {
 			throw new MissingAdapterArgumentException('The Local adapter needs the "path" argument');
 		}
 
-		return new Local($arguments['path']);
+		return new LocalFilesystemAdapter($arguments['path']);
 	}
 
 	/**
@@ -94,24 +95,23 @@ class FlysystemFactory {
 			$config['port'] = $arguments['port'];
 		}
 
-		if (isset($arguments['root'])) {
-			$config['root'] = $arguments['root'];
-		}
-
 		if (isset($arguments['timeout'])) {
 			$config['timeout'] = $arguments['timeout'];
 		}
 
-		return new SftpAdapter($config);
+		return new SftpAdapter(
+			SftpConnectionProvider::fromArray($config),
+			$arguments['root'] ?? ''
+		);
 	}
 
 	/**
-	 * @param AdapterInterface $adapter
+	 * @param FilesystemAdapter $adapter
 	 * @param array $config
 	 *
 	 * @return Filesystem
 	 */
-	private function instantiateFilesystem(AdapterInterface $adapter, array $config = []): Filesystem {
+	private function instantiateFilesystem(FilesystemAdapter $adapter, array $config = []): Filesystem {
 		return new Filesystem($adapter, $config);
 	}
 }

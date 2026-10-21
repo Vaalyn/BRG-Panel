@@ -11,5 +11,4 @@ class Message extends Model {
 	protected $connection = 'panel';
 	protected $table      = 'message';
 	protected $primaryKey = 'message_id';
-	protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
 }

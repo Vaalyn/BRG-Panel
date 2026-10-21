@@ -36,6 +36,9 @@ class MigrationRequestTableChanges extends AbstractMigration
 		$this->table('request')
 			->changeColumn('skipped', 'boolean', ['after' => 'ip_address', 'default' => false, 'null' => false])
 			->changeColumn('requested_time', 'datetime', ['after' => 'is_autodj', 'default' => false, 'null' => false])
+			->update();
+
+		$this->table('request')
 			->renameColumn('id_request', 'request_id')
 			->renameColumn('skipped', 'is_skipped')
 			->renameColumn('requested_time', 'created_at')

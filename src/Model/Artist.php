@@ -9,7 +9,6 @@ class Artist extends Model {
 	protected $connection = 'panel';
 	protected $table      = 'artist';
 	protected $primaryKey = 'artist_id';
-	protected $dates      = ['created_at', 'updated_at'];
 
 	/**
 	 * @return HasMany

@@ -6,9 +6,14 @@ use BRG\Panel\Exception\InvalidMailArgumentException;
 use BRG\Panel\Exception\InvalidMailerConfigurationException;
 use BRG\Panel\Exception\MailNotSendException;
 use Respect\Validation\Validator;
-use Swift_Mailer;
-use Swift_Message;
-use Swift_SmtpTransport;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\Mailer as SymfonyMailer;
+use Symfony\Component\Mailer\Transport\Smtp\Auth\CramMd5Authenticator;
+use Symfony\Component\Mailer\Transport\Smtp\Auth\LoginAuthenticator;
+use Symfony\Component\Mailer\Transport\Smtp\Auth\PlainAuthenticator;
+use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 
 class Mailer implements MailerInterface {
 	/**
@@ -41,39 +46,37 @@ class Mailer implements MailerInterface {
 	public function sendMail(string $subject, string $toEmail, string $toName, string $message, bool $isHtmlMessage = true): void {
 		$this->validateMailArguments($subject, $toEmail);
 
-		$swiftMessage = new Swift_Message();
-
-		$swiftMessage->setSubject($subject)
-			->setFrom([
-				$this->config['fromAddress'] => $this->config['from']
-			])
-			->setTo([$toEmail => $toName])
-			->setBody($message);
+		$email = (new Email())
+			->subject($subject)
+			->from(new Address($this->config['fromAddress'], $this->config['from']))
+			->to(new Address($toEmail, $toName));
 
 		if ($isHtmlMessage) {
-			$swiftMessage->setContentType('text/html');
+			$email->html($message);
+		}
+		else {
+			$email->text($message);
 		}
 
-		$mailer = $this->createMailer();
-
-		$failedRecipients = [];
-
-		$mailer->send($swiftMessage, $failedRecipients);
-
-		if (count($failedRecipients)) {
+		try {
+			$this->createMailer()->send($email);
+		}
+		catch (TransportExceptionInterface $exception) {
 			throw new MailNotSendException(
 				sprintf(
 					'Mail could not be send for the following recipients: %s',
-					implode(', ', $failedRecipients)
-				)
+					$toEmail
+				),
+				0,
+				$exception
 			);
 		}
 	}
 
 	/**
-	 * @return Swift_Mailer
+	 * @return SymfonyMailer
 	 */
-	protected function createMailer(): Swift_Mailer {
+	protected function createMailer(): SymfonyMailer {
 		$smtpTransport = $this->buildSmtpTransport(
 			$this->config['username'],
 			$this->config['password'],
@@ -83,7 +86,7 @@ class Mailer implements MailerInterface {
 			$this->config['authMode']
 		);
 
-		return new Swift_Mailer($smtpTransport);
+		return new SymfonyMailer($smtpTransport);
 	}
 
 	/**
@@ -94,7 +97,7 @@ class Mailer implements MailerInterface {
 	 * @param string $security
 	 * @param string $authMode
 	 *
-	 * @return Swift_SmtpTransport
+	 * @return EsmtpTransport
 	 */
 	protected function buildSmtpTransport(
 		string $username,
@@ -103,13 +106,30 @@ class Mailer implements MailerInterface {
 		int $port,
 		string $security,
 		string $authMode
-	): Swift_SmtpTransport {
-		$smtpTransport = (new Swift_SmtpTransport($host, $port, $security))
-			->setUsername($username)
-			->setPassword($password)
-			->setAuthMode($authMode);
+	): EsmtpTransport {
+		$smtpTransport = new EsmtpTransport($host, $port, $security === 'ssl');
 
-		return $smtpTransport;
+		if ($security === 'tls') {
+			$smtpTransport->setRequireTls(true);
+		}
+		else if ($security !== 'ssl') {
+			$smtpTransport->setAutoTls(false);
+		}
+
+		$authenticator = match ($authMode) {
+			'plain' => new PlainAuthenticator(),
+			'login' => new LoginAuthenticator(),
+			'cram-md5' => new CramMd5Authenticator(),
+			default => null,
+		};
+
+		if ($authenticator !== null) {
+			$smtpTransport->setAuthenticators([$authenticator]);
+		}
+
+		return $smtpTransport
+			->setUsername($username)
+			->setPassword($password);
 	}
 
 	/**
@@ -122,7 +142,7 @@ class Mailer implements MailerInterface {
 			throw new InvalidMailerConfigurationException(
 				sprintf(
 					'From address "%s" is an invalid e-mail address',
-					$toEmail
+					$this->config['fromAddress']
 				)
 			);
 		}

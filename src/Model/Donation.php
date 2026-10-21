@@ -12,7 +12,6 @@ class Donation extends Model {
 	protected $connection = 'panel';
 	protected $table      = 'donation';
 	protected $primaryKey = 'donation_id';
-	protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
 
 	/**
 	 * @return BelongsTo

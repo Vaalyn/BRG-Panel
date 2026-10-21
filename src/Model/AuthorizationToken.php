@@ -10,7 +10,6 @@ class AuthorizationToken extends Model {
 	protected $connection = 'panel';
 	protected $table      = 'authorization_token';
 	protected $primaryKey = 'authorization_token_id';
-	protected $dates      = ['created_at', 'updated_at'];
 
 	public $incrementing = false;
 

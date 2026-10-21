@@ -28,12 +28,12 @@ class HistoryController {
 		$historyQuery = $this->createFetchHistoryQuery($request);
 		$history = $historyQuery->get();
 
-		$csvWriter = Writer::createFromFileObject(new \SplTempFileObject());
+		$csvWriter = Writer::from(new \SplTempFileObject());
 		$csvWriter->insertOne(['Id', 'Datum', 'Uhrzeit', 'Titel', 'Artist']);
 		$csvWriter->insertAll($history->toArray());
 
 		$historyCsvFile = tmpfile();
-		fwrite($historyCsvFile, $csvWriter->getContent());
+		fwrite($historyCsvFile, $csvWriter->toString());
 
 		$downloadFileStream = new Stream($historyCsvFile);
 

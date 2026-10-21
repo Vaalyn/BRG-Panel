@@ -9,7 +9,6 @@ class CommunityUser extends Model {
 	protected $connection = 'panel';
 	protected $table      = 'community_user';
 	protected $primaryKey = 'community_user_id';
-	protected $dates      = ['created_at', 'updated_at'];
 
 	/**
 	 * @return HasMany

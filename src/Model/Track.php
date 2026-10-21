@@ -10,7 +10,6 @@ class Track extends Model {
 	protected $connection = 'panel';
 	protected $table      = 'track';
 	protected $primaryKey = 'track_id';
-	protected $dates      = ['created_at', 'updated_at'];
 
 	/**
 	 * @return BelongsTo

@@ -11,14 +11,14 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RecursiveRegexIterator;
 use RegexIterator;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+#[AsCommand(name: 'brg:translations:generate')]
 class GenerateTranslationsCommand extends Command {
-	protected static $defaultName = 'brg:translations:generate';
-
 	/**
 	 * @var string
 	 */
@@ -36,12 +36,12 @@ class GenerateTranslationsCommand extends Command {
 		parent::__construct();
 	}
 
-    protected function configure() {
+    protected function configure(): void {
         $this->setDescription('Generate translations file')
         	->setHelp('Generates the german translations file for all translatable strings in the templates');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): ?int {
+    protected function execute(InputInterface $input, OutputInterface $output): int {
 		$symfonyOutputStyle = new SymfonyStyle($input, $output);
 
 		$symfonyOutputStyle->writeln('Scanning files for translatable strings...');
